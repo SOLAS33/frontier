@@ -26,6 +26,10 @@ UNIVERSE = {
     "OKLO": "Oklo", "SMR": "NuScale", "LEU": "Centrus Energy", "NNE": "Nano Nuclear", "BWXT": "BWX Technologies", "CEG": "Constellation Energy",
     "VST": "Vistra", "CCJ": "Cameco",
     # Frontier Cell
+    # Frontier Bot, Drone, Fusion
+    "SYM": "Symbotic", "SERV": "Serve Robotics", "TER": "Teradyne", "ISRG": "Intuitive Surgical", "ROK": "Rockwell Automation",
+    "AVAV": "AeroVironment", "KTOS": "Kratos", "RCAT": "Red Cat", "ONDS": "Ondas", "UMAC": "Unusual Machines", "LMT": "Lockheed Martin",
+    "NOC": "Northrop Grumman", "RTX": "RTX", "AMSC": "American Superconductor", "BRKR": "Bruker", "LASR": "nLight", "GEV": "GE Vernova",
     "QS": "QuantumScape", "ENVX": "Enovix", "EOSE": "Eos Energy", "FLNC": "Fluence", "ALB": "Albemarle", "TSLA": "Tesla", "GM": "General Motors", "F": "Ford",
 }
 # Histories begin at the date each series is meaningful for this site.
@@ -36,7 +40,10 @@ START = {"QUBT": "2018-07-30", "IBM": "2010-01-04", "GOOGL": "2010-01-04", "MSFT
          "NVDA": "2010-01-04", "AMD": "2010-01-04", "MU": "2010-01-04", "CRWV": "2025-03-28", "SMCI": "2010-01-04", "AMZN": "2010-01-04",
          "META": "2012-05-18", "AVGO": "2010-01-04", "OKLO": "2024-05-09", "SMR": "2022-03-02", "LEU": "2020-01-01", "NNE": "2024-05-20",
          "BWXT": "2016-07-01", "CEG": "2022-02-02", "VST": "2016-05-01", "CCJ": "2010-01-04", "QS": "2020-11-30", "ENVX": "2021-07-14",
-         "EOSE": "2020-11-01", "FLNC": "2021-10-28", "ALB": "2010-01-04", "TSLA": "2010-06-29", "GM": "2010-11-18", "F": "2010-01-04"}
+         "EOSE": "2020-11-01", "FLNC": "2021-10-28", "ALB": "2010-01-04", "TSLA": "2010-06-29", "GM": "2010-11-18", "F": "2010-01-04",
+         "SYM": "2022-06-27", "SERV": "2021-01-01", "TER": "2010-01-04", "ISRG": "2010-01-04", "ROK": "2010-01-04", "AVAV": "2010-01-04",
+         "KTOS": "2010-01-04", "RCAT": "2019-01-01", "ONDS": "2020-01-01", "UMAC": "2024-02-09", "LMT": "2010-01-04", "NOC": "2010-01-04",
+         "RTX": "2010-01-04", "AMSC": "2018-01-01", "BRKR": "2010-01-04", "LASR": "2018-01-01", "GEV": "2024-04-02"}
 
 
 def refresh(tickers=None) -> dict:

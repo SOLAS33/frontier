@@ -23,6 +23,12 @@ line = "Crypto and tokenised assets, including the quantum risk to Bitcoin."
 status = "live"
 
 [[sites]]
+slug = "chain"
+name = "Chain"
+line = "Blockchain technology beyond money: tokenisation, smart contracts and proofs."
+status = "soon"
+
+[[sites]]
 slug = "cell"
 name = "Cell"
 line = "Batteries and storage."

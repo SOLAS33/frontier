@@ -8,6 +8,7 @@ from frontier.components import band, chapter, fig, key_idea, note, photo, serie
 from frontier.scenarios import Scenario, simulate
 from sites import coin_extra as X
 from sites.quantum_extra import tile_map
+from sites import tech_blocks as TB
 
 TITLE = "Frontier Coin"
 AS_OF = "15 October 2026"
@@ -31,6 +32,7 @@ REFS = [
     (11, "Central Statistics Office (2024). Data centres metered electricity consumption 2023.", "https://www.cso.ie/en/releasesandpublications/ep/p-dcmec/datacentresmeteredelectricityconsumption2023/"),
     (12, "Solas33 (2026). World-State Engine crypto focus study: take-offs, 100x tokens and listings, 652 tokens.", "https://frontier.solas33.com/coin/#study"),
 ]
+REFS = REFS + TB.COIN_REFS
 RTITLE = {n: t for n, t, _ in REFS}
 
 
@@ -221,6 +223,7 @@ def build():
 <div class="card rv"><h3>In a fund</h3><p>A regulated fund holds the coins and you hold a share, in an ordinary brokerage account. Since 2024 this is how most institutions get exposure.</p></div>
 <div class="card rv"><h3>As a stablecoin</h3><p>A token backed by dollars in a bank, which pays the issuer the interest. The part of crypto that is nearest to ordinary payments.</p></div>
 </div>
+{TB.coin_html(cite)}
 <h3 class="wide" id="s-history" data-nav="History" style="margin-top:44px">History</h3>
 <div class="tl wide">
 <div class="ev big"><div class="yr">2008 to 2009</div><p>The Bitcoin paper is published and the first block is written.{cite(1)}</p></div>

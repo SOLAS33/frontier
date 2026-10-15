@@ -6,6 +6,7 @@ from frontier.components import band, chapter, fig, note, photo
 from frontier.scenarios import Scenario
 from frontier import sitekit as K
 from sites.quantum_extra import tile_map
+from sites import tech_blocks as TB
 
 TITLE = "Frontier Cell"
 AS_OF = "15 October 2026"
@@ -25,6 +26,7 @@ REFS = [
     (8, "International Energy Agency (2025). Energy and AI.", "https://www.iea.org/reports/energy-and-ai"),
     (9, "European Union. Regulation (EU) 2023/1542 concerning batteries and waste batteries.", "https://eur-lex.europa.eu/eli/reg/2023/1542/oj"),
 ]
+REFS = REFS + TB.CELL_REFS
 cite = K.cite_factory(REFS)
 
 SCEN = {
@@ -180,6 +182,7 @@ def build():
 <div class="card rv"><h3>Materials</h3><p>Lithium, nickel, cobalt and graphite come from a few places, and most of the refining is in one country.{cite(2)}</p></div>
 <div class="card rv"><h3>Cost of scaling</h3><p>Building cell factories in new places has failed more often than it has worked. Northvolt, once Europe's hope, collapsed in 2025.</p></div>
 </div>
+{TB.cell_html(cite)}
 <h3 class="wide" id="s-history" data-nav="History" style="margin-top:44px">History</h3>
 <div class="tl wide">
 <div class="ev"><div class="yr">1800</div><p>Volta's pile, the first battery.</p></div>

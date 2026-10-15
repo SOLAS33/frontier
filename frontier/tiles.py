@@ -161,7 +161,18 @@ def chip():
     return _wrap("".join(g), "A microchip with connecting traces")
 
 
-ART = {"quantum": quantum, "coin": coin, "cell": cell, "mind": mind, "bot": bot, "atom": atom, "fusion": fusion, "drone": drone,
+def chain():
+    g = []
+    for i in range(4):
+        x = 30 + i * 90
+        g.append(f'<rect x="{x}" y="90" width="70" height="60" rx="6" fill="none" stroke="{TEAL if i % 2 else VIO}" stroke-width="3"/>')
+        if i:
+            g.append(f'<line x1="{x - 20}" y1="120" x2="{x}" y2="120" stroke="{AMB}" stroke-width="3" stroke-dasharray="4 3"/>')
+    g.append(f'<path d="M30 60 H380 M30 180 H380" stroke="{LINE}" stroke-width="2" stroke-dasharray="3 6"/>')
+    return _wrap("".join(g), "Blocks linked in a chain with proofs above and below")
+
+
+ART = {"chain": chain, "quantum": quantum, "coin": coin, "cell": cell, "mind": mind, "bot": bot, "atom": atom, "fusion": fusion, "drone": drone,
        "shield": shield, "carbon": carbon, "tide": tide, "gene": gene, "orbit": orbit, "chip": chip}
 
 

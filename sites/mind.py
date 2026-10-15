@@ -6,6 +6,7 @@ from frontier.components import band, chapter, fig, key_idea, note, photo
 from frontier.scenarios import Scenario
 from frontier import sitekit as K
 from sites.quantum_extra import tile_map
+from sites import tech_blocks as TB
 
 TITLE = "Frontier Mind"
 AS_OF = "15 October 2026"
@@ -28,6 +29,7 @@ REFS = [
     (10, "Solas33 (2026). World-State Engine AI stocks study: who gained from the AI boom, and the growth-for-price screen.", "https://frontier.solas33.com/mind/#study"),
     (11, "Cambridge Centre for Alternative Finance. Cambridge Bitcoin Electricity Consumption Index.", "https://ccaf.io/cbnsi/cbeci"),
 ]
+REFS = REFS + TB.MIND_REFS
 cite = K.cite_factory(REFS)
 fmt_p = K.fmt_p
 
@@ -174,6 +176,7 @@ def build():
 <div class="card rv"><h3>Cost per answer</h3><p>A useful answer can cost far more than a web search, which limits free products.</p></div>
 <div class="card rv"><h3>Power</h3><p>The chips are limited by electricity as much as by silicon. See chapter 5.</p></div>
 </div>
+{TB.mind_html(cite)}
 <h3 class="wide" id="s-history" data-nav="History" style="margin-top:44px">History</h3>
 <div class="tl wide">
 <div class="ev"><div class="yr">1956</div><p>The phrase "artificial intelligence" is coined at a summer workshop at Dartmouth.</p></div>

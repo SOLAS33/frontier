@@ -6,6 +6,7 @@ from frontier.components import band, chapter, fig, note, photo
 from frontier.scenarios import Scenario
 from frontier import sitekit as K
 from sites.quantum_extra import tile_map
+from sites import tech_blocks as TB
 
 TITLE = "Frontier Atom"
 AS_OF = "15 October 2026"
@@ -25,6 +26,7 @@ REFS = [
     (8, "International Energy Agency (2025). Energy and AI.", "https://www.iea.org/reports/energy-and-ai"),
     (9, "Posiva. Final disposal facility at Onkalo, Finland.", "https://www.posiva.fi/en/index.html"),
 ]
+REFS = REFS + TB.ATOM_REFS
 cite = K.cite_factory(REFS)
 fmt_p = K.fmt_p
 
@@ -177,6 +179,7 @@ def build():
 <div class="card rv"><h3>Waste</h3><p>It is small in volume and well contained, but there is no operating final repository yet. Finland's is the closest.{cite(9)}</p></div>
 <div class="card rv"><h3>Fuel supply</h3><p>Enrichment is concentrated in a handful of sites, and the largest is Russian.</p></div>
 </div>
+{TB.atom_html(cite)}
 <h3 class="wide" id="s-history" data-nav="History" style="margin-top:44px">History</h3>
 <div class="tl wide">
 <div class="ev big"><div class="yr">1942</div><p>Chicago Pile-1 achieves the first controlled chain reaction.</p></div>
