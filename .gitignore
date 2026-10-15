@@ -2,3 +2,6 @@ __pycache__/
 .pytest_cache/
 *.pyc
 dist/
+data/prices.json
+node_modules/
+data/live/

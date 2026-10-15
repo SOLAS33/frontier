@@ -1,0 +1,73 @@
+# Every 3 hours: restore state -> fresh prices -> collect and classify -> adjust projections -> build site -> deploy -> save state.
+# Public repo, so Actions minutes are free.
+# Repo secrets: CF_API_TOKEN, SEC_CONTACT_EMAIL (the SEC requires a contact in its User-Agent). Repo variable: CF_ACCOUNT_ID.
+# Optional repo variable: FRONTIER_INDEXABLE=1 to let search engines index the site (default is noindex).
+name: live
+
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["frontier/**", "sites/**", "build.py", "wrangler.jsonc", ".github/workflows/live.yml"]
+
+concurrency:
+  group: frontier-live
+  cancel-in-progress: false
+
+permissions:
+  contents: write   # to update the `state` branch
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      SEC_CONTACT_EMAIL: ${{ secrets.SEC_CONTACT_EMAIL }}
+      FRONTIER_INDEXABLE: ${{ vars.FRONTIER_INDEXABLE }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q tests
+
+      - name: Restore state (events, projections, change log, ledger)
+        run: |
+          mkdir -p data/live
+          if git show origin/state:live.tar.gz > /tmp/live.tar.gz 2>/dev/null; then tar -xzf /tmp/live.tar.gz -C data && echo restored; else echo "fresh start"; fi
+
+      - name: Fresh weekly prices
+        run: python -c "from frontier import prices; prices.refresh()"
+
+      - name: Collect, classify, adjust projections
+        run: python -m frontier.live.run
+
+      - name: Build site
+        run: python build.py quantum
+
+      - name: Deploy to Cloudflare
+        if: ${{ secrets.CF_API_TOKEN != '' && secrets.CF_API_TOKEN != 'set-me' }}
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ vars.CF_ACCOUNT_ID }}
+          wranglerVersion: "4"
+          command: deploy
+
+      - name: Save state to the state branch
+        run: |
+          tar -czf /tmp/live.tar.gz -C data live
+          git config user.name "frontier-bot"; git config user.email "frontier-bot@users.noreply.github.com"
+          git checkout --orphan state-tmp
+          git rm -rf --quiet . || true
+          cp /tmp/live.tar.gz live.tar.gz
+          git add live.tar.gz
+          git commit -q -m "state $(date -u +%FT%H:%MZ)"
+          git push -f origin state-tmp:state
+          git checkout -f main

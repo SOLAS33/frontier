@@ -199,3 +199,27 @@ def line_gap(w=900, h=300):
                  f'<text x="{x + bw / 2:.1f}" y="{y - 6:.1f}" text-anchor="middle" class="t-fg">{v:,.0f}</text>'
                  f'<text x="{x + bw / 2:.1f}" y="{h - m["b"] + 20}" text-anchor="middle" class="lbl">{lab}</text>')
     return _svg(w, h, "".join(g), "Qubits on chips today against the estimated need to break RSA-2048")
+
+
+def index_chart(series, w=900, h=360):
+    """series: [(label, dates, values, colour)] on a shared log axis; values start at 100."""
+    m = {"l": 60, "r": 150, "t": 16, "b": 34}
+    t0 = min(_ord(s[1][0]) for s in series)
+    t1 = max(_ord(s[1][-1]) for s in series)
+    allv = [v for s in series for v in s[2]]
+    lo, hi = min(allv) * 0.9, max(allv) * 1.1
+    y0, y1 = math.log10(lo), math.log10(hi)
+    X = lambda d: m["l"] + (_ord(d) - t0) / (t1 - t0) * (w - m["l"] - m["r"])
+    Y = lambda v: m["t"] + (1 - (math.log10(v) - y0) / (y1 - y0)) * (h - m["t"] - m["b"])
+    g = []
+    for t in _log_ticks(lo, hi):
+        g.append(f'<line x1="{m["l"]}" x2="{w - m["r"]}" y1="{Y(t):.1f}" y2="{Y(t):.1f}" class="grid"/>'
+                 f'<text x="{m["l"] - 8}" y="{Y(t) + 4:.1f}" text-anchor="end">{_num(t)}</text>')
+    for yr in range(int(date.fromordinal(t0).year) + 1, date.fromordinal(t1).year + 1):
+        x = X(f"{yr}-01-01")
+        g.append(f'<text x="{x:.1f}" y="{h - 10}" text-anchor="middle">{yr}</text>')
+    for label, ds, vs, colour in series:
+        d = "M" + " L".join(f"{X(a):.1f} {Y(b):.1f}" for a, b in zip(ds, vs))
+        g.append(f'<path d="{d}" fill="none" stroke="{colour}" stroke-width="2.6" class="draw" pathLength="1"/>'
+                 f'<text x="{w - m["r"] + 8}" y="{Y(vs[-1]) + 4:.1f}" class="t-fg">{label} {vs[-1]:.0f}</text>')
+    return _svg(w, h, "".join(g), "Equal-weight baskets of pure-play quantum stocks and large groups, rebased to 100")

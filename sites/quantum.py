@@ -4,6 +4,8 @@ from __future__ import annotations
 import json
 
 from frontier import art, charts, prices
+from sites import quantum_extra as X
+from sites import quantum_extra2 as X2
 from frontier.scenarios import Scenario, simulate
 
 TITLE = "Frontier Quantum"
@@ -97,12 +99,44 @@ def build():
     # price data for the interactive chart
     order = ["IONQ", "RGTI", "QBTS", "QUBT", "IBM", "GOOGL", "MSFT", "NVDA", "HON"]
     names = {t: px[t]["name"] for t in order}
-    series_js = {t: {"d": px[t]["d"], "c": [round(v, 3) for v in px[t]["c"]]} for t in order}
+    all_t = order + ["AAPL", "BTC-USD"]
+    series_js = {t: {"d": px[t]["d"], "c": [round(v, 3) for v in px[t]["c"]]} for t in all_t}
+    scen_js = {}
+    for t in SCEN:
+        vol = prices.annual_vol(px[t])
+        scen_js[t] = {"name": px[t]["name"], "price": px[t]["c"][-1], "tilt_pts": 0,
+                      "hist": {"d": px[t]["d"][-104:], "c": [round(v, 3) for v in px[t]["c"][-104:]]},
+                      "scen": [{"k": s.key, "label": s.label, "p": s.probability, "drift": s.drift, "sigma": round(vol * s.vol_mult, 4)} for s in SCEN[t]]}
+    tm_assets = [["IONQ", "IonQ"], ["RGTI", "Rigetti"], ["QBTS", "D-Wave"], ["QUBT", "Quantum Computing Inc"], ["NVDA", "Nvidia"],
+                 ["AAPL", "Apple"], ["BTC-USD", "Bitcoin"], ["IBM", "IBM"], ["GOOGL", "Alphabet (Google)"], ["MSFT", "Microsoft"]]
+    tm_default = {"AAPL": "1997-12-22", "BTC-USD": "2016-01-25", "NVDA": "2022-10-10", "IONQ": px["IONQ"]["d"][0],
+                  "RGTI": px["RGTI"]["d"][0], "QBTS": px["QBTS"]["d"][0], "QUBT": "2024-06-24"}
     data_js = (f"window.PRICES={json.dumps(series_js, separators=(',', ':'))};"
-               f"window.PRICE_ORDER={json.dumps(order)};window.PRICE_NAMES={json.dumps(names)};")
+               f"window.PRICE_ORDER={json.dumps(order)};window.PRICE_NAMES={json.dumps(names)};"
+               f"window.SCEN={json.dumps(scen_js, separators=(',', ':'))};"
+               f"window.TM_ASSETS={json.dumps(tm_assets)};window.TM_DEFAULT={json.dumps(tm_default)};"
+               f"window.COUNTRY={json.dumps(X.COUNTRY)};window.COUNTRY_NAMES={json.dumps(X.NAMES)};")
+    # equal-weight baskets, rebased to 100 at the first week where every member exists
+    def basket(members):
+        idx = {t: dict(zip(px[t]["d"], px[t]["c"])) for t in members}
+        dates = [d for d in px[members[0]]["d"] if all(d in idx[t] for t in members)]
+        dates = [d for d in dates if d >= max(px[t]["d"][0] for t in members)]
+        lvl, out = 100.0, []
+        for i, d in enumerate(dates):
+            if i:
+                lvl *= 1 + sum(idx[t][d] / idx[t][dates[i - 1]] - 1 for t in members) / len(members)
+            out.append(lvl)
+        return dates, out
+    pd_d, pd_v = basket(["IONQ", "RGTI", "QBTS", "QUBT"])
+    bg_d, bg_v = basket(["IBM", "GOOGL", "MSFT", "HON"])
+    start = pd_d[0]
+    bg = [(d, v) for d, v in zip(bg_d, bg_v) if d >= start]
+    bg_v2 = [v / bg[0][1] * 100 for _, v in bg]
+    idx_svg = charts.index_chart([("Pure-play quantum", pd_d, pd_v, "var(--amber)"), ("Large groups", [d for d, _ in bg], bg_v2, "var(--teal)")])
 
     nav = [("learn", "Learn"), ("simple", "Explained simply"), ("change", "How the world changes"),
-           ("companies", "The companies"), ("hurdles", "Hurdles and power"), ("outlook", "Next three years")]
+           ("companies", "The companies"), ("hurdles", "Hurdles and power"), ("outlook", "Next three years"),
+           ("disclosures", "Disclosures"), ("family", "More Frontier")]
 
     def counter(val, label, pre="", suf="", dec=0):
         return (f'<div class="stat"><b data-count="{val}" data-pre="{pre}" data-suf="{suf}" data-dec="{dec}">{pre}{val:,.{dec}f}{suf}</b>'
@@ -123,10 +157,12 @@ def build():
 {counter(runs["RGTI"]["multiple"], "times Rigetti rose from low to high in one year", "", "x")}
 {counter(26, "kilowatts for one whole quantum computer, about the continuous load of 50 to 100 homes", "", " kW")}
 </div></header>''')
+    A('<div class="callout r rv"><b>Information only.</b> This site explains technology and shows how its companies and share prices have behaved. It is not investment advice and it makes no recommendation. Projections are scenarios, not forecasts, and you can lose all of any money you put into shares like these. See Disclosures at the foot of the page.</div>')
 
     # ---------- 1 learn
     A(f'''<section class="chapter" id="learn"><header><div class="no">1</div><div><h2>Learn it, start to finish</h2>
 <p class="sub">The idea, the physics, the hardware, the history and the evidence, with the papers behind each claim.</p></div></header>
+{X.KEY["learn"]}
 <div class="cols">
 <div class="card rv"><h3>The idea</h3><p>Ordinary computers store bits that are 0 or 1. A quantum computer stores qubits, which can hold a weighted blend of 0 and 1 until measured. Richard Feynman argued in 1981 that simulating nature needs a machine built from quantum parts.{cite(1)}</p></div>
 <div class="card rv"><h3>The three tools</h3><p><b>Superposition</b> holds many possibilities at once. <b>Entanglement</b> ties qubits together. <b>Interference</b> makes wrong answers cancel and the right one stand out. Shor's 1994 factoring algorithm{cite(2)} and Grover's 1996 search{cite(3)} are built from these.</p></div>
@@ -172,6 +208,7 @@ def build():
     # ---------- 2 simple
     A(f'''<section class="chapter" id="simple"><header><div class="no">2</div><div><h2>Explained without the physics</h2>
 <p class="sub">Four pictures that cover what you need to know.</p></div></header>
+{X.KEY["simple"]}
 <div class="cols">
 <figure class="fig rv" style="margin:0">{art.coin_vs_spin()}<figcaption><b>The spinning coin.</b> A bit is a coin lying flat: heads or tails. A qubit is the coin in mid-air, neither until it lands.</figcaption></figure>
 <figure class="fig rv" style="margin:0">{art.maze()}<figcaption><b>The maze.</b> A normal computer walks every route in turn. A quantum computer sets up the maze so the wrong routes cancel each other and the right one is left.</figcaption></figure>
@@ -186,6 +223,7 @@ def build():
     # ---------- 3 change & prepare
     A(f'''<section class="chapter" id="change"><header><div class="no">3</div><div><h2>How the world changes, and how to be ready</h2>
 <p class="sub">If error-corrected machines arrive, here is what moves first and what you can do now. Most of the preparation is cheap.</p></div></header>
+{X.KEY["change"]}
 <div class="tl">
 <div class="ev fut"><div class="yr">Now to 2030: security</div><p>Encrypted data stolen today can be read later once a large machine exists. Governments and banks are already moving to new encryption standards.{cite(13)} A machine able to break RSA-2048 is estimated to need about a million noisy qubits.{cite(11)}</p></div>
 <div class="ev fut"><div class="yr">2028 to 2035: chemistry and materials</div><p>First useful gains are expected in simulating molecules: catalysts, battery materials, drug binding. Resource estimates for industrially relevant problems run to roughly 1,000 to 4,000 logical qubits.{cite(16, 17)}</p></div>
@@ -197,7 +235,9 @@ def build():
 <div class="card rv"><h3>Your small business</h3><p>List data that must stay secret for 10 years or more (contracts, health, design files). Ask your software and cloud suppliers when they will support the NIST post-quantum standards.{cite(13)}</p></div>
 <div class="card rv"><h3>Your career</h3><p>Python and linear algebra are the entry points. Qiskit is free and runs real programs on small machines.{cite(21)} Demand is for people who can pair domain skills (chemistry, finance, logistics) with this.</p></div>
 <div class="card rv"><h3>Your savings</h3><p>Treat the sector as venture-style risk. Chapter 4 shows what past booms looked like and how often the early leaders failed. Keep any position small enough that losing all of it does not change your life.</p></div>
-</div></section>''')
+</div>
+{X2.ch3_extra()}
+</section>''')
 
     # ---------- 4 companies
     mult_items = [
@@ -211,6 +251,7 @@ def build():
     ]
     A(f'''<section class="chapter" id="companies"><header><div class="no">4</div><div><h2>The companies, and what an explosion looks like</h2>
 <p class="sub">Where each started, who it competes with, what has to happen before it makes money, and what past booms did to share prices.</p></div></header>
+{X.KEY["companies"]}
 <div class="callout r"><b>Information, not advice.</b> This is a plain-language map of a high-risk sector. It is not a recommendation to buy or sell anything. Most small listed companies in new technology lose most of their value or disappear.</div>
 <div class="cols">''')
     for c in COMPANIES:
@@ -244,11 +285,14 @@ def build():
 <div class="cols">
 <div class="card rv"><h3>Signs an explosion is starting</h3><ul><li>A company shows error-corrected programs long enough to be useful.</li><li>A named customer pays for results, not for a trial.</li><li>Revenue grows faster than the cash it burns.</li><li>A big group buys a small one at a clear premium.</li></ul></div>
 <div class="card rv"><h3>Signs it is getting ahead of itself</h3><ul><li>Prices rise several-fold with no new technical result.</li><li>The company sells new shares into every rally.</li><li>Targets keep moving back a year at a time.</li><li>Claims rest on a result no one else has reproduced.</li></ul></div>
-</div></section>''')
+</div>
+{X2.ch4_extra(idx_svg)}
+</section>''')
 
     # ---------- 5 hurdles and power
     A(f'''<section class="chapter" id="hurdles"><header><div class="no">5</div><div><h2>What stands in the way, and the power bill</h2>
 <p class="sub">The size of the gap, the engineering problems, and how much electricity a machine uses.</p></div></header>
+{X.KEY["hurdles"]}
 <figure class="fig">{charts.line_gap()}<figcaption>Log scale. Practical chips today have 100 to 150 usable qubits. Breaking RSA-2048 is estimated to need about a million noisy qubits{cite(11)}, down from 20 million in 2019.{cite(12)}</figcaption></figure>
 <div class="cols">
 <div class="card rv"><h3>Error rates</h3><p>About 1 error in 100 to 1,000 steps today, against roughly 1 in a trillion needed.</p></div>
@@ -268,6 +312,7 @@ def build():
     # ---------- 6 outlook
     A('''<section class="chapter" id="outlook"><header><div class="no">6</div><div><h2>The next three years, in plain language</h2>
 <p class="sub">The author's best estimate to October 2029. These are judgements with stated assumptions, not predictions and not advice.</p></div></header>''')
+    A(X.KEY["outlook"])
     A(f'''<figure class="fig">{charts.roadmap()}<figcaption>Logical qubits by year, log scale. Hollow points are company targets, the solid point is the best result shown so far. Sources: IBM{cite(19)}, Quantinuum{cite(20)}, Bluvstein et al.{cite(8)}</figcaption></figure>
 <h3>What I expect to happen to the technology</h3>
 <div class="cols">
@@ -277,13 +322,7 @@ def build():
 </div>
 <h3 style="margin-top:40px">What it could mean for the four pure-play shares</h3>
 <p>Each chart shows the last two years, then the spread of outcomes under three stories. The dashed lines are the median in each story; the shaded band is where the middle 80% of all outcomes fall once the stories are mixed by my probabilities. Volatility comes from each stock's own last two years, which is very high.</p>''')
-    for c in COMPANIES:
-        t = c["t"]
-        sm, sc = sims[t], SCEN[t]
-        A(f'''<figure class="fig"><h3 style="margin-bottom:10px">{c["name"]} <span style="font:500 .85rem var(--mono);color:var(--muted)">{t}, now {fmt_p(px[t]["c"][-1])}</span></h3>
-{charts.fan_chart(px[t], sm, c["name"])}
-<figcaption><b style="color:var(--red)">Bear {sc[0].probability:.0%}:</b> {sc[0].label}. <b style="color:var(--teal)">Base {sc[1].probability:.0%}:</b> {sc[1].label}. <b style="color:var(--amber)">Bull {sc[2].probability:.0%}:</b> {sc[2].label}.<br>
-In three years: middle outcome {fmt_p(sm["end_p50"])}, low end {fmt_p(sm["end_p10"])}, high end {fmt_p(sm["end_p90"])}. Chance of finishing below today's price: {sm["prob_below_start"]:.0%}. Chance of doubling: {sm["prob_double"]:.0%}. Chance of losing half: {sm["prob_half"]:.0%}.</figcaption></figure>''')
+    A(X2.ch6_interactive(sims, COMPANIES, fmt_p))
     A(f'''<h3 style="margin-top:40px">My plain-language view</h3>
 <div class="cols">
 <div class="card rv"><h3>The technology will probably get there. The share prices have already assumed it.</h3>
@@ -299,14 +338,17 @@ In three years: middle outcome {fmt_p(sm["end_p50"])}, low end {fmt_p(sm["end_p1
 </section>''')
 
     # ---------- footer
+    A(X.disclosures(AS_OF))
+    A(X.research())
+    A(X.rail())
     refs = "".join(f'<li id="r{n}">[{n}] <a href="{u}" target="_blank" rel="noopener">{t}</a></li>' for n, t, u in REFS)
     A(f'''<footer><h3 style="font-size:1.4rem">Sources, method and limits</h3>
 <ol class="refs" style="list-style:none;padding:0">{refs}</ol>
 <ul><li><b>Share prices:</b> Yahoo Finance weekly closes, split and dividend adjusted, retrieved {AS_OF}.</li>
 <li><b>Scenarios:</b> three stories per company, with yearly drift and probability chosen by the author (typical yearly price change, from -55% in the bear stories to +60% in the bull stories). Volatility is the annualised standard deviation of the last 104 weekly returns, scaled to 75% for the forward view. 20,000 simulated paths per company. Change the assumptions and the range moves; it is a way to see what the assumptions imply, not a forecast.</li>
 <li><b>Limits:</b> the 2026 hardware news was thin in the sources available. Several 2025 items are company claims. Qubit counts compare poorly across technologies. Company roadmaps change.</li>
-<li><b>Not advice:</b> information only, and not a personal recommendation. Solas33 holds no position in any company named.</li></ul>
-<div class="fam"><a href="#"><b>Frontier Quantum</b><span>you are here</span></a><a href="#"><b>Frontier Crypto</b><span>coming</span></a><a href="#"><b>Frontier Cells</b><span>batteries, coming</span></a><a href="#"><b>Frontier Mind</b><span>AI, coming</span></a><a href="#"><b>Frontier Bots</b><span>robotics, coming</span></a><a href="#"><b>Frontier Atom</b><span>fission, coming</span></a></div>
+<li><b>Not advice:</b> information only, and not a personal recommendation. Solas33 holds no position in any company named and carries no advertising.</li></ul>
+
 <p style="margin-top:20px">Built by Solas33, {AS_OF}. Page generated by a Python build (frontier/): prices, charts, illustrations and scenario simulation are produced from code.</p></footer>''')
 
     return {"title": TITLE, "nav": nav, "body": "\n".join(body), "data_js": data_js, "sims": sims, "stat": stat, "runs": runs}
