@@ -1,6 +1,7 @@
 {
-  "name": "frontier-quantum",
+  "name": "frontier",
   "compatibility_date": "2025-09-01",
   "workers_dev": true,
-  "assets": { "directory": "./dist/quantum" }
+  "routes": [{ "pattern": "frontier.solas33.com", "custom_domain": true }],
+  "assets": { "directory": "./dist" }
 }

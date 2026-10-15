@@ -1,0 +1,95 @@
+# One place to change how the whole Frontier series is wired. Nothing in here is a secret.
+
+[series]
+name = "Frontier"
+domain = "frontier.solas33.com"       # every site lives under this one host, as a path: /quantum/, /coin/, ...
+contact_email = "hello@solas33.com"   # corrections, SEC fair-access contact, photo requests
+alt_email = "dmcdtkofc@outlook.com"
+publisher = "Solas33"
+indexable = false                     # true lets search engines in. Flip after the disclosures are signed off.
+cf_worker_name = "frontier"
+
+# Sites. status: live | soon. Order here is the order on the hub and in the rail.
+[[sites]]
+slug = "quantum"
+name = "Quantum"
+line = "Quantum computing: what works, who is building it, what is in the share price."
+status = "live"
+
+[[sites]]
+slug = "coin"
+name = "Coin"
+line = "Crypto and tokenised assets, including the quantum risk to Bitcoin."
+status = "soon"
+
+[[sites]]
+slug = "cell"
+name = "Cell"
+line = "Batteries and storage."
+status = "soon"
+
+[[sites]]
+slug = "mind"
+name = "Mind"
+line = "Artificial intelligence, chips and the power they eat."
+status = "soon"
+
+[[sites]]
+slug = "bot"
+name = "Bot"
+line = "Robots and physical AI."
+status = "soon"
+
+[[sites]]
+slug = "atom"
+name = "Atom"
+line = "Fission and small modular reactors."
+status = "soon"
+
+[[sites]]
+slug = "fusion"
+name = "Fusion"
+line = "Fusion power and the milestones that matter."
+status = "soon"
+
+[[sites]]
+slug = "drone"
+name = "Drone"
+line = "Drones, civil and military."
+status = "soon"
+
+[[sites]]
+slug = "shield"
+name = "Shield"
+line = "Counter-drone, directed energy and high-power microwave."
+status = "soon"
+
+[[sites]]
+slug = "carbon"
+name = "Carbon"
+line = "Graphene and carbon nanotubes."
+status = "soon"
+
+[[sites]]
+slug = "tide"
+name = "Tide"
+line = "Wave, tidal and other new ways to harvest energy."
+status = "soon"
+
+[[sites]]
+slug = "gene"
+name = "Gene"
+line = "Gene editing, GLP-1 drugs and longevity."
+status = "soon"
+
+[[sites]]
+slug = "orbit"
+name = "Orbit"
+line = "Launch, satellites and space industry."
+status = "soon"
+
+[[sites]]
+slug = "chip"
+name = "Chip"
+line = "Semiconductors and photonics."
+status = "soon"

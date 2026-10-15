@@ -280,6 +280,7 @@
   /* ---------- live layer ---------- */
   function renderLive(L) {
     LIVE = L;
+    document.dispatchEvent(new CustomEvent("frontier:live", { detail: L }));
     var st = $("#live-stamp");
     if (st) st.textContent = "Last updated " + new Date(L.generated).toLocaleString("en-GB", { dateStyle: "long", timeStyle: "short" }) + " (UTC " + L.generated.slice(11, 16) + ")";
     Object.keys(L.tickers).forEach(function (t) {

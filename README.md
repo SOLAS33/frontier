@@ -1,14 +1,16 @@
 # Frontier
 
-Python build for a series of plain-language emerging-technology sites. Each site is a Python module in `sites/`
-that returns content; `frontier/` turns prices into charts, runs scenario simulations and draws the illustrations.
+Plain-language emerging-technology sites with a live Python backend. One host (frontier.solas33.com), one folder per site.
+Information only. No adverts.
 
-    python build.py quantum                # build dist/quantum/index.html from cached prices
-    python build.py quantum --refresh      # pull fresh weekly prices (Yahoo Finance via yfinance)
-    python build.py quantum --check-links  # test every reference link
+    python build.py quantum                # build dist/quantum and the hub from cached prices
+    python build.py quantum --refresh      # fetch fresh weekly prices first
+    python -m frontier.live.run            # collect, classify, adjust projections, write live.json
+    python tools/voice_lint.py dist/quantum/index.html
     python -m pytest -q tests
 
-Modules: `prices` (cache, stats, volatility, best runs), `scenarios` (Monte Carlo from stated assumptions),
-`charts` (SVG charts: fan, log bars, multiples, roadmap, ladder), `art` (generated illustrations),
-`linkcheck`. Scenario probabilities and drifts are the author's judgement and are declared in `sites/<site>.py`.
-Information only, not investment advice.
+- `config.toml`  domain, contact addresses, site list, indexing. The one place to change how the series is wired.
+- `docs/VOICE.md`  the house style for every site, enforced by `tools/voice_lint.py`.
+- `docs/KEYS.md`  every key the series will need, in one list.
+- `tools/find_images.py`  finds public-domain photographs on Wikimedia Commons; `optimise_images.py` shrinks them.
+- `frontier/live/`  the backend. `frontier/charts.py`, `art.py`, `components.py`  the shared drawing and layout code.
