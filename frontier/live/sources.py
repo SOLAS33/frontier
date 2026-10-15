@@ -59,7 +59,7 @@ def gdelt_headlines(query: str, days: int = 7, n: int = 12, client: httpx.Client
         r = c.get(url)
     r.raise_for_status()
     if not r.text.strip().startswith("{"):
-        return []
+        raise RuntimeError("GDELT returned a rate-limit notice")
     out = []
     for a in r.json().get("articles", []):
         if a.get("language", "English") != "English":
@@ -69,6 +69,24 @@ def gdelt_headlines(query: str, days: int = 7, n: int = 12, client: httpx.Client
                     "title": a.get("title", "").strip(), "url": a["url"], "source": a.get("domain", ""),
                     "country": a.get("sourcecountry", "")})
     return out
+
+
+def yahoo_headlines(ticker: str, n: int = 12, client: httpx.Client | None = None) -> list[dict]:
+    """Ticker-specific headlines from Yahoo Finance's RSS feed: title, link and date only."""
+    from email.utils import parsedate_to_datetime
+    c = client or _client()
+    r = c.get(f"https://feeds.finance.yahoo.com/rss/2.0/headline?s={ticker}&region=US&lang=en-US")
+    r.raise_for_status()
+    out = []
+    for it in ET.fromstring(r.text).iter("item"):
+        link, title = it.findtext("link", ""), (it.findtext("title", "") or "").strip()
+        try:
+            d = parsedate_to_datetime(it.findtext("pubDate", "")).date().isoformat()
+        except (TypeError, ValueError):
+            continue
+        if link and title:
+            out.append({"id": "news:" + link, "date": d, "title": title, "url": link, "source": "Yahoo Finance", "country": ""})
+    return out[:n]
 
 
 def arxiv_papers(term: str, n: int = 4, client: httpx.Client | None = None) -> list[dict]:

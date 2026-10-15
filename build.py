@@ -56,20 +56,13 @@ def main():
     out = ROOT / "dist" / a.site
     out.mkdir(parents=True, exist_ok=True)
     (out / "index.html").write_text(html, encoding="utf-8")
-    (out / "_headers").write_text(
-        "/*
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  X-Frame-Options: DENY
-"
-        "  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
-        "font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'
-", encoding="utf-8")
-    (out / "robots.txt").write_text("User-agent: *
-Allow: /
-" if os.environ.get("FRONTIER_INDEXABLE") == "1" else "User-agent: *
-Disallow: /
-", encoding="utf-8")
+    NL = chr(10)
+    headers = NL.join(["/*", "  X-Content-Type-Options: nosniff", "  Referrer-Policy: strict-origin-when-cross-origin", "  X-Frame-Options: DENY",
+                       "  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+                       "font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'", ""])
+    (out / "_headers").write_text(headers, encoding="utf-8")
+    allow = os.environ.get("FRONTIER_INDEXABLE") == "1"
+    (out / "robots.txt").write_text(NL.join(["User-agent: *", "Allow: /" if allow else "Disallow: /", ""]), encoding="utf-8")
     print(f"wrote {out / 'index.html'} ({len(html) / 1024:.0f} KB)")
     for t, s in ctx["sims"].items():
         print(f"  {t}: now {ctx['stat'][t]['last']:.2f}, 3y median {s['end_p50']:.2f} (10th {s['end_p10']:.2f}, 90th {s['end_p90']:.2f}), "

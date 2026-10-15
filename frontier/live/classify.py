@@ -31,7 +31,7 @@ NOISE_FORMS = {"4", "3", "5", "SC 13G", "SC 13G/A", "144", "S-8", "DEF 14A", "AR
 
 KEYWORDS = [
     ("share_sale", r"\b(offering|private placement|priced|raises? \$|at-the-market|atm program|share sale|registered direct)\b"),
-    ("acquisition", r"\b(acquir\w+|acquisition|to buy|merger|takeover)\b"),
+    ("acquisition", r"\b(acquir\w+|acquisition|merger|takeover)\b"),
     ("legal_risk", r"\b(short[- ]seller|short report|lawsuit|class action|investigation|subpoena|sec charges)\b"),
     ("policy", r"\b(export control|export ban|sanction|tariff|restriction|entity list|national quantum)\b"),
     ("technical", r"\b(logical qubit|error[- ]correct\w*|fidelity|record|breakthrough|milestone|quantum advantage|qubits?)\b"),
@@ -57,8 +57,19 @@ def classify_filing(f: dict) -> str | None:
     return "other_filing"
 
 
+ALIASES = {"IONQ": ["ionq"], "RGTI": ["rigetti"], "QBTS": ["d-wave", "dwave", "qbts"], "QUBT": ["quantum computing inc", "qubt"]}
+IGNORE = r"\b(vs\.?|versus|upgraded|downgraded|price target|better (buy|stock)|should you|here is|here's what)\b"
+
+
+def mentions(title: str, ticker: str) -> bool:
+    t = title.lower()
+    return ticker.lower() in t or any(a in t for a in ALIASES.get(ticker, []))
+
+
 def classify_headline(title: str) -> str | None:
     t = title.lower()
+    if re.search(IGNORE, t):
+        return None
     for kind, pat in KEYWORDS:
         if re.search(pat, t):
             return kind

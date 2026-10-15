@@ -63,11 +63,10 @@ def run(today: date | None = None, offline: bool = False, scen_defs=None, weekly
         with sources._client() as c:
             for t in scen_defs:
                 try:
-                    headlines[t] = sources.gdelt_headlines(sources.COMPANY_QUERY[t], client=c)
+                    headlines[t] = sources.yahoo_headlines(t, client=c)
                     status[f"news:{t}"] = "ok"
                 except Exception as e:
                     headlines[t], status[f"news:{t}"] = [], f"failed {type(e).__name__}"
-                sources.polite_sleep()
             for term in sources.ARXIV_TERMS:
                 try:
                     papers += sources.arxiv_papers(term, client=c)
@@ -111,7 +110,7 @@ def run(today: date | None = None, offline: bool = False, scen_defs=None, weekly
         for h in hs:
             kind = classify.classify_headline(h["title"])
             key = (t, h["date"], kind)
-            if kind is None or h["id"] in store or key in per_day or not h["date"]:
+            if kind is None or h["id"] in store or key in per_day or not h["date"] or not classify.mentions(h["title"], t):
                 continue
             if date.fromisoformat(h["date"]) < cutoff:
                 continue
