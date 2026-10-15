@@ -5,3 +5,4 @@ dist/
 data/prices.json
 node_modules/
 data/live/
+.wrangler/
