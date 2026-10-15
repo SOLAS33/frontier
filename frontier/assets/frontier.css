@@ -212,3 +212,15 @@ h2{letter-spacing:-.03em;line-height:1.08}
 .fx-hub a em{top:14px;right:14px;background:var(--bg);padding:3px 8px;border:1px solid var(--line)}
 .fx-hub a:not(.soon) em{color:var(--teal);border-color:var(--teal)}
 .fx-how{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:30px}
+
+/* fixes after visual review */
+.fx-hero h1 em .w>span{background:linear-gradient(100deg,#7ff2ea,#b9a6ff 60%,#ffc974);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.04em}
+.fx-hero-img img{opacity:.5}
+.fx-hero .hero-art{opacity:.5}
+.fx-hero .lead{text-shadow:0 1px 14px rgba(6,10,28,.8)}
+.fx-top{background:linear-gradient(to bottom,rgba(6,10,28,.72),rgba(6,10,28,0));backdrop-filter:none}
+.fx-brand{color:#fff} .fx-brand small{color:#9fb2e6}
+.fx-stats .stat b{white-space:nowrap}
+@media(min-width:1600px){
+  .fx-spine{background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(8px);border:1px solid var(--line);padding:12px 12px 12px 8px;width:188px}
+}

@@ -187,7 +187,7 @@ def build():
 <p class="lead">Some of quantum computing works. Some of it is a press release. Here is which is which, who is paid for each, and how much of it is already in the share price.</p>
 <div class="fx-stats">
 {stat_cell(50, "error-corrected qubits shown so far, in small experiments", "about ")}
-{stat_cell(1000000, "noisy qubits to break RSA-2048, on the 2025 estimate", "about ")}
+{stat_cell(1, "noisy qubits to break RSA-2048, on the 2025 estimate", "about ", " million")}
 {stat_cell(runs["RGTI"]["multiple"], "times Rigetti rose from low to high in one year", "", "x")}
 {stat_cell(26, "kilowatts for a whole machine, the draw of 50 to 100 homes", "", " kW")}
 </div></div></header>
@@ -210,7 +210,7 @@ def build():
 <h3 class="wide" id="s-errors" data-nav="Errors" style="margin-top:20px">The problem is errors</h3>
 <p>A physical qubit loses its state in microseconds to seconds. Today's best make a mistake roughly once in every 100 to 1,000 steps. Useful programs need about one in a trillion. So engineers bundle many physical qubits into one error-checked logical qubit.{cite(4, 5)} The field is judged on logical qubits now, because headline qubit counts say little.</p>
 {note("The ratio", "<p>With the surface code, one logical qubit costs hundreds to thousands of physical ones. IBM's newer code design aims for roughly ten times fewer." + cite(10) + "</p>")}
-{fig(art.surface_code(), "Forty-nine physical qubits protecting one logical qubit. Filled dots hold the data. Hollow dots keep checking their neighbours without reading the data. Google's 2024 Willow chip ran a 101-qubit version and showed, for the first time, that a bigger code made fewer errors than a smaller one." + cite(9), 2, wide=False)}
+{fig(art.surface_code(), "Forty-nine physical qubits protecting one logical qubit. Filled dots hold the data. Hollow dots keep checking their neighbours without reading the data. Google's 2024 Willow chip ran a 101-qubit version and showed, for the first time, that a bigger code made fewer errors than a smaller one." + cite(9), 2)}
 <h3 class="wide" id="s-hardware" data-nav="Hardware" style="margin-top:36px">Five ways to build a qubit</h3>
 <div class="cols c4 wide">
 <div class="card rv">{art.modality("sc")}<h3>Superconducting circuits</h3><span class="tag">IBM</span><span class="tag">Google</span><span class="tag">Rigetti</span><p>Fast, made in chip factories, needs a fridge colder than space.</p></div>
@@ -465,8 +465,7 @@ def build():
     rows = "".join(f'<div class="row"><span>{a}</span><b>{b}</b></div>' for a, b in facts)
     rail = ('<aside class="fx-rail" id="fx-rail" aria-label="Live and series panels"><div id="fx-live" aria-live="polite"></div>'
             f'<section class="rp"><h4>Numbers to hold on to</h4>{rows}</section>'
-            f'<section class="rp"><h4>In this series</h4><div class="rp-list">{series_list("quantum")}</div></section>'
-            f'<section class="rp promo">{watch_promo(compact=True)}</section></aside>')
+            f'<section class="rp"><h4>In this series</h4><div class="rp-list">{series_list("quantum")}</div></section></aside>')
     body = (f'{hero}<nav class="fx-spine" id="fx-spine" aria-label="Chapters"></nav>{rail}{flow}'
             f'<div class="fx-flow">{watch_promo()}</div>{foot}')
     return {"title": TITLE, "body": body, "data_js": data_js, "sims": sims, "stat": stat, "runs": runs}
