@@ -6,7 +6,7 @@ domain = "frontier.solas33.com"       # every site lives under this one host, as
 contact_email = "hello@solas33.com"   # corrections, SEC fair-access contact, photo requests
 alt_email = "dmcdtkofc@outlook.com"
 publisher = "Solas33"
-indexable = false                     # true lets search engines in. Flip after the disclosures are signed off.
+indexable = true                      # true lets search engines in (switched on 15 Oct 2026 after the founder's read and legal clearance)
 cf_worker_name = "frontier"
 
 # Sites. status: live | soon. Order here is the order on the hub and in the rail.
@@ -20,7 +20,7 @@ status = "live"
 slug = "coin"
 name = "Coin"
 line = "Crypto and tokenised assets, including the quantum risk to Bitcoin."
-status = "soon"
+status = "live"
 
 [[sites]]
 slug = "cell"

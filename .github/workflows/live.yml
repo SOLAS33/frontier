@@ -50,11 +50,17 @@ jobs:
         run: |
           python -m frontier.live.run --site quantum
           python -m frontier.live.run --site coin
+          python -m frontier.live.run --site mind
+          python -m frontier.live.run --site atom
+          python -m frontier.live.run --site cell
 
       - name: Build sites (sites not yet live are built but kept out of the deploy by dist/.assetsignore)
         run: |
           python build.py quantum
           python build.py coin
+          python build.py mind
+          python build.py atom
+          python build.py cell
 
       - name: Deploy to Cloudflare
         if: env.CF_TOKEN_SET == 'true'

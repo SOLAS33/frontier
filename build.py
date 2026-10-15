@@ -94,7 +94,15 @@ def write_root_files():
     # sites that are built but not yet "live" in config.toml stay out of the deployed folder
     hidden = [f"{x['slug']}/" for x in CFG["sites"] if x["status"] != "live"]
     (DIST / ".assetsignore").write_text(nl.join(hidden + [""]), encoding="utf-8")
-    (DIST / "robots.txt").write_text(nl.join(["User-agent: *", "Allow: /" if indexable() else "Disallow: /", ""]), encoding="utf-8")
+    lines = ["User-agent: *", "Allow: /" if indexable() else "Disallow: /"]
+    if indexable():
+        lines.append(f"Sitemap: https://{S['domain']}/sitemap.xml")
+    (DIST / "robots.txt").write_text(nl.join(lines + [""]), encoding="utf-8")
+    urls = [f"https://{S['domain']}/"] + [f"https://{S['domain']}/{x['slug']}/" for x in CFG["sites"] if x["status"] == "live"]
+    import datetime
+    today = datetime.date.today().isoformat()
+    (DIST / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+                                      + "".join(f"<url><loc>{u}</loc><lastmod>{today}</lastmod></url>" for u in urls) + "</urlset>", encoding="utf-8")
 
 
 def build_site(slug: str, a) -> dict:

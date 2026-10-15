@@ -20,12 +20,23 @@ UNIVERSE = {
     # Frontier Coin
     "COIN": "Coinbase", "MSTR": "Strategy", "MARA": "Marathon Digital", "RIOT": "Riot Platforms", "CRCL": "Circle",
     "HOOD": "Robinhood", "PYPL": "PayPal", "BLK": "BlackRock", "ETH-USD": "Ethereum", "SOL-USD": "Solana",
+    # Frontier Mind
+    "AMD": "AMD", "MU": "Micron", "CRWV": "CoreWeave", "SMCI": "Super Micro", "AMZN": "Amazon", "META": "Meta", "AVGO": "Broadcom",
+    # Frontier Atom
+    "OKLO": "Oklo", "SMR": "NuScale", "LEU": "Centrus Energy", "NNE": "Nano Nuclear", "BWXT": "BWX Technologies", "CEG": "Constellation Energy",
+    "VST": "Vistra", "CCJ": "Cameco",
+    # Frontier Cell
+    "QS": "QuantumScape", "ENVX": "Enovix", "EOSE": "Eos Energy", "FLNC": "Fluence", "ALB": "Albemarle", "TSLA": "Tesla", "GM": "General Motors", "F": "Ford",
 }
 # Histories begin at the date each series is meaningful for this site.
 START = {"QUBT": "2018-07-30", "IBM": "2010-01-04", "GOOGL": "2010-01-04", "MSFT": "2010-01-04",
          "NVDA": "2010-01-04", "HON": "2010-01-04", "AAPL": "1990-01-01", "BTC-USD": "2014-09-15",
          "ETH-USD": "2017-11-09", "SOL-USD": "2020-04-10", "COIN": "2021-04-14", "HOOD": "2021-07-29", "PYPL": "2015-07-20", "BLK": "2010-01-04",
-         "MSTR": "2020-08-01", "MARA": "2018-06-01", "RIOT": "2018-01-01", "CRCL": "2025-06-05"}
+         "MSTR": "2020-08-01", "MARA": "2018-06-01", "RIOT": "2018-01-01", "CRCL": "2025-06-05",
+         "NVDA": "2010-01-04", "AMD": "2010-01-04", "MU": "2010-01-04", "CRWV": "2025-03-28", "SMCI": "2010-01-04", "AMZN": "2010-01-04",
+         "META": "2012-05-18", "AVGO": "2010-01-04", "OKLO": "2024-05-09", "SMR": "2022-03-02", "LEU": "2020-01-01", "NNE": "2024-05-20",
+         "BWXT": "2016-07-01", "CEG": "2022-02-02", "VST": "2016-05-01", "CCJ": "2010-01-04", "QS": "2020-11-30", "ENVX": "2021-07-14",
+         "EOSE": "2020-11-01", "FLNC": "2021-10-28", "ALB": "2010-01-04", "TSLA": "2010-06-29", "GM": "2010-11-18", "F": "2010-01-04"}
 
 
 def refresh(tickers=None) -> dict:

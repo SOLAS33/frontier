@@ -235,3 +235,12 @@ h2{letter-spacing:-.03em;line-height:1.08}
 .tile.restrictive rect{fill:var(--red-soft);stroke:var(--red)}
 .map-key{display:flex;gap:14px;flex-wrap:wrap;font:500 .72rem var(--mono);color:var(--muted);margin:8px 0 0}
 .map-key i{display:inline-block;width:10px;height:10px;margin-right:6px;border:2px solid}
+
+/* hero art: mind, atom, cell */
+.fx-hero .hero-art.net,.fx-hero .hero-art.reactor,.fx-hero .hero-art.cells{mix-blend-mode:screen;opacity:.6}
+.hero-art .nnl{stroke:rgba(127,242,234,.28);stroke-width:1} .hero-art .nnd{fill:#7ff2ea;opacity:.7} .hero-art .nnd.lit{fill:#ffc974;opacity:1}
+.hero-art .rr{fill:none;stroke:#7ff2ea;stroke-width:1.4;opacity:.5} .hero-art .rr.r1{stroke:#b9a6ff} .hero-art .rr.r2{stroke:#ffc974;opacity:.35}
+.hero-art .rd{fill:#7ff2ea;opacity:.8} .hero-art .rc{fill:#ffc974}
+.hero-art .bc{fill:rgba(255,255,255,.04);stroke:rgba(255,255,255,.4);stroke-width:1.5} .hero-art .bt{fill:rgba(255,255,255,.4)}
+.hero-art .bf{fill:#7ff2ea;opacity:.7}
+.tile.friendly rect,.tile.leader rect{fill:var(--teal-soft);stroke:var(--teal)}
