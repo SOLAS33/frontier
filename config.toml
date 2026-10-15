@@ -26,13 +26,13 @@ status = "live"
 slug = "cell"
 name = "Cell"
 line = "Batteries and storage."
-status = "soon"
+status = "live"
 
 [[sites]]
 slug = "mind"
 name = "Mind"
 line = "Artificial intelligence, chips and the power they eat."
-status = "soon"
+status = "live"
 
 [[sites]]
 slug = "bot"
@@ -44,7 +44,7 @@ status = "soon"
 slug = "atom"
 name = "Atom"
 line = "Fission and small modular reactors."
-status = "soon"
+status = "live"
 
 [[sites]]
 slug = "fusion"
