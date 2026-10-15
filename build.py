@@ -91,6 +91,9 @@ def write_root_files():
         "  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
         "font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'",
         "/*/img/*", "  Cache-Control: public, max-age=31536000, immutable", ""]), encoding="utf-8")
+    # sites that are built but not yet "live" in config.toml stay out of the deployed folder
+    hidden = [f"{x['slug']}/" for x in CFG["sites"] if x["status"] != "live"]
+    (DIST / ".assetsignore").write_text(nl.join(hidden + [""]), encoding="utf-8")
     (DIST / "robots.txt").write_text(nl.join(["User-agent: *", "Allow: /" if indexable() else "Disallow: /", ""]), encoding="utf-8")
 
 
@@ -103,8 +106,11 @@ def build_site(slug: str, a) -> dict:
     img = out / "img"
     if img.exists():
         shutil.rmtree(img)
-    shutil.copytree(ASSETS / "img", img, ignore=shutil.ignore_patterns("sheet.jpg"))
     html = page(f"Frontier {meta['name']}", meta["line"], f"{slug}/", slug, ctx["body"], ctx["data_js"])
+    import re
+    img.mkdir(parents=True, exist_ok=True)
+    for name in sorted(set(re.findall(r"img/([\w.-]+\.jpg)", html))):  # ship only the pictures this page uses
+        shutil.copy2(ASSETS / "img" / name, img / name)
     (out / "index.html").write_text(html, encoding="utf-8")
     print(f"wrote {out / 'index.html'} ({len(html) / 1024:.0f} KB)")
     for t, s in ctx["sims"].items():

@@ -224,3 +224,14 @@ h2{letter-spacing:-.03em;line-height:1.08}
 @media(min-width:1600px){
   .fx-spine{background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(8px);border:1px solid var(--line);padding:12px 12px 12px 8px;width:188px}
 }
+
+/* coin hero art and map roles */
+.fx-hero .hero-art.chain{mix-blend-mode:screen;opacity:.55}
+.hero-art .blk{fill:rgba(127,242,234,.07);stroke:#7ff2ea;stroke-width:1.4}
+.hero-art .blk.b1{stroke:#b9a6ff;fill:rgba(185,166,255,.07)} .hero-art .blk.b2{stroke:#ffc974;fill:rgba(255,201,116,.06)}
+.hero-art .blkl{stroke:rgba(255,255,255,.35);stroke-width:2}
+.hero-art .chn{stroke:#ffc974;stroke-width:2;stroke-dasharray:6 6} .hero-art .nd{fill:#ffc974}
+.tile.friendly rect{fill:var(--teal-soft);stroke:var(--teal)} .tile.mixed rect{fill:var(--bg2);stroke:var(--violet)}
+.tile.restrictive rect{fill:var(--red-soft);stroke:var(--red)}
+.map-key{display:flex;gap:14px;flex-wrap:wrap;font:500 .72rem var(--mono);color:var(--muted);margin:8px 0 0}
+.map-key i{display:inline-block;width:10px;height:10px;margin-right:6px;border:2px solid}

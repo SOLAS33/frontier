@@ -120,3 +120,25 @@ def modality(kind):
         "spin": '<circle cx="40" cy="28" r="18" class="ln thick"/><path d="M40 14v28" class="amber-s"/><polygon points="40,10 34,20 46,20" class="amber-f"/>',
     }
     return f'<svg viewBox="0 0 80 56" class="icon">{icons[kind]}</svg>'
+
+
+def hero_chain(w=900, h=520, seed=7):
+    """A chain of linked blocks with a few glowing nodes: the hero art for crypto sites."""
+    rng = np.random.default_rng(seed)
+    g = []
+    x = 40
+    prev = None
+    i = 0
+    while x < w - 80:
+        bw, bh = int(rng.integers(70, 120)), int(rng.integers(60, 110))
+        y = int(h * 0.5 + rng.integers(-110, 110) - bh / 2)
+        g.append(f'<rect x="{x}" y="{y}" width="{bw}" height="{bh}" class="blk b{i % 3}"/>')
+        for k in range(3):
+            g.append(f'<line x1="{x + 10}" y1="{y + 16 + k * 14}" x2="{x + bw - 10 - int(rng.integers(0, 30))}" y2="{y + 16 + k * 14}" class="blkl"/>')
+        if prev:
+            g.append(f'<line x1="{prev[0]}" y1="{prev[1]}" x2="{x}" y2="{y + bh // 2}" class="chn"/>')
+        prev = (x + bw, y + bh // 2)
+        g.append(f'<circle cx="{x + bw}" cy="{y + bh // 2}" r="5" class="nd"/>')
+        x += bw + int(rng.integers(26, 54))
+        i += 1
+    return (f'<svg class="hero-art chain" viewBox="0 0 {w} {h}" role="img" aria-label="A chain of linked blocks">{"".join(g)}</svg>')

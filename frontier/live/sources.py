@@ -89,10 +89,10 @@ def yahoo_headlines(ticker: str, n: int = 12, client: httpx.Client | None = None
     return out[:n]
 
 
-def arxiv_papers(term: str, n: int = 4, client: httpx.Client | None = None) -> list[dict]:
+def arxiv_papers(term: str, n: int = 4, cat: str = "quant-ph", client: httpx.Client | None = None) -> list[dict]:
     c = client or _client()
     url = ("http://export.arxiv.org/api/query?search_query=all:" + quote(f'"{term}"') +
-           f"+AND+cat:quant-ph&sortBy=submittedDate&sortOrder=descending&max_results={n}")
+           f"+AND+cat:{cat}&sortBy=submittedDate&sortOrder=descending&max_results={n}")
     r = c.get(url)
     r.raise_for_status()
     ns = {"a": "http://www.w3.org/2005/Atom"}

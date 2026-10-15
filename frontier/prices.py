@@ -17,10 +17,15 @@ UNIVERSE = {
     "IONQ": "IonQ", "RGTI": "Rigetti", "QBTS": "D-Wave", "QUBT": "Quantum Computing Inc",
     "IBM": "IBM", "GOOGL": "Alphabet (Google)", "MSFT": "Microsoft", "NVDA": "Nvidia", "HON": "Honeywell",
     "AAPL": "Apple", "BTC-USD": "Bitcoin",
+    # Frontier Coin
+    "COIN": "Coinbase", "MSTR": "Strategy", "MARA": "Marathon Digital", "RIOT": "Riot Platforms", "CRCL": "Circle",
+    "HOOD": "Robinhood", "PYPL": "PayPal", "BLK": "BlackRock", "ETH-USD": "Ethereum", "SOL-USD": "Solana",
 }
 # Histories begin at the date each series is meaningful for this site.
 START = {"QUBT": "2018-07-30", "IBM": "2010-01-04", "GOOGL": "2010-01-04", "MSFT": "2010-01-04",
-         "NVDA": "2010-01-04", "HON": "2010-01-04", "AAPL": "1990-01-01", "BTC-USD": "2014-09-15"}
+         "NVDA": "2010-01-04", "HON": "2010-01-04", "AAPL": "1990-01-01", "BTC-USD": "2014-09-15",
+         "ETH-USD": "2017-11-09", "SOL-USD": "2020-04-10", "COIN": "2021-04-14", "HOOD": "2021-07-29", "PYPL": "2015-07-20", "BLK": "2010-01-04",
+         "MSTR": "2020-08-01", "MARA": "2018-06-01", "RIOT": "2018-01-01", "CRCL": "2025-06-05"}
 
 
 def refresh(tickers=None) -> dict:

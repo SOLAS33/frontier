@@ -13,6 +13,8 @@ def main():
     for p in files:
         im = Image.open(p).convert("RGB")
         before = p.stat().st_size
+        if before < 420_000 and im.width <= 1600:
+            t = im.copy(); t.thumbnail((360, 240)); thumbs.append((p.name, t)); continue
         if im.width > 1600:
             im = im.resize((1600, round(im.height * 1600 / im.width)), Image.LANCZOS)
         im.save(p, "JPEG", quality=74, optimize=True, progressive=True)

@@ -9,6 +9,11 @@ from frontier.scenarios import Scenario, simulate
 from sites import quantum_extra as X
 
 TITLE = "Frontier Quantum"
+
+# what the live backend needs to know about this site
+LIVE = {"cik": {"IONQ": 1824920, "RGTI": 1838359, "QBTS": 1907982, "QUBT": 1758009},
+        "aliases": {"IONQ": ["ionq"], "RGTI": ["rigetti"], "QBTS": ["d-wave", "dwave", "qbts"], "QUBT": ["quantum computing inc", "qubt"]},
+        "arxiv_terms": ["IonQ", "Rigetti", "D-Wave", "Quantinuum", "Google Quantum AI", "IBM Quantum"], "arxiv_cat": "quant-ph"}
 AS_OF = "15 October 2026"
 
 REFS = [
@@ -143,7 +148,7 @@ def build():
     tm_default = {"AAPL": "1997-12-22", "BTC-USD": "2016-01-25", "NVDA": "2022-10-10", "IONQ": px["IONQ"]["d"][0],
                   "RGTI": px["RGTI"]["d"][0], "QBTS": px["QBTS"]["d"][0], "QUBT": "2024-06-24"}
     data_js = (f"window.PRICES={json.dumps(series_js, separators=(',', ':'))};"
-               f"window.PRICE_ORDER={json.dumps(order)};window.PRICE_NAMES={json.dumps(names)};"
+               f"window.PRICE_ORDER={json.dumps(order)};window.PRICE_NAMES={json.dumps(names)};window.PRICE_DEFAULT={json.dumps(order[:4])};"
                f"window.SCEN={json.dumps(scen_js, separators=(',', ':'))};"
                f"window.TM_ASSETS={json.dumps(tm_assets)};window.TM_DEFAULT={json.dumps(tm_default)};"
                f"window.COUNTRY={json.dumps(X.COUNTRY)};window.COUNTRY_NAMES={json.dumps(X.NAMES)};")

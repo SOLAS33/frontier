@@ -61,7 +61,10 @@ def download(items: list[dict]) -> None:
             (IMG / it["file"]).write_bytes(r.content)
             credits.append({k: it.get(k) for k in ("file", "title", "licence", "artist", "credit", "page", "alt")})
             print("saved", it["file"], len(r.content) // 1024, "KB")
-    (IMG / "credits.json").write_text(json.dumps(credits, indent=1), encoding="utf-8")
+    path = IMG / "credits.json"
+    have = {c["file"]: c for c in json.loads(path.read_text(encoding="utf-8"))} if path.exists() else {}
+    have.update({c["file"]: c for c in credits})
+    path.write_text(json.dumps(list(have.values()), indent=1), encoding="utf-8")
 
 
 if __name__ == "__main__":

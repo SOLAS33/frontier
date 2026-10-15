@@ -152,8 +152,9 @@
     var svg = $("#chart"); if (!P || !svg) return;
     var W = 900, H = 440, M = { l: 66, r: 20, t: 16, b: 36 };
     ORDER.forEach(function (t, i) { COL[t] = "var(--s" + (i + 1) + ")"; });
-    var st = { sel: { IONQ: 1, RGTI: 1, QBTS: 1, QUBT: 1 }, mode: "growth", range: "2024" };
-    var last = P.IONQ.d[P.IONQ.d.length - 1];
+    var st = { sel: {}, mode: "growth", range: "2024" };
+    (window.PRICE_DEFAULT || ORDER.slice(0, 4)).forEach(function (t) { st.sel[t] = 1; });
+    var last = P[ORDER[0]].d[P[ORDER[0]].d.length - 1];
     var le = $("#lastdate"); if (le) le.textContent = new Date(last).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
     var tick = $("#tickers");
     ORDER.forEach(function (t) {
@@ -267,14 +268,15 @@
     function show(cc) {
       var c = C[cc]; if (!c) return;
       $$(".tile").forEach(function (g) { g.classList.toggle("sel", g.dataset.cc === cc); });
-      panel.innerHTML = "<h3>" + esc(N[cc]) + "</h3><dl><dt>Companies and labs</dt><dd>" + esc(c.co) + "</dd><dt>Government programme</dt><dd>" + esc(c.gov) +
-        "</dd><dt>Export controls</dt><dd>" + esc(c.ctl) + "</dd><dt>Read</dt><dd>" + esc(c.note) + "</dd></dl>";
+      var L = window.MAP_LABELS || { co: "Companies and labs", gov: "Government programme", ctl: "Export controls", note: "Read" };
+      panel.innerHTML = "<h3>" + esc(N[cc]) + "</h3><dl><dt>" + esc(L.co) + "</dt><dd>" + esc(c.co) + "</dd><dt>" + esc(L.gov) + "</dt><dd>" + esc(c.gov) +
+        "</dd><dt>" + esc(L.ctl) + "</dt><dd>" + esc(c.ctl) + "</dd><dt>" + esc(L.note) + "</dt><dd>" + esc(c.note) + "</dd></dl>";
     }
     $$(".tile").forEach(function (g) {
       g.addEventListener("click", function () { show(g.dataset.cc); });
       g.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(g.dataset.cc); } });
     });
-    show("US");
+    show(window.MAP_DEFAULT || "US");
   }
 
   /* ---------- live layer ---------- */

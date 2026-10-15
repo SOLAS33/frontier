@@ -21,9 +21,13 @@ from frontier import prices
 from frontier.live import classify, impact, sources, state
 
 ROOT = Path(__file__).resolve().parents[2]
-DATA = ROOT / "data" / "live"
-OUT = ROOT / "dist" / "quantum"
 EVENT_WINDOW_DAYS = 120
+
+
+def paths(site: str):
+    """Quantum keeps its original state folder so the saved state still restores; other sites get their own."""
+    data = ROOT / "data" / "live" if site == "quantum" else ROOT / "data" / "live" / site
+    return data, ROOT / "dist" / site
 
 
 def _scen_for(ticker: str, scen_defs) -> list[dict]:
@@ -31,20 +35,32 @@ def _scen_for(ticker: str, scen_defs) -> list[dict]:
 
 
 def _nudge(kind: str, table: dict, headline: bool) -> float:
+    """Probability points, before decay. Only event types with a stated direction move the odds; types with no prior
+    (generic 8-Ks, periodic reports, earnings with no surprise measure) are shown but never move anything.
+    Measured reactions can strengthen a prior (same sign, scaled by the size of the median move) or halve it
+    (opposite sign on the median, enough cases and |t| >= 2). They never flip it."""
     prior = classify.prior(kind)
-    row = table.get(kind)
-    sign = (1 if prior > 0 else -1 if prior < 0 else 0)
+    if prior == 0:
+        return 0.0
     mag = abs(prior)
-    if row and row["enough"] and row["t_5d"] is not None and abs(row["t_5d"]) >= 1.5:
-        sign = 1 if row["mean_5d"] > 0 else -1
-        mag = max(mag, 1.0) * (1 + min(1.0, abs(row["median_5d"]) / 0.10))
-    val = sign * mag
+    row = table.get(kind)
+    if row and row["enough"]:
+        med = row["median_5d"]
+        if med * prior > 0:
+            mag *= 1 + min(1.0, abs(med) / 0.10)
+        elif row["t_5d"] is not None and abs(row["t_5d"]) >= 2.0 and row["mean_5d"] * prior < 0:
+            mag *= 0.5
+    val = (1 if prior > 0 else -1) * mag
     return round(val * (0.5 if headline else 1.0), 3)
 
 
-def run(today: date | None = None, offline: bool = False, scen_defs=None, weekly=None) -> dict:
-    from sites.quantum import SCEN
-    scen_defs = scen_defs or SCEN
+def run(today: date | None = None, offline: bool = False, scen_defs=None, weekly=None, site: str = "quantum") -> dict:
+    import importlib
+    mod = importlib.import_module(f"sites.{site}")
+    DATA, OUT = paths(site)
+    live_cfg = getattr(mod, "LIVE", {})
+    aliases = live_cfg.get("aliases")
+    scen_defs = scen_defs or mod.SCEN
     today = today or date.today()
     weekly = weekly or prices.load()
     status, filings, headlines, papers = {}, [], {}, []
@@ -54,7 +70,7 @@ def run(today: date | None = None, offline: bool = False, scen_defs=None, weekly
             with sources._client(sources.sec_ua()) as sc:
                 for t in scen_defs:
                     try:
-                        filings += sources.edgar_filings(t, client=sc)
+                        filings += sources.edgar_filings(t, cik=live_cfg.get("cik", {}).get(t), client=sc)
                         status[f"sec:{t}"] = "ok"
                     except Exception as e:
                         status[f"sec:{t}"] = f"failed {type(e).__name__}"
@@ -67,9 +83,9 @@ def run(today: date | None = None, offline: bool = False, scen_defs=None, weekly
                     status[f"news:{t}"] = "ok"
                 except Exception as e:
                     headlines[t], status[f"news:{t}"] = [], f"failed {type(e).__name__}"
-            for term in sources.ARXIV_TERMS:
+            for term in live_cfg.get("arxiv_terms", sources.ARXIV_TERMS):
                 try:
-                    papers += sources.arxiv_papers(term, client=c)
+                    papers += sources.arxiv_papers(term, cat=live_cfg.get("arxiv_cat", "quant-ph"), client=c)
                     status[f"arxiv:{term}"] = "ok"
                 except Exception as e:
                     status[f"arxiv:{term}"] = f"failed {type(e).__name__}"
@@ -110,7 +126,7 @@ def run(today: date | None = None, offline: bool = False, scen_defs=None, weekly
         for h in hs:
             kind = classify.classify_headline(h["title"])
             key = (t, h["date"], kind)
-            if kind is None or h["id"] in store or key in per_day or not h["date"] or not classify.mentions(h["title"], t):
+            if kind is None or h["id"] in store or key in per_day or not h["date"] or not classify.mentions(h["title"], t, aliases):
                 continue
             if date.fromisoformat(h["date"]) < cutoff:
                 continue
@@ -124,7 +140,14 @@ def run(today: date | None = None, offline: bool = False, scen_defs=None, weekly
     out_t, new_state, changes = {}, {}, []
     for t, defs in scen_defs.items():
         base = {s["k"]: s["base_p"] for s in _scen_for(t, scen_defs)}
-        evs = [e for e in store.values() if e["ticker"] == t]
+        best = {}
+        for e in store.values():  # one event per company, type and day: a filing and three headlines about it count once
+            if e["ticker"] != t:
+                continue
+            k = (e["type"], e["date"])
+            if k not in best or abs(e["nudge"]) > abs(best[k]["nudge"]):
+                best[k] = e
+        evs = list(best.values())
         tilt, top = state.active_tilt(evs, today)
         probs = state.apply_tilt(base, tilt)
         vol = prices.annual_vol(weekly[t])
@@ -164,7 +187,7 @@ def run(today: date | None = None, offline: bool = False, scen_defs=None, weekly
 
     log = state.read_jsonl(DATA / "changelog.jsonl")[-30:][::-1]
     ev_list = sorted(store.values(), key=lambda e: e["date"], reverse=True)[:40]
-    live = {"generated": state.now_iso(), "half_life_days": state.HALF_LIFE_DAYS, "tilt_cap_pts": state.CAP,
+    live = {"site": site, "generated": state.now_iso(), "half_life_days": state.HALF_LIFE_DAYS, "tilt_cap_pts": state.CAP,
             "tickers": out_t, "events": ev_list, "headlines": {t: hs[:6] for t, hs in headlines.items()},
             "papers": uniq_papers[:10], "changelog": log, "reactions": reactions_rows, "scorecard": score, "status": status}
     OUT.mkdir(parents=True, exist_ok=True)
@@ -184,7 +207,7 @@ def _rss(live: dict) -> str:
     for e in live["events"][:15]:
         items.append(f"<item><title>{escape(e['ticker'] + ': ' + e['title'])}</title><link>{escape(e['url'])}</link>"
                      f"<description>{escape(e['type'])}</description><pubDate>{e['date']}</pubDate><guid>{escape(e['id'])}</guid></item>")
-    return ('<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Frontier Quantum: changes and announcements</title>'
+    return ('<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Frontier ' + live["site"].title() + ': changes and announcements</title>'
             "<link>https://github.com/SOLAS33/frontier</link><description>Projection changes and tracked announcements. "
             f"Information only, not investment advice.</description>{''.join(items)}</channel></rss>")
 
@@ -194,13 +217,14 @@ def _digest(live: dict) -> str:
                    f"<td>${o['quantiles']['12'][0]:.2f} to ${o['quantiles']['12'][2]:.2f}</td></tr>" for t, o in live["tickers"].items())
     ev = "".join(f"<li>{escape(e['ticker'])} ({escape(e['type'])}): <a href=\"{escape(e['url'])}\">{escape(e['title'])}</a></li>"
                  for e in live["events"][:8])
-    return ("<h2>Frontier Quantum: this week</h2><table border=1 cellpadding=6><tr><th>Stock</th><th>Price</th><th>News tilt (pts)</th>"
+    return (f"<h2>Frontier {live['site'].title()}: this week</h2><table border=1 cellpadding=6><tr><th>Stock</th><th>Price</th><th>News tilt (pts)</th>"
             f"<th>12-month range (10th to 90th)</th></tr>{rows}</table><h3>Announcements</h3><ul>{ev}</ul>"
             "<p>Information only, not investment advice. Ranges come from stated scenarios and are not forecasts.</p>")
 
 
 if __name__ == "__main__":
-    live = run(offline="--offline" in sys.argv)
+    site = sys.argv[sys.argv.index("--site") + 1] if "--site" in sys.argv else "quantum"
+    live = run(offline="--offline" in sys.argv, site=site)
     for t, o in live["tickers"].items():
         print(f"{t}: ${o['price']:.2f}  tilt {o['tilt_pts']:+.2f}  probs " + ", ".join(f"{s['k']} {s['p']:.0%}" for s in o["scen"]))
     print(f"{len(live['events'])} events, {len(live['changelog'])} changes, ledger rows {live['scorecard']['logged']}, status "

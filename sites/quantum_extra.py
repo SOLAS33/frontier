@@ -39,11 +39,13 @@ COUNTRY = {
 }
 
 
-def tile_map() -> str:
+def tile_map(tiles=None, names=None) -> str:
+    tiles = tiles or TILES
+    names = names or NAMES
     s, g = 62, []
-    for cc, (c, r, role) in TILES.items():
+    for cc, (c, r, role) in tiles.items():
         x, y = 12 + c * (s + 6), 12 + r * (s + 6)
-        g.append(f'<g class="tile {role}" data-cc="{cc}" tabindex="0" role="button" aria-label="{NAMES[cc]}">'
+        g.append(f'<g class="tile {role}" data-cc="{cc}" tabindex="0" role="button" aria-label="{names[cc]}">'
                  f'<rect x="{x}" y="{y}" width="{s}" height="{s}"/><text x="{x + s / 2}" y="{y + s / 2 + 5}" text-anchor="middle" class="t-fg tl-cc">{cc}</text></g>')
     return (f'<svg viewBox="0 0 {12 + 12 * (s + 6)} {12 + 4 * (s + 6)}" class="tilemap" role="img" '
             f'aria-label="Tile map of countries active in quantum computing">{"".join(g)}</svg>')

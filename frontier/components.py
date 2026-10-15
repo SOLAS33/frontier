@@ -22,6 +22,8 @@ def credit_line(file: str) -> str:
     if not c:
         return ""
     who = (c.get("artist") or c.get("credit") or "").split("\n")[0][:70]
+    if who.startswith("Unknown author"):
+        who = "Unknown author"
     return f'<a href="{c["page"]}" target="_blank" rel="noopener">{who}, {c["licence"]}</a>'
 
 

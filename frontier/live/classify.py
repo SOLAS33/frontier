@@ -61,9 +61,10 @@ ALIASES = {"IONQ": ["ionq"], "RGTI": ["rigetti"], "QBTS": ["d-wave", "dwave", "q
 IGNORE = r"\b(vs\.?|versus|upgraded|downgraded|price target|better (buy|stock)|should you|here is|here's what)\b"
 
 
-def mentions(title: str, ticker: str) -> bool:
+def mentions(title: str, ticker: str, aliases: dict | None = None) -> bool:
     t = title.lower()
-    return ticker.lower() in t or any(a in t for a in ALIASES.get(ticker, []))
+    names = (aliases or ALIASES).get(ticker, [])
+    return ticker.lower() in t or any(a in t for a in names)
 
 
 def classify_headline(title: str) -> str | None:
