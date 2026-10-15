@@ -65,6 +65,7 @@ jobs:
         env:
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
         run: |
+          echo "token length: ${#CF_API_TOKEN} characters (a real Cloudflare token is about 40)"
           if [ -n "$CF_API_TOKEN" ] && [ "$CF_API_TOKEN" != "set-me" ]; then echo "CF_TOKEN_SET=true" >> "$GITHUB_ENV"; else echo "no real token, deploy skipped"; fi
 
       - name: Deploy to Cloudflare
