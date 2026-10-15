@@ -26,6 +26,7 @@ jobs:
     env:
       SEC_CONTACT_EMAIL: ${{ secrets.SEC_CONTACT_EMAIL }}
       FRONTIER_INDEXABLE: ${{ vars.FRONTIER_INDEXABLE }}
+      CF_TOKEN_SET: ${{ secrets.CF_API_TOKEN != '' && secrets.CF_API_TOKEN != 'set-me' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -52,7 +53,7 @@ jobs:
         run: python build.py quantum
 
       - name: Deploy to Cloudflare
-        if: ${{ secrets.CF_API_TOKEN != '' && secrets.CF_API_TOKEN != 'set-me' }}
+        if: env.CF_TOKEN_SET == 'true'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
