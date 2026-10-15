@@ -46,11 +46,15 @@ jobs:
       - name: Fresh weekly prices
         run: python -c "from frontier import prices; prices.refresh()"
 
-      - name: Collect, classify, adjust projections
-        run: python -m frontier.live.run
+      - name: Collect, classify, adjust projections (every site, live or not)
+        run: |
+          python -m frontier.live.run --site quantum
+          python -m frontier.live.run --site coin
 
-      - name: Build site
-        run: python build.py quantum
+      - name: Build sites (sites not yet live are built but kept out of the deploy by dist/.assetsignore)
+        run: |
+          python build.py quantum
+          python build.py coin
 
       - name: Deploy to Cloudflare
         if: env.CF_TOKEN_SET == 'true'
