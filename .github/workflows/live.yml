@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["frontier/**", "sites/**", "build.py", "wrangler.jsonc", ".github/workflows/live.yml"]
+    paths: ["frontier/**", "sites/**", "build.py", "config.toml", "wrangler.jsonc", ".github/workflows/live.yml"]
 
 concurrency:
   group: frontier-live
