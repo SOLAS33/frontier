@@ -4,7 +4,7 @@ from __future__ import annotations
 import json
 
 from frontier import art, charts, prices
-from frontier.components import band, chapter, fig, key_idea, note, photo
+from frontier.components import band, chapter, fig, key_idea, note, photo, series_list, watch_promo
 from frontier.scenarios import Scenario, simulate
 from sites import quantum_extra as X
 
@@ -95,29 +95,30 @@ LADDER = [("Lab result", "Qubit made|and measured"), ("Beats classical|on a test
 
 KEY = {
     "learn": key_idea("A different kind of machine, not a faster one",
-                      "It uses tiny things like atoms that can sit in two states at once. For a few special puzzles, that is a huge shortcut.",
-                      "Qubits hold weighted blends of 0 and 1. Algorithms use interference to make right answers likely. The gain exists for specific problems only.",
-                      "Speed-ups come from structure: Shor gives a super-polynomial gain for factoring, Grover a quadratic one for unstructured search. Most workloads see nothing."),
+                      "A quantum computer stores information in things like atoms, ions and tiny superconducting circuits, which can sit in two states "
+                      "at once. An algorithm arranges those states so the wrong answers cancel and the right one survives. That gives a huge shortcut "
+                      "on a short list of problems, mostly simulating molecules and breaking certain codes. For almost everything else it is slower, "
+                      "and costs far more, than the laptop you already own."),
     "simple": key_idea("A specialist tool",
-                       "Think of a calculator for chemistry. You will never use it for email.",
-                       "It will be rented through the cloud for narrow jobs such as molecule simulation, the way you rent a GPU today.",
-                       "Expect hybrid workflows: classical pre- and post-processing around a quantum kernel, with error decoding running on classical hardware in real time."),
+                       "Think of a calculator for chemistry that lives in a data centre. You will rent time on one through the cloud for narrow jobs, "
+                       "the way you rent a graphics card today. Ordinary computers will go on running your phone, your email and your video. "
+                       "The quantum machine sits beside them and takes the hard problems."),
     "change": key_idea("Security first, gadgets much later",
-                       "The secret codes that protect your data could one day be opened. New codes already exist.",
-                       "Encrypted data being stolen now to be read later is a live risk. Moving to post-quantum encryption is the practical task before useful machines arrive.",
-                       "Plan around FIPS 203, 204 and 205, crypto-agility, and the 2030 to 2035 deprecation windows in the published roadmaps."),
+                       "The first thing quantum computers disturb is encryption. Criminals and governments can already copy encrypted data and wait "
+                       "for a machine that can open it. New codes exist and are being rolled out through software updates. After that the gains come "
+                       "in chemistry and materials, and reach most people years later as cheaper fertiliser, better batteries and new drugs."),
     "companies": key_idea("Good science and a good investment are different things",
-                          "A company can be right about the physics and still lose your money.",
-                          "These firms spend more than they earn and sell shares to fund it. Milestones, cash runway and dilution decide how it ends.",
-                          "Judge on cash burn against runway, share-count growth, backlog quality and technical milestones that someone else has verified."),
+                          "A company can be right about the physics and still lose your money. These firms spend more than they earn and pay for it by "
+                          "selling new shares, so each existing share owns a smaller slice. Milestones, cash runway and dilution decide how the story "
+                          "ends, and the share price usually moves long before the science does."),
     "hurdles": key_idea("The gap is errors and engineering, not a missing idea",
-                        "Qubits make mistakes all the time. Fixing them takes a lot of extra qubits and careful engineering.",
-                        "Error correction works in principle and has been shown to scale. Overhead, wiring, cooling and decoding speed are still open.",
-                        "Physical error is near 1e-3 and the target logical error near 1e-12, with an overhead of roughly 10^2 to 10^3 physical qubits per logical one in surface-code schemes."),
+                        "Qubits make mistakes all the time, roughly once in every thousand steps. Useful programs need about one mistake in a trillion. "
+                        "Closing that gap means bundling hundreds of physical qubits into each reliable one, then wiring, cooling and controlling "
+                        "millions of them. The ideas exist. The engineering is what is unfinished."),
     "outlook": key_idea("Steady progress, a shakeout, and no guarantees",
-                        "The science will probably keep getting better. A lot of the share prices may not.",
-                        "The technology likely advances on a 2029 to 2031 horizon. The listed pure-plays were priced for success, so a rough ride is the central case.",
-                        "The scenarios are priors with stated probabilities. The live layer tilts them with dated events under a cap, and the ledger scores the result."),
+                        "We think the science keeps improving and a first useful machine arrives around 2029 to 2031, probably a year or two late. "
+                        "The listed pure-plays were priced in 2024 and 2025 as if that were already done. So the likely path is real progress for "
+                        "the field and a rough ride for several of the share prices."),
 }
 
 
@@ -206,11 +207,11 @@ def build():
 <figure class="fig wide"><div class="cols" style="align-items:center"><div>{art.bloch()}</div><div><h3>A qubit as a sphere</h3>
 <p>The arrow can point anywhere on the sphere. North is 0, south is 1, and everything between is a blend. Measuring snaps the arrow to a pole, with odds set by how close it was.</p></div></div>
 <figcaption><b>Fig 1.</b> The standard picture of one qubit.</figcaption></figure>
-<h3 class="wide" style="margin-top:20px">The problem is errors</h3>
+<h3 class="wide" id="s-errors" data-nav="Errors" style="margin-top:20px">The problem is errors</h3>
 <p>A physical qubit loses its state in microseconds to seconds. Today's best make a mistake roughly once in every 100 to 1,000 steps. Useful programs need about one in a trillion. So engineers bundle many physical qubits into one error-checked logical qubit.{cite(4, 5)} The field is judged on logical qubits now, because headline qubit counts say little.</p>
 {note("The ratio", "<p>With the surface code, one logical qubit costs hundreds to thousands of physical ones. IBM's newer code design aims for roughly ten times fewer." + cite(10) + "</p>")}
 {fig(art.surface_code(), "Forty-nine physical qubits protecting one logical qubit. Filled dots hold the data. Hollow dots keep checking their neighbours without reading the data. Google's 2024 Willow chip ran a 101-qubit version and showed, for the first time, that a bigger code made fewer errors than a smaller one." + cite(9), 2, wide=False)}
-<h3 class="wide" style="margin-top:36px">Five ways to build a qubit</h3>
+<h3 class="wide" id="s-hardware" data-nav="Hardware" style="margin-top:36px">Five ways to build a qubit</h3>
 <div class="cols c4 wide">
 <div class="card rv">{art.modality("sc")}<h3>Superconducting circuits</h3><span class="tag">IBM</span><span class="tag">Google</span><span class="tag">Rigetti</span><p>Fast, made in chip factories, needs a fridge colder than space.</p></div>
 <div class="card rv">{art.modality("ion")}<h3>Trapped ions</h3><span class="tag">Quantinuum</span><span class="tag">IonQ</span><p>The most accurate gates. Slower and harder to scale.</p></div>
@@ -223,7 +224,7 @@ def build():
 {photo("cold-atom-iss.jpg", caption="NASA's Cold Atom Laboratory on the space station, where atoms are cooled to near absolute zero.")}
 </div>
 {fig(art.fridge(), "A dilution refrigerator, drawn to show the stages. Superconducting machines hold the chip near 0.01 K, colder than deep space at 2.7 K. Most of the electricity goes here." + cite(18), 3)}
-<h3 class="wide" style="margin-top:36px">The evidence so far</h3>
+<h3 class="wide" id="s-evidence" data-nav="Evidence" style="margin-top:36px">The evidence so far</h3>
 <div class="scroll wide"><table><thead><tr><th>Milestone</th><th>Who and when</th><th>Status</th><th>The catch</th></tr></thead><tbody>
 <tr><td>Beats a supercomputer on a test task</td><td>Google 2019{cite(6)}</td><td><span class="tag dis">Disputed</span></td><td>The task had no use. Classical methods later closed most of the gap.</td></tr>
 <tr><td>Useful-scale results before error correction</td><td>IBM 2023{cite(7)}</td><td><span class="tag dis">Contested</span></td><td>Classical simulations later reproduced the result.</td></tr>
@@ -234,7 +235,7 @@ def build():
 <tr><td>Topological qubit</td><td>Microsoft 2025{cite(15)}</td><td><span class="tag dis">Contested</span></td><td>If real it cuts the cost of error correction. Independent physicists want more evidence.</td></tr>
 <tr><td>Fault-tolerant machine running useful programs</td><td>IBM and Quantinuum, 2029 target{cite(19, 20)}</td><td><span class="tag tgt">Target</span></td><td>What everyone is working toward.</td></tr>
 </tbody></table></div>
-<h3 class="wide" style="margin-top:36px">History</h3>
+<h3 class="wide" id="s-history" data-nav="History" style="margin-top:36px">History</h3>
 <div class="tl wide">
 <div class="ev"><div class="yr">1981 to 1985</div><p>Benioff, Feynman, Manin and Deutsch describe a quantum computer on paper.{cite(1)}</p></div>
 <div class="ev big"><div class="yr">1994</div><p>Shor shows a quantum computer could break the encryption that protects the internet.{cite(2)} Governments start paying attention.</p></div>
@@ -247,7 +248,7 @@ def build():
 <div class="ev big"><div class="yr">Dec 2024</div><p>Google's Willow chip shows errors shrinking as the code grows.{cite(9)}</p></div>
 <div class="ev"><div class="yr">2025</div><p>Microsoft's Majorana 1{cite(15)}, Amazon's Ocelot, Google's Quantum Echoes{cite(14)}, IBM's Nighthawk and Loon, Quantinuum's Helios. The Nobel Prize in Physics goes to Clarke, Devoret and Martinis for the circuit physics behind superconducting qubits.</p></div>
 <div class="ev fut"><div class="yr">2026 on</div><p>The race to error-corrected machines. See chapter 6.</p></div>
-</div>''', KEY["learn"])
+</div>''', KEY["learn"], short="Basics")
 
     # ---------------------------------------------------------------- 2 simple
     ch2 = chapter("simple", 2, "The short version", "Four pictures. That is all you need to follow the rest.", f'''
@@ -261,7 +262,7 @@ def build():
 <div class="card rv"><h3>Bad at</h3><p>Running your phone, speeding up video, replacing the cloud. It will sit in a data centre and be rented by the minute for specific jobs.</p></div>
 <div class="card rv"><h3>Worth remembering</h3><p>It is not fast in general. For the right problem it is astronomically faster. For nearly everything else it is slower and costs more.</p></div>
 </div>
-<div class="wide">{photo("quantum-images.jpg", caption="A montage of laser images of quantum states, made at NIST. What a measured quantum state looks like in practice is a grainy picture, not a number.")}</div>''', KEY["simple"])
+<div class="wide">{photo("quantum-images.jpg", caption="A montage of laser images of quantum states, made at NIST. What a measured quantum state looks like in practice is a grainy picture, not a number.")}</div>''', KEY["simple"], short="Simple")
 
     # ---------------------------------------------------------------- 3 change
     ch3 = chapter("change", 3, "What changes, and in what order",
@@ -272,14 +273,14 @@ def build():
 <div class="ev fut"><div class="yr">2030s: industry</div><p>Cheaper fertiliser and fuel chemistry, better batteries and solar materials, faster drug discovery. These show up as slow improvements in industries that already exist.</p></div>
 <div class="ev fut"><div class="yr">After that</div><p>Nobody knows. The builders of the first computers did not predict the spreadsheet either.</p></div>
 </div>
-<h3 class="wide" style="margin-top:30px">Be ready</h3>
+<h3 class="wide" id="s-prepare" data-nav="Prepare" style="margin-top:30px">Be ready</h3>
 <div class="cols wide">
 <div class="card rv"><h3>At home</h3><p>Keep phones and computers updated, because post-quantum encryption arrives as software updates. Use a password manager and two-step sign-in. There is nothing quantum to buy.</p></div>
 <div class="card rv"><h3>In a small business</h3><p>List the data that must stay secret for ten years or more: contracts, health records, design files. Ask your software and cloud suppliers when they will support the NIST standards.{cite(13)}</p></div>
 <div class="card rv"><h3>In your career</h3><p>Python and linear algebra are the way in. Qiskit is free and runs real programs on small machines.{cite(21)} Employers want people who can pair chemistry, finance or logistics with this.</p></div>
 <div class="card rv"><h3>With your savings</h3><p>Treat the sector as venture risk. Chapter 4 shows what past booms looked like and how often the early leaders failed. Size any position so that losing all of it changes nothing in your life.</p></div>
 </div>
-<h3 class="wide" style="margin-top:40px">The security clock</h3>
+<h3 class="wide" id="s-security" data-nav="Security" style="margin-top:40px">The security clock</h3>
 <div class="tl wide">
 <div class="ev big"><div class="yr">Aug 2024</div><p>The US standards body NIST publishes the first post-quantum encryption standards: FIPS 203, 204 and 205.</p></div>
 <div class="ev fut"><div class="yr">About 2030</div><p>Government roadmaps plan to retire today's public-key encryption for the most sensitive systems. The dates have moved before, so check the current NIST and EU ones.</p></div>
@@ -288,25 +289,25 @@ def build():
 <div class="callout wide"><b>Bitcoin and other coins.</b> They sign payments with the kind of cryptography a large quantum computer would break. Coins in addresses whose public key is already visible on the chain are the most exposed. The coin community is working on upgrades, but a change needs wide agreement, and that is slow. Frontier Coin will cover this in detail.</div>
 <div class="fx-photos wide">{photo("qkd-system.jpg", caption="Alice and Bob, a NIST fibre quantum key distribution system. It uses quantum physics to protect messages. That is a different thing from post-quantum encryption, which is ordinary maths that quantum computers cannot break quickly.")}
 <div class="card" style="align-self:start"><h3>Ireland</h3><p>Ireland published its national quantum strategy, Quantum 2030, in 2023. Equal1 in Dublin builds quantum chips on silicon. The Tyndall National Institute in Cork works on photonics and materials, and the large US technology firms run research teams here. Ireland also hosts a large share of Europe's data centres, so post-quantum migration is a local business issue as well as a research one.</p></div></div>
-<h3 class="wide" style="margin-top:40px">Jobs and where to start</h3>
+<h3 class="wide" id="s-jobs" data-nav="Jobs" style="margin-top:40px">Jobs and where to start</h3>
 <div class="cols wide">
 <div class="card rv"><h3>Who is hiring</h3><p>Hardware physicists and engineers, cryogenic and control-electronics engineers, compiler and software developers, and people who can turn a chemistry or finance problem into a quantum one. Security and cloud roles are open to anyone who learns the basics.</p></div>
 <div class="card rv"><h3>Free ways to learn</h3><ul>{"".join(f'<li><a href="{u}" target="_blank" rel="noopener"><b>{n}</b></a>: {d}</li>' for n, d, u in X.JOBS)}</ul></div>
 </div>
-<h3 class="wide" style="margin-top:40px">Who controls it</h3>
+<h3 class="wide" id="s-control" data-nav="Control" style="margin-top:40px">Who controls it</h3>
 <div class="cols wide">
 <div class="card rv"><h3>Access</h3><p>Machines will be rented from a few firms and governments. Whoever holds the best hardware first gets an edge in chemistry, finance and intelligence work.</p></div>
 <div class="card rv"><h3>Energy</h3><p>One machine draws little. A fleet of big ones could add real load. Gains in fertiliser, batteries and solar materials could outweigh that, if they come.</p></div>
 <div class="card rv"><h3>Jobs and inequality</h3><p>Few jobs are replaced directly. The bigger effect is which chemistry and materials industries get cheaper, and which countries host them.</p></div>
 </div>
-<h3 class="wide" style="margin-top:40px">War, defence money and what you do not see</h3>
+<h3 class="wide" id="s-defence" data-nav="Defence" style="margin-top:40px">War, defence money and what you do not see</h3>
 <div class="cols wide">
 <div class="card rv"><h3>Governments are early customers</h3><p>Defence and intelligence agencies paid for much of the first quantum work and still set priorities. In the open record: the US DARPA Quantum Benchmarking Initiative, NSA guidance on post-quantum codes, and national programmes in China, the UK and the EU.</p></div>
 <div class="card rv"><h3>Some progress is not published</h3><p>Code-breaking, secure communications and sensing for navigation without GPS are areas where results can be classified. The public record lags the real state of the art by an unknown amount. Company claims can also be shaped by contracts you cannot see.</p></div>
 <div class="card rv"><h3>The signals you can see</h3><p>Government contract awards, export-control rules, lab hiring, and sudden changes in who may buy certain parts. They are visible even when the results are not.</p></div>
 <div class="card rv"><h3>Why a race lifts some shares</h3><p>When governments frame quantum as a race with a rival, funding and procurement follow, and domestic companies gain. The same framing brings export bans and sanctions that can cut a company off from customers and parts. Both appear in the live feed as policy events.</p></div>
 </div>
-<div class="callout t wide"><b>Next on Frontier.</b> Drones, counter-drone systems, directed energy and high-power microwave weapons, and materials such as graphene and carbon nanotubes have the same defence funding and the same secrecy problem. Each gets its own site.</div>''', KEY["change"])
+<div class="callout t wide"><b>Next on Frontier.</b> Drones, counter-drone systems, directed energy and high-power microwave weapons, and materials such as graphene and carbon nanotubes have the same defence funding and the same secrecy problem. Each gets its own site.</div>''', KEY["change"], short="Change")
 
     # ---------------------------------------------------------------- 4 companies
     cos = []
@@ -328,7 +329,7 @@ def build():
 <dt>Why they matter</dt><dd>Quantum is a small slice of their value. Milestones move their shares by a few per cent, not several-fold.</dd>
 <dt>Use</dt><dd>A lower-risk way to hold the theme, with a much smaller upside if it works.</dd></dl>
 <span class="verdict">Most advanced: Google and Quantinuum on error correction, IBM on the engineering roadmap</span></article></div>
-<h3 class="wide" style="margin-top:44px">Share prices since listing</h3>
+<h3 class="wide" id="s-prices" data-nav="Prices" style="margin-top:44px">Share prices since listing</h3>
 <p class="wide">Weekly closes to <span id="lastdate"></span>, adjusted for splits. IonQ, Rigetti and D-Wave histories begin with the blank-cheque company each one merged with.</p>
 <div class="ctrl wide" id="tickers" role="group" aria-label="Companies"></div>
 <div class="ctrl wide" role="group" aria-label="Chart options">
@@ -336,17 +337,17 @@ def build():
 <button data-range="all" aria-pressed="false">Full history</button><button data-range="2021" aria-pressed="false">Since 2021</button>
 <button data-range="2024" aria-pressed="true">Since 2024</button><button data-range="1y" aria-pressed="false">Last year</button></div>
 <figure class="fig wide"><svg id="chart" viewBox="0 0 900 440" role="img" aria-label="Weekly share prices"></svg><div id="tip">Move across the chart to read values.</div></figure>
-<h3 class="wide" style="margin-top:44px">What an explosion looks like</h3>
+<h3 class="wide" id="s-booms" data-nav="Booms" style="margin-top:44px">What an explosion looks like</h3>
 <p>These are the biggest rises from a low to a later high inside two years. Apple, Nvidia and Bitcoin are the famous ones. The quantum pure-plays did the same in 2024 and 2025, and then fell.</p>
 {note("Reading it", "<p>Rigetti, D-Wave and Quantum Computing Inc rose 49x to 63x in one run. Nvidia, with real profits behind it, rose about 12x. The gap is the point.</p>")}
 {fig(charts.multiples(mult_items), "Log scale, from weekly closes. Prices are adjusted for splits, which is why Apple's low looks tiny. Past rises do not repeat on a schedule.", 4)}
-<h3 class="wide" style="margin-top:40px">The ladder to profit</h3>
+<h3 class="wide" id="s-ladder" data-nav="Ladder" style="margin-top:40px">The ladder to profit</h3>
 {fig(charts.ladder(LADDER, 3), "Each step has moved prices in this sector. The early steps get priced in before they are reached, and delays are punished. The field has reached step four, in small experiments. Profit needs step seven.", 5)}
 <div class="cols wide">
 <div class="card rv"><h3>Signs a boom is starting</h3><ul><li>A company shows error-corrected programs long enough to be useful.</li><li>A named customer pays for results, not for a trial.</li><li>Revenue grows faster than the cash it burns.</li><li>A big group buys a small one at a clear premium.</li></ul></div>
 <div class="card rv"><h3>Signs it is running ahead of itself</h3><ul><li>Prices rise several-fold with no new technical result.</li><li>The company sells new shares into every rally.</li><li>Targets keep slipping a year at a time.</li><li>The claim rests on a result nobody else has reproduced.</li></ul></div>
 </div>
-<h3 class="wide" style="margin-top:44px">Live updates</h3>
+<h3 class="wide" id="s-live" data-nav="Live" style="margin-top:44px">Live updates</h3>
 <p class="wide">The page checks filings, headlines and papers and shows how they move the odds used in chapter 6. <span id="live-stamp">Loading the live layer.</span></p>
 <div class="cols wide">
 <div class="card"><h3>Announcements that moved the odds</h3><ul class="feed" id="live-events"><li>Loading.</li></ul></div>
@@ -357,23 +358,23 @@ def build():
 <p class="cap wide" id="live-status"></p>
 <div class="scroll wide"><table id="live-react"></table></div>
 <p class="cap wide">The table shows how these four stocks actually moved after past filings of each type, against QQQ as a market proxy. The live layer uses it to size its nudges. It is reported with case counts because small samples mislead.</p>
-<h3 class="wide" style="margin-top:44px">Hype or proof</h3>
+<h3 class="wide" id="s-proof" data-nav="Proof" style="margin-top:44px">Hype or proof</h3>
 <p>Every claim sits on a rung of evidence. The higher the rung, the more weight it earns.</p>
 <div class="scroll wide"><table><thead><tr><th class="n">Rung</th><th>Evidence</th><th>Examples on this page</th><th>Weight</th></tr></thead><tbody>{hype}</tbody></table></div>
-<h3 class="wide" style="margin-top:44px">The race, country by country</h3>
+<h3 class="wide" id="s-map" data-nav="Map" style="margin-top:44px">The race, country by country</h3>
 <p class="wide">Pick a country. Teal marks leaders, violet marks major players, amber marks emerging ones. A summary from public sources, so treat the detail as approximate.</p>
 <div class="map-wrap wide"><figure class="fig" style="margin:0">{X.tile_map()}</figure><div class="card" id="map-panel"></div></div>
 <div class="callout t wide"><b>Why politics moves these shares.</b> Governments fund their own champions, restrict exports of key parts and sometimes block foreign buyers. The United States and China each treat quantum as a strategic race. One new restriction can cut a company off from customers or suppliers overnight. One new funding programme can lift a whole group.</div>
-<h3 class="wide" style="margin-top:44px">Who sells the picks and shovels</h3>
+<h3 class="wide" id="s-suppliers" data-nav="Suppliers" style="margin-top:44px">Who sells the picks and shovels</h3>
 <div class="scroll wide"><table><thead><tr><th>Part of the chain</th><th>Examples</th><th>Where</th><th>Why it matters</th></tr></thead><tbody>{shovels}</tbody></table></div>
 <p class="cap wide">Examples only. Not recommendations.</p>
-<h3 class="wide" style="margin-top:44px">The Frontier Index</h3>
+<h3 class="wide" id="s-index" data-nav="Index" style="margin-top:44px">The Frontier Index</h3>
 <p>Two equal-weight baskets set to 100 at the start. One holds the four pure-plays, the other the four large groups.</p>
 {fig(idx_svg, "Weekly rebalanced equal-weight baskets. Pure-plays: IonQ, Rigetti, D-Wave, Quantum Computing Inc. Large groups: IBM, Alphabet, Microsoft, Honeywell.", 6)}
-<h3 class="wide" style="margin-top:44px">Time machine</h3>
+<h3 class="wide" id="s-time" data-nav="Time" style="margin-top:44px">Time machine</h3>
 <p>Pick an asset and a date. See what the money would be worth now, how high it went, and how far it fell on the way.</p>
 <div class="ctrl wide"><label>Asset <select id="tm-asset"></select></label><label>From <input type="date" id="tm-date"></label><label>Amount (US$) <input type="number" id="tm-amt" value="1000" min="1" step="100"></label></div>
-<figure class="fig wide"><svg id="tm-svg" viewBox="0 0 900 260" role="img" aria-label="Value of the investment over time"></svg><div id="tm-out" class="tmout"></div></figure>''', KEY["companies"])
+<figure class="fig wide"><svg id="tm-svg" viewBox="0 0 900 260" role="img" aria-label="Value of the investment over time"></svg><div id="tm-out" class="tmout"></div></figure>''', KEY["companies"], short="Money")
 
     # ---------------------------------------------------------------- 5 hurdles
     power_items = [("Human brain", 20), ("Laptop", 50), ("One AI server (8 GPUs)", 10200), ("Quantum computer, whole system", 25000),
@@ -389,12 +390,12 @@ def build():
 <div class="card rv"><h3>Algorithms</h3><p>Large speed-ups are proven for a short list of problems. Loading big datasets in is slow.</p></div>
 <div class="card rv"><h3>Money and people</h3><p>Most listed pure-plays spend more than they earn, and the skilled workforce is small.</p></div>
 </div>
-<h3 class="wide" style="margin-top:44px">Power</h3>
+<h3 class="wide" id="s-power" data-nav="Power" style="margin-top:44px">Power</h3>
 <p>One superconducting quantum computer draws about 15 to 30 kW, almost all of it for cooling and control electronics. The chip itself uses next to nothing. Google put its whole 2019 apparatus at 26 kW in the worst case.{cite(18)}</p>
 {note("Careful", "<p>Low power is not the same as efficient. The machine is cheap to run per hour and the wrong tool for nearly every job.</p>")}
 {fig(charts.bars_h(power_items, lambda v: (f"{v / 1e6:g} MW" if v >= 1e6 else f"{v / 1e3:g} kW" if v >= 1e3 else f"{v:g} W"), highlight="Quantum computer, whole system", label="Power use in watts, log scale"), "Log scale, approximate. Sources: Google 2019 supplement, Nvidia DGX H100 rating (10.2 kW), Top500 lists.", 8)}
 <div class="fx-photos wide">{photo("supercomputer.jpg", caption="NASA's Columbia supercomputer. A machine of this class is the yardstick a quantum computer has to beat for a chosen problem.")}
-<div class="card" style="align-self:start"><h3>Fleets change the sum</h3><p>A million-qubit system multiplies the cooling and control load, and published estimates of its draw vary widely because none exists to measure. D-Wave argues one fridge can cool ever larger chips without raising power much. Superconducting groups mostly expect megawatt-class sites. For the right problem, a result that takes a supercomputer weeks could take a quantum machine minutes, and that would be a large saving. Studies suggest the speed-up has to exceed about 100 times to repay the cooling overhead.</p></div></div>''', KEY["hurdles"])
+<div class="card" style="align-self:start"><h3>Fleets change the sum</h3><p>A million-qubit system multiplies the cooling and control load, and published estimates of its draw vary widely because none exists to measure. D-Wave argues one fridge can cool ever larger chips without raising power much. Superconducting groups mostly expect megawatt-class sites. For the right problem, a result that takes a supercomputer weeks could take a quantum machine minutes, and that would be a large saving. Studies suggest the speed-up has to exceed about 100 times to repay the cooling overhead.</p></div></div>''', KEY["hurdles"], short="Gap")
 
     # ---------------------------------------------------------------- 6 outlook
     rows = "".join(f'<tr><td>{c["name"]} ({c["t"]})</td><td class="n">{fmt_p(sims[c["t"]]["end_p10"])}</td><td class="n">{fmt_p(sims[c["t"]]["end_p50"])}</td>'
@@ -409,7 +410,7 @@ def build():
 <div class="card rv"><h3>Unlikely, under 25%</h3><p>A machine with a couple of hundred long-running logical qubits arrives on the 2029 schedule. We expect most dates to slip by 12 to 24 months.</p></div>
 </div>
 <div class="callout r wide" style="margin-top:40px"><b>Read this first.</b> These are scenarios built from stated assumptions. They are not forecasts, recommendations or price targets. Past price behaviour does not predict the future. You can lose all of the money you put into shares like these. Solas33 holds no position in any company named and takes no payment from any of them.</div>
-<h3 class="wide" style="margin-top:40px">What it could mean for the four pure-play shares</h3>
+<h3 class="wide" id="s-scenarios" data-nav="Scenarios" style="margin-top:40px">What it could mean for the four pure-play shares</h3>
 <p>Pick a company and move the sliders to set your own odds. Dashed lines are the typical path in each story. The bands hold the middle 50% and 80% of outcomes once the stories are mixed.</p>
 <figure class="fig wide" id="fan">
 <div class="ctrl" id="fan-tabs" role="group" aria-label="Company"></div>
@@ -423,7 +424,7 @@ def build():
 <figcaption><b>Fig 10.</b> The live layer may tilt our odds by a few points because of dated announcements, never by more than 12.</figcaption></figure>
 <div class="scroll wide"><table><thead><tr><th>Stock</th><th class="n">Low end (10th)</th><th class="n">Middle</th><th class="n">High end (90th)</th><th class="n">Below today</th></tr></thead><tbody>{rows}</tbody></table></div>
 <p class="cap wide">Three years from the build date, at our starting odds.</p>
-<h3 class="wide" style="margin-top:36px">Our record</h3>
+<h3 class="wide" id="s-record" data-nav="Record" style="margin-top:36px">Our record</h3>
 <div class="card wide"><p id="live-score">Loading the scorecard.</p>
 <p class="cap">Every week the site writes down its 3, 6 and 12-month ranges in a hash-chained log before the outcome is known, then scores them. A 10th to 90th range should hold the real price about 80% of the time.</p></div>
 <div class="pull wide">The science will probably get there. The share prices already assume it has.<small>Our view</small></div>
@@ -433,7 +434,7 @@ def build():
 <div class="card rv"><h3>If it goes right</h3><p>The leaders with real hardware gain. A few-fold rise is a normal good outcome. The rises already seen, {runs["RGTI"]["multiple"]:.0f}x for Rigetti and {runs["QBTS"]["multiple"]:.0f}x for D-Wave, borrowed from the future. The biggest winners may be companies not listed yet, or the suppliers of lasers, cryogenics and chips.</p></div>
 <div class="card rv"><h3>The 1990s test</h3><p>Apple in 1997 and Nvidia in 2022 worked because the company later earned vast profits. The test for each quantum company is the same. When does it earn real profit, and how many more shares does it have to sell first. Until that has an answer, these are lottery tickets with a good story, and should be sized like one.</p></div>
 </div>
-<div class="callout t wide"><b>What would change our mind.</b> A company showing hundreds of long-running logical qubits ahead of schedule. A named customer paying a large recurring bill for useful results. A second team reproducing the topological-qubit claim on its own.</div>''', KEY["outlook"])
+<div class="callout t wide"><b>What would change our mind.</b> A company showing hundreds of long-running logical qubits ahead of schedule. A named customer paying a large recurring bill for useful results. A second team reproducing the topological-qubit claim on its own.</div>''', KEY["outlook"], short="Outlook")
 
     # ---------------------------------------------------------------- assemble
     bands = {
@@ -449,7 +450,7 @@ def build():
 <div class="cols">
 <div class="card"><h3>Information only</h3><p>This site is general information and education. It is not investment advice, a recommendation, an offer or a solicitation, and it takes no account of your circumstances. Speak to a licensed adviser before acting.</p></div>
 <div class="card"><h3>Scenarios, not forecasts</h3><p>Ranges come from stated assumptions and probabilities chosen by the editors, with volatility from each stock's last 104 weekly returns scaled to 75%. Share prices can fall to zero.</p></div>
-<div class="card"><h3>Conflicts</h3><p>Solas33 holds no position in any company named, takes no payment from any of them and carries no advertising. If that changes it will be stated here with the date.</p></div>
+<div class="card"><h3>Conflicts</h3><p>Solas33 holds no position in any company named and takes no payment from any of them. The only benefit to Solas33 is traffic to its own sites as a provider of information. There is no advertising. If any of that changes it will be stated here with the date.</p></div>
 <div class="card"><h3>Data</h3><p>Prices come from Yahoo Finance and are delayed. News is headlines and links only, with the publisher named. Photographs are public domain, mostly US government work, and credited under each picture. Claims are labelled as targets until verified.</p></div>
 <div class="card"><h3>Corrections</h3><p>Errors are fixed and logged. Write to <a href="mailto:hello@solas33.com">hello@solas33.com</a>. Editorial responsibility: Solas33. Content last reviewed {AS_OF}.</p></div>
 <div class="card"><h3>For researchers and teachers</h3><p>Cite as Solas33, Frontier Quantum, with the page date. The live layer is public: <a href="live.json">live.json</a> and an <a href="feed.xml">RSS feed</a>. Use your browser's Print for a clean copy of a chapter. Set the reading level at the top to Simple for younger students.</p></div>
@@ -459,5 +460,13 @@ def build():
 
     flow = (f'<div class="fx-flow">{notice}{ch1}</div>{bands["ch2"]}<div class="fx-flow">{ch2}</div>{bands["ch3"]}<div class="fx-flow">{ch3}</div>'
             f'{bands["ch4"]}<div class="fx-flow">{ch4}</div>{bands["ch5"]}<div class="fx-flow">{ch5}</div>{bands["ch6"]}<div class="fx-flow">{ch6}</div>')
-    body = f'{hero}<nav class="fx-spine" id="fx-spine" aria-label="Chapters"></nav><aside class="fx-rail" id="fx-rail" aria-live="polite"></aside>{flow}{foot}'
+    facts = [("Logical qubits shown", "about 50"), ("Needed for RSA-2048", "about 1m physical"), ("Whole machine", "about 26 kW"),
+             ("Fault-tolerant target", "2029")]
+    rows = "".join(f'<div class="row"><span>{a}</span><b>{b}</b></div>' for a, b in facts)
+    rail = ('<aside class="fx-rail" id="fx-rail" aria-label="Live and series panels"><div id="fx-live" aria-live="polite"></div>'
+            f'<section class="rp"><h4>Numbers to hold on to</h4>{rows}</section>'
+            f'<section class="rp"><h4>In this series</h4><div class="rp-list">{series_list("quantum")}</div></section>'
+            f'<section class="rp promo">{watch_promo(compact=True)}</section></aside>')
+    body = (f'{hero}<nav class="fx-spine" id="fx-spine" aria-label="Chapters"></nav>{rail}{flow}'
+            f'<div class="fx-flow">{watch_promo()}</div>{foot}')
     return {"title": TITLE, "body": body, "data_js": data_js, "sims": sims, "stat": stat, "runs": runs}

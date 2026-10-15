@@ -24,7 +24,7 @@ CFG = tomllib.loads((ROOT / "config.toml").read_text(encoding="utf-8"))
 S = CFG["series"]
 
 FONTS = ("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400"
-         "&family=Syne:wght@500;700;800&display=swap")
+         "&family=Manrope:wght@500;700;800&display=swap")
 
 LOGO = ('<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="12" cy="16" r="9" fill="none" stroke="currentColor" stroke-width="2.4" opacity=".9"/>'
         '<circle cx="20" cy="16" r="9" fill="none" stroke="var(--violet)" stroke-width="2.4"/><circle cx="16" cy="16" r="2.6" fill="var(--teal)"/></svg>')
@@ -47,9 +47,7 @@ def head(title: str, description: str, path: str) -> str:
 def topbar(slug: str) -> str:
     home = "../" if slug != "hub" else "./"
     where = f"<small>{slug.title()}</small>" if slug != "hub" else ""
-    levels = ('<span class="lvl" role="group" aria-label="Reading level"><button data-lv="s" type="button" aria-pressed="false">Simple</button>'
-              '<button data-lv="g" type="button" aria-pressed="true">General</button><button data-lv="e" type="button" aria-pressed="false">Expert</button></span>'
-              if slug != "hub" else "")
+    levels = ""
     return (f'<div id="progress"></div><header class="fx-top"><a class="fx-brand" href="{home}">{LOGO}<span>Frontier</span>{where}</a>'
             f'{levels}<button id="theme" type="button">Light / dark</button></header>')
 
@@ -62,17 +60,26 @@ def page(title: str, description: str, path: str, slug: str, body: str, data_js:
 
 
 def hub_body() -> str:
+    from frontier import tiles
+    from frontier.components import watch_promo
     cards = []
     for s in CFG["sites"]:
         live = s["status"] == "live"
         href = f'{s["slug"]}/' if live else "#"
-        cards.append(f'<a class="{"" if live else "soon"}" href="{href}"><b>{escape(s["name"])}</b><span>{escape(s["line"])}</span>'
-                     f'<em>{"Live" if live else "Coming"}</em></a>')
+        cards.append(f'<a class="{"" if live else "soon"}" href="{href}">{tiles.tile(s["slug"])}<div class="tile-body"><b>{escape(s["name"])}</b>'
+                     f'<span>{escape(s["line"])}</span></div><em>{"Live" if live else "Coming"}</em></a>')
+    how = (
+        '<div class="fx-how"><div class="card"><h3>Plain language</h3><p>Each site explains one technology without the jargon, '
+        'then follows the companies and the money.</p></div><div class="card"><h3>Sourced</h3><p>Every claim links to a paper, a filing or a '
+        'dated announcement. Targets are labelled as targets.</p></div><div class="card"><h3>Kept current</h3><p>A backend reads filings, '
+        'headlines and prices every few hours and logs every change to our odds.</p></div><div class="card"><h3>No adverts</h3><p>We hold no '
+        'position in any company named. The only benefit to Solas33 is traffic to its own sites as a provider of information.</p></div></div>')
     return f'''<header class="fx-hero"><div class="fx-hero-img"><img src="quantum/img/laser-table.jpg" alt="" decoding="async"></div>
 <div class="fx-hero-in"><div class="fx-kicker">Solas33</div><h1>What is being built, <em>who</em> is building it, and what it is worth</h1>
-<p class="lead">Frontier explains emerging technology in plain language, then follows the companies and the money. One site per technology. No adverts.</p></div></header>
-<div class="fx-flow"><div class="fx-hub">{"".join(cards)}</div>
-<div class="callout r"><b>Information only.</b> Nothing here is investment advice or a recommendation. Projections are scenarios, not forecasts. Money put into emerging-technology shares can be lost in full.</div></div>
+<p class="lead">Frontier explains emerging technology in plain language, then follows the companies and the money. One site per technology.</p></div></header>
+<div class="fx-flow"><h2 style="margin-top:70px">The sites</h2><div class="fx-hub">{"".join(cards)}</div>{how}
+{watch_promo()}
+<div class="callout r" style="margin-top:50px"><b>Information only.</b> Nothing here is investment advice or a recommendation. Projections are scenarios, not forecasts. Money put into emerging-technology shares can be lost in full.</div></div>
 <footer class="fx-foot"><div class="fx-foot-in"><p>Published by {escape(S["publisher"])}. Corrections: <a href="mailto:{S["contact_email"]}">{S["contact_email"]}</a>. Code: <a href="https://github.com/SOLAS33/frontier">github.com/SOLAS33/frontier</a>.</p></div></footer>'''
 
 

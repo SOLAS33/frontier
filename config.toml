@@ -93,3 +93,38 @@ slug = "chip"
 name = "Chip"
 line = "Semiconductors and photonics."
 status = "soon"
+
+# Cross-links to the Irish Watch series (public-data sites). Shown in the rail, on the hub and at the foot of each site.
+[watch]
+phrase = "It is all public data. Nobody reads it. We do."
+sub = "Watch sites turn Irish public records into plain answers, and keep them up to date."
+
+[[watch_sites]]
+name = "GridWatch"
+url = "https://gridwatch.solas33.com"
+line = "The electricity grid"
+
+[[watch_sites]]
+name = "DCWatch"
+url = "https://dcwatch.solas33.com"
+line = "Data centres"
+
+[[watch_sites]]
+name = "TenderWatch"
+url = "https://tenderwatch.solas33.com"
+line = "Public contracts"
+
+[[watch_sites]]
+name = "FirmWatch"
+url = "https://firmwatch.solas33.com"
+line = "Company risk"
+
+[[watch_sites]]
+name = "WaterWatch"
+url = "https://waterwatch.solas33.com"
+line = "Water supplies"
+
+[[watch_sites]]
+name = "FuelWatch"
+url = "https://fuelwatch.solas33.com"
+line = "Fuel prices"

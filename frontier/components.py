@@ -49,15 +49,29 @@ def fig(svg: str, caption: str, num: int | str = "", wide: bool = True) -> str:
     return f'<figure class="fig {"wide" if wide else ""}">{svg}<figcaption>{n}{caption}</figcaption></figure>'
 
 
-def chapter(cid: str, no: int, title: str, sub: str, body: str, key: str = "") -> str:
-    return (f'<section class="fx-ch" id="{cid}" data-title="{title}"><header class="fx-ch-head wide"><div class="fx-no">{no:02d}</div>'
+def chapter(cid: str, no: int, title: str, sub: str, body: str, key: str = "", short: str = "") -> str:
+    return (f'<section class="fx-ch" id="{cid}" data-title="{title}" data-nav="{short or title}"><header class="fx-ch-head wide"><div class="fx-no">{no:02d}</div>'
             f'<div><h2>{title}</h2><p class="fx-sub">{sub}</p></div></header>{key}{body}</section>')
 
 
-def level(simple: str, general: str, expert: str) -> str:
-    return f'<span class="lv s">{simple}</span><span class="lv g">{general}</span><span class="lv e">{expert}</span>'
+def key_idea(title: str, text: str) -> str:
+    return (f'<aside class="keyidea wide"><div class="fx-kicker">The idea in one breath</div><h3>{title}</h3><p>{text}</p></aside>')
 
 
-def key_idea(title: str, simple: str, general: str, expert: str) -> str:
-    return (f'<aside class="keyidea wide"><div class="fx-kicker">The idea in one breath</div><h3>{title}</h3>'
-            f'<p>{level(simple, general, expert)}</p></aside>')
+def watch_promo(compact: bool = False) -> str:
+    from frontier.config import WATCH, WATCH_SITES
+    links = "".join(f'<a href="{w["url"]}" target="_blank" rel="noopener"><b>{w["name"]}</b><span>{w["line"]}</span></a>' for w in WATCH_SITES)
+    return (f'<section class="fx-watch {"compact" if compact else ""}"><div class="fx-kicker">The Watch series</div>'
+            f'<p class="fx-watch-line">{WATCH.get("phrase", "")}</p><p class="fx-watch-sub">{WATCH.get("sub", "")}</p>'
+            f'<div class="fx-watch-links">{links}</div></section>')
+
+
+def series_list(active: str = "quantum") -> str:
+    from frontier.config import SITES
+    items = []
+    for s in SITES:
+        live = s["status"] == "live"
+        tag = "a" if live else "span"
+        href = f' href="../{s["slug"]}/"' if live else ""
+        items.append(f'<{tag}{href} class="{"on" if s["slug"] == active else ""} {"" if live else "soon"}">{s["name"]}</{tag}>')
+    return "".join(items)
