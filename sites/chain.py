@@ -153,7 +153,7 @@ def build():
                   "A blockchain is a ledger that many parties keep together. Its first use was money. Its likelier use is the plumbing under funds, bonds and contracts. Here is what works, what has been tried and dropped, and who is paid.",
                   "nyse-floor.jpg", art.hero_chain(),
                   [(256, "bits in the fingerprint that locks each record to the last", "", ""), (12, "seconds between new batches of records on Ethereum", "", " s"),
-                   (250, "million Australian dollars the ASX wrote off on a blockchain project it scrapped", "about A$", "m"),
+                   (250, "million Australian dollars the ASX wrote off on a blockchain project it scrapped", "A$", "m"),
                    (round(runs["COIN"]["multiple"]), "times Coinbase rose from low to high in under two years", "", "x")])
 
     ch1 = chapter("learn", 1, "How it works, and where it breaks", "A ledger that many keep, rules that run on it, and proofs that save work.", f'''
