@@ -15,14 +15,14 @@ NAMES = {"CA": "Canada", "US": "United States", "IE": "Ireland", "GB": "United K
 # Approximate and from public sources; marked as such on the page.
 COUNTRY = {
     "US": {"co": "IBM, Google, Microsoft, IonQ, Rigetti, D-Wave (US and Canada), Quantum Computing Inc, PsiQuantum, Quantinuum (US and UK)",
-           "gov": "National Quantum Initiative Act (2018); DARPA Quantum Benchmarking Initiative (2025); large private venture funding",
+           "gov": "National Quantum Initiative Act (2018). DARPA moved 11 companies, including IBM, IonQ and Quantinuum, to Stage B of its Quantum Benchmarking Initiative in November 2025",
            "ctl": "Export controls on advanced quantum computers and some components (2024)", "note": "Leads on company count, private capital and chip-making links."},
     "CN": {"co": "USTC (Zuchongzhi, Jiuzhang), Origin Quantum, Baidu, Tencent",
            "gov": "State-funded national lab at Hefei and long-term five-year plans; spending figures are not transparent",
            "ctl": "Its own controls on some critical materials; targeted by US export rules", "note": "Leads in satellite quantum communication; companies are mostly state-linked and not open to outside investors."},
-    "GB": {"co": "Quantinuum (Cambridge), Oxford Ionics (bought by IonQ in 2025), Riverlane, Oxford Quantum Circuits, Universal Quantum",
-           "gov": "National Quantum Strategy (2023) with about 2.5 billion pounds over ten years", "ctl": "National security investment screening", "note": "Strong university base and many spin-outs."},
-    "DE": {"co": "IQM (German arm), planqc, Toptica (lasers)", "gov": "National quantum programme of about 3 billion euros (2023)", "ctl": "EU dual-use export rules", "note": "Strong in lasers and industrial partners."},
+    "GB": {"co": "Quantinuum (Cambridge), Oxford Ionics (IonQ agreed to buy it in 2025), Riverlane, Oxford Quantum Circuits, Universal Quantum",
+           "gov": "National Quantum Strategy (2023) with 2.5 billion pounds over ten years, 2024 to 2034", "ctl": "National security investment screening", "note": "Strong university base and many spin-outs."},
+    "DE": {"co": "IQM (German arm), planqc, Toptica (lasers)", "gov": "National quantum programme: one 2026 overview gives about 2 billion euros, other reports give 3 billion", "ctl": "EU dual-use export rules", "note": "Strong in lasers and industrial partners."},
     "FR": {"co": "Pasqal, Alice & Bob, Quandela", "gov": "National strategy of about 1.8 billion euros (2021)", "ctl": "EU dual-use export rules", "note": "Several well-funded neutral-atom and photonic start-ups."},
     "NL": {"co": "QuTech (Delft), Qblox, QuantWare", "gov": "Quantum Delta NL programme", "ctl": "EU dual-use export rules; chip-tool controls", "note": "Control electronics and chip foundry services."},
     "FI": {"co": "IQM, Bluefors (dilution fridges)", "gov": "VTT national programme", "ctl": "EU dual-use export rules", "note": "Bluefors is a main supplier of the cooling machines."},
@@ -31,7 +31,7 @@ COUNTRY = {
     "CA": {"co": "D-Wave (Burnaby), Xanadu (Toronto), Photonic Inc", "gov": "National Quantum Strategy (2023)", "ctl": "Allied export controls", "note": "Home of the first commercial annealer."},
     "JP": {"co": "Fujitsu and RIKEN, NTT, Toshiba", "gov": "National quantum strategy and a large public research base", "ctl": "Allied export controls", "note": "Strong in superconducting circuits and components."},
     "KR": {"co": "Samsung and SK research groups, university labs", "gov": "National quantum strategy (2023)", "ctl": "Allied export controls", "note": "Chip-making strength could matter later."},
-    "IN": {"co": "TIFR, IISc groups and start-ups", "gov": "National Quantum Mission (2023), about 6,000 crore rupees", "ctl": "Developing", "note": "Large programme, early hardware."},
+    "IN": {"co": "TIFR, IISc groups and start-ups", "gov": "National Quantum Mission (2023)", "ctl": "Developing", "note": "Large programme, early hardware."},
     "AU": {"co": "PsiQuantum (Brisbane site), Silicon Quantum Computing, Quantum Brilliance", "gov": "Large public funding for a PsiQuantum facility (2024)", "ctl": "Allied export controls", "note": "Silicon spin and photonic bets."},
     "SG": {"co": "Centre for Quantum Technologies, start-ups", "gov": "National Quantum Strategy", "ctl": "Strict re-export rules", "note": "Research hub and finance interest."},
     "IE": {"co": "Equal1 (Dublin, silicon spin chips), Tyndall National Institute (Cork), IBM Ireland research", "gov": "Quantum 2030, national quantum strategy (2023)", "ctl": "EU dual-use export rules",
@@ -91,7 +91,7 @@ HYPE = [
     ("4", "Peer-reviewed, single group", "Published in a refereed journal by one team", "Google Quantum Echoes (2025), Bluvstein atom-array logical processor (2023)", "ok"),
     ("3", "Contested", "Published but disputed, or later matched by classical methods", "IBM utility paper (2023), Microsoft Majorana (2025), 2019 supremacy claim", "dis"),
     ("2", "Preprint or company blog", "Technical report, not yet refereed", "Many new qubit-count and fidelity announcements", "tgt"),
-    ("1", "Press release or roadmap", "A target, not a result", "Fault-tolerant machine by 2029, 80,000 logical qubits by 2030", "tgt"),
+    ("1", "Press release or roadmap", "A target, not a result", "Fault-tolerant machine by 2029", "tgt"),
 ]
 
 SHOVELS = [

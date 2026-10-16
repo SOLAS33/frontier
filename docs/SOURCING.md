@@ -11,4 +11,4 @@ Set by the founder on 16 October 2026: no fact goes on a Frontier site from memo
 7. Opinion is allowed in the outlook chapter and the scenarios, and is labelled as ours.
 8. Re-check the figures before each refresh of a site. Results, prices and deals change.
 
-Status on 16 October 2026: Fusion, Bot, Chain, Chip, Orbit, Gene, Carbon, Tide and Mine were written or rewritten to this rule. Quantum, Coin, Mind, Atom and Cell pre-date it and have not yet been re-audited.
+Status on 16 October 2026: all fourteen sites were written, rewritten or audited to this rule. The audit record is docs/AUDIT-2026-10-16.md, including what was not re-checked.

@@ -6,3 +6,5 @@ data/prices.json
 node_modules/
 data/live/
 .wrangler/
+
+inbox/private/

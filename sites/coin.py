@@ -11,7 +11,7 @@ from sites.quantum_extra import tile_map
 from sites import tech_blocks as TB
 
 TITLE = "Frontier Coin"
-AS_OF = "15 October 2026"
+AS_OF = "16 October 2026"
 
 LIVE = {"cik": {"COIN": 1679788, "MSTR": 1050446, "MARA": 1507605, "RIOT": 1167419, "CRCL": 1876042},
         "aliases": {"COIN": ["coinbase"], "MSTR": ["microstrategy", "strategy inc", "saylor"], "MARA": ["marathon digital", "mara holdings", "marathon"],
@@ -32,7 +32,9 @@ REFS = [
     (11, "Central Statistics Office (2024). Data centres metered electricity consumption 2023.", "https://www.cso.ie/en/releasesandpublications/ep/p-dcmec/datacentresmeteredelectricityconsumption2023/"),
     (12, "Solas33 (2026). World-State Engine crypto focus study: take-offs, 100x tokens and listings, 652 tokens.", "https://frontier.solas33.com/coin/#study"),
 ]
-REFS = REFS + TB.COIN_REFS
+REFS = REFS + TB.COIN_REFS + [(18, "Silicon Republic (2023). Coinbase chooses Dublin as its EU regulatory hub.", "https://siliconrepublic.com/?p=1052620"),
+    (19, "Business Wire (2025). Kraken secures MiCA licence from the Central Bank of Ireland.", "https://www.businesswire.com/news/home/20250625529871/en"),
+    (20, "The Block (2025). Kraken secures MiCA license in Ireland; Coinbase obtained its MiCA license in Luxembourg.", "https://www.theblock.co/post/359751/kraken-secures-mica-license-in-ireland-to-scale-european-operations")]
 RTITLE = {n: t for n, t, _ in REFS}
 
 
@@ -196,7 +198,7 @@ def build():
 <p class="lead">Crypto is part invention, part plumbing and part casino. Here is which part is which, who earns a living from it, and what a quantum computer would do to it.</p>
 <div class="fx-stats">
 {stat_cell(round(btc["last"] / 1000), "US dollars per Bitcoin today, in thousands", "$", "k")}
-{stat_cell(round(abs(btc["pct_from_peak"])), "below its September 2025 peak", "", "%")}
+{stat_cell(round(abs(btc["pct_from_peak"])), "below its 2025 peak (weekly close)", "", "%")}
 {stat_cell(25, "of 652 tokens ever rose 100-fold, and most are down 90% or more", "", "")}
 {stat_cell(150, "terawatt-hours a year, roughly, for the Bitcoin network", "", " TWh")}
 </div></div></header>
@@ -263,7 +265,7 @@ def build():
 <div class="callout wide"><b>Our read.</b> This is a slow-moving problem with a known fix, not a near-term threat. The risk to watch for is a sudden jump in the best qubit estimates, which the Frontier Quantum site tracks.</div>
 <h3 class="wide" id="s-ireland" data-nav="Ireland" style="margin-top:44px">Ireland</h3>
 <div class="cols wide">
-<div class="card rv"><h3>A regulator in Dublin</h3><p>The Central Bank of Ireland authorises crypto firms under MiCA, and a firm authorised here can serve the whole EU.{cite(8)} Several large exchanges keep staff in Dublin and one authorised its European arm here.</p></div>
+<div class="card rv"><h3>A regulator in Dublin</h3><p>The Central Bank of Ireland authorises crypto firms under MiCA, and a firm authorised here can serve the whole EU.{cite(8)} Kraken received its MiCA licence from the Central Bank of Ireland on 25 June 2025.{cite(19)} Coinbase chose Dublin as its EU hub in 2023 but obtained its MiCA licence in Luxembourg.{cite(18)}{cite(20)}</p></div>
 <div class="card rv"><h3>Tax</h3><p>Gains are subject to capital gains tax, and Revenue expects them to be declared. Mining and staking income can be taxed as income.</p></div>
 <div class="card rv"><h3>The warning label</h3><p>The Central Bank requires warnings on crypto adverts and has repeated that investors can lose all their money. This site follows that spirit.</p></div>
 </div>
@@ -355,7 +357,7 @@ def build():
 <figure class="fig wide"><svg id="tm-svg" viewBox="0 0 900 260" role="img" aria-label="Value of the investment over time"></svg><div id="tm-out" class="tmout"></div></figure>''', KEY["companies"], short="Money")
 
     power_items = [("Ethereum network, after 2022", 0.01), ("Irish data centres, 2023", 6.3), ("All Irish electricity use", 30), ("Bitcoin network, estimate", 150),
-                   ("All data centres worldwide, 2022", 460)]
+                   ("Data centres, AI and crypto worldwide, 2022", 460)]
     ch5 = chapter("hurdles", 5, "The limits, and the power bill", "What can go wrong, and how much electricity it uses.", f'''
 <div class="cols wide">
 <div class="card rv"><h3>Theft and loss</h3><p>Exchange hacks, stolen keys and lost recovery phrases are routine. Billions of dollars of coins have been taken, and almost none is recovered.</p></div>
@@ -366,7 +368,7 @@ def build():
 <div class="card rv"><h3>Quantum</h3><p>Covered in chapter 3. Slow, solvable, and worth watching.</p></div>
 </div>
 <h3 class="wide" id="s-power" data-nav="Power" style="margin-top:44px">Power</h3>
-<p>The Bitcoin network uses roughly 100 to 170 terawatt-hours a year, on the Cambridge estimate, about as much as a mid-sized European country.{cite(2)} Proof-of-work is the cause. Ethereum cut its use by more than 99% in 2022 by switching to staking.</p>
+<p>The Bitcoin network uses roughly 140 to 175 terawatt-hours a year on the Cambridge estimates (a 2025 survey gave 138, its running index about 175), about as much as a mid-sized European country.{cite(2)} Proof-of-work is the cause. Ethereum cut its use by more than 99% in 2022 by switching to staking.</p>
 {note("Why it is built this way", "<p>The electricity is the security. An attacker would need to match it. That makes the cost a feature to Bitcoin's supporters and a flaw to its critics.</p>")}
 {fig(charts.bars_h(power_items, lambda v: (f"{v:g} TWh" if v >= 1 else f"{v * 1000:g} GWh"), lo_exp=-2, hi_exp=3, highlight="Bitcoin network, estimate", label="Electricity use, terawatt-hours a year, log scale", left=270), "Log scale, approximate, per year. Sources: Cambridge index" + cite(2) + ", Central Statistics Office" + cite(11) + ", IEA" + cite(10) + ".", 4)}
 <div class="fx-photos wide">{photo("power-lines.jpg", caption="High-voltage lines at dusk. Miners go where power is cheapest, which is why they follow stranded hydro, wind and gas.")}

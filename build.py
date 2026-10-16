@@ -114,7 +114,7 @@ def build_site(slug: str, a) -> dict:
     img = out / "img"
     if img.exists():
         shutil.rmtree(img)
-    html = page(f"Frontier {meta['name']}", meta["line"], f"{slug}/", slug, ctx["body"], ctx["data_js"])
+    html = page(f"Frontier {meta['name']}: {meta.get('topic', meta['line'].rstrip('.'))}", meta["line"], f"{slug}/", slug, ctx["body"], ctx["data_js"])
     import re
     img.mkdir(parents=True, exist_ok=True)
     for name in sorted(set(re.findall(r"img/([\w.-]+\.jpg)", html))):  # ship only the pictures this page uses

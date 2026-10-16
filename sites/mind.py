@@ -9,7 +9,7 @@ from sites.quantum_extra import tile_map
 from sites import tech_blocks as TB
 
 TITLE = "Frontier Mind"
-AS_OF = "15 October 2026"
+AS_OF = "16 October 2026"
 
 LIVE = {"cik": {"NVDA": 1045810, "AMD": 2488, "MU": 723125, "CRWV": 1769628, "SMCI": 1375365},
         "aliases": {"NVDA": ["nvidia"], "AMD": ["advanced micro devices", "amd"], "MU": ["micron"], "CRWV": ["coreweave"],
@@ -29,7 +29,10 @@ REFS = [
     (10, "Solas33 (2026). World-State Engine AI stocks study: who gained from the AI boom, and the growth-for-price screen.", "https://frontier.solas33.com/mind/#study"),
     (11, "Cambridge Centre for Alternative Finance. Cambridge Bitcoin Electricity Consumption Index.", "https://ccaf.io/cbnsi/cbeci"),
 ]
-REFS = REFS + TB.MIND_REFS
+REFS = REFS + TB.MIND_REFS + [(22, "Central Statistics Office (2026). Data centres metered electricity consumption 2025 (data centres used 23% of metered electricity, 7,663 GWh).", "https://www.irishtimes.com/business/2026/07/07/data-centres-account-for-almost-one-quarter-of-irish-electricity-usage-in-2025/"),
+    (19, "Windows Central (2023). ChatGPT sets growth record, reportedly hitting 100 million users in January (UBS estimate).", "https://windowscentral.com/software-apps/chatgpt-sets-growth-record-reportedly-hitting-100-million-users-in-january"),
+    (20, "Sidley (2026). EU lawmakers reach provisional agreement to delay key EU AI Act obligations.", "https://datamatters.sidley.com/2026/06/22/eu-lawmakers-reach-provisional-agreement-to-delay-key-eu-ai-act-obligations/"),
+    (21, "Silicon Canals (2026). Four US tech giants spent roughly 410 billion on capital expenditure last year and are steering toward roughly 725 billion in 2026.", "https://siliconcanals.com/m-four-us-tech-giants-spent-roughly-410-billion-on-capital-expenditure-last-year-much-of-it-tied-to-ai-and-are-steering-toward-roughly-725-billion-in-2026/")]
 cite = K.cite_factory(REFS)
 fmt_p = K.fmt_p
 
@@ -154,9 +157,9 @@ def build():
     hero = K.hero("Frontier / Mind", "The chips behind the <em>machines</em> that learn",
                   "Artificial intelligence is a few clever ideas, a very large number of chips and a great deal of electricity. Here is who sells what, who is paying, and what happens if they stop.",
                   "cray-2.jpg", art_more.hero_network(),
-                  [(400, "billion dollars or so a year spent on AI data centres by the largest four buyers", "about ", ""),
+                  [(410, "billion dollars: combined capital spending in 2025 by Amazon, Microsoft, Alphabet and Meta, much of it for AI, on one tracker's estimate", "about ", ""),
                    (round(nv["x_from_start"]), "times Nvidia has risen since 2010, split-adjusted", "", "x"),
-                   (21, "per cent of Irish electricity used by data centres in 2023", "", "%"),
+                   (23, "per cent of Irish electricity used by data centres in 2025", "", "%"),
                    (945, "terawatt-hours a year for data centres by 2030, on the IEA's central case", "about ", " TWh")])
 
     ch1 = chapter("learn", 1, "How it works, and where it breaks", "From a 2017 paper to a global buying spree: the idea, the chips and the weak points.", f'''
@@ -184,9 +187,9 @@ def build():
 <div class="ev big"><div class="yr">2012</div><p>A deep network trained on graphics chips wins an image recognition contest by a wide margin. The modern era starts.</p></div>
 <div class="ev"><div class="yr">2016</div><p>DeepMind's AlphaGo beats the world champion at Go.</p></div>
 <div class="ev big"><div class="yr">2017</div><p>The transformer paper is published.{cite(1)}</p></div>
-<div class="ev big"><div class="yr">Nov 2022</div><p>ChatGPT launches and reaches 100 million users within about two months.</p></div>
+<div class="ev big"><div class="yr">Nov 2022</div><p>ChatGPT launches on 30 November. UBS estimates it reached 100 million monthly users by January 2023.{cite(19)}</p></div>
 <div class="ev"><div class="yr">2023 to 2025</div><p>Chip orders and data-centre building surge. Open models close much of the gap with closed ones.</p></div>
-<div class="ev"><div class="yr">2024 to 2026</div><p>The EU AI Act phases in.{cite(8)} Spending on power for AI becomes a national topic.</p></div>
+<div class="ev"><div class="yr">2024 to 2028</div><p>The EU AI Act phases in.{cite(8)} In 2026 lawmakers agreed to delay the high-risk duties, to December 2027 for stand-alone systems and August 2028 for those built into regulated products.{cite(20)} Spending on power for AI becomes a national topic. The four largest US buyers spend about $410 billion in 2025.{cite(21)}</p></div>
 <div class="ev fut"><div class="yr">2026 on</div><p>The test of whether the spending earns its keep. See chapter 6.</p></div>
 </div>''', K.key_idea("A few ideas, a lot of chips",
         "Today's AI learns by adjusting billions of numbers until it predicts well. It works better the more data and computing power it gets, which is why "
@@ -207,13 +210,13 @@ def build():
     ch3 = chapter("change", 3, "What changes, and in what order", "Tools first, then jobs, then rules and power.", f'''
 <div class="tl wide">
 <div class="ev fut"><div class="yr">Now to 2027: tools</div><p>Coding assistants, customer service, document search and translation become routine. Gains show up first as time saved in tasks, not as new products.</p></div>
-<div class="ev fut"><div class="yr">2026 to 2029: rules</div><p>The EU AI Act applies in stages and sets duties for the biggest models and for high-risk uses.{cite(8)} Other countries write their own, and they differ.</p></div>
+<div class="ev fut"><div class="yr">2026 to 2029: rules</div><p>The EU AI Act applies in stages and sets duties for the biggest models and for high-risk uses. A 2026 agreement delays the high-risk duties, and final adoption was still pending in June 2026.{cite(8)}{cite(20)} Other countries write their own, and they differ.</p></div>
 <div class="ev fut"><div class="yr">2027 to 2030: jobs</div><p>Tasks change before jobs do. Roles built on routine writing, coding and analysis change most, and new roles appear around checking and directing the tools.</p></div>
 <div class="ev fut"><div class="yr">Throughout: power</div><p>Data centres ask for more electricity than grids were planned for. Where and how that power is built becomes the real limit.{cite(6)}</p></div>
 </div>
 <h3 class="wide" id="s-ireland" data-nav="Ireland" style="margin-top:36px">Ireland</h3>
 <div class="cols wide">
-<div class="card rv"><h3>Where the computers are</h3><p>Data centres used 21% of Ireland's metered electricity in 2023, more than all urban homes.{cite(7)} Most are run for US firms serving Europe.</p></div>
+<div class="card rv"><h3>Where the computers are</h3><p>Data centres used 23% of Ireland's metered electricity in 2025, up from 21% in 2023.{cite(22)}{cite(7)} Most are run for US firms serving Europe.</p></div>
 <div class="card rv"><h3>The grid limit</h3><p>The grid operator has limited new connections in the Dublin region. Operators are looking to generate their own power or build elsewhere.</p></div>
 <div class="card rv"><h3>The rules</h3><p>The EU AI Act applies here, and several Irish regulators share the enforcement. Many global firms have their European legal base in Ireland, so the Irish decisions travel.</p></div>
 </div>
@@ -320,7 +323,7 @@ def build():
                   "Ranges come from stated assumptions and probabilities chosen by the editors, with volatility from each stock's last 104 weekly returns scaled to 75%.",
                   "Prices come from Yahoo Finance and are delayed. News is headlines and links only, with the publisher named. Photographs are public domain and credited under each picture. Our AI stocks study covers companies we selected as AI-related, so it has selection bias.")
     nf = K.notice("We explain how AI works and show how its suppliers and their shares have behaved. We do not recommend any company or trade. Projections are scenarios, not forecasts.")
-    facts = [("Data-centre use 2024", "about 415 TWh"), ("Irish share", "21%"), ("Nvidia since 2010", f"{nv['x_from_start']:.0f}x"), ("Training compute", "about 4x a year")]
+    facts = [("Data-centre use 2024", "about 415 TWh"), ("Irish share, 2025", "23%"), ("Nvidia since 2010", f"{nv['x_from_start']:.0f}x"), ("Training compute", "about 4x a year")]
     body = K.assemble("mind", hero, nf, [ch1, ch2, ch3, ch4, ch5, ch6], bands, foot, facts)
     return {"title": TITLE, "body": body, "data_js": data_js, "sims": sims, "stat": stat, "runs": runs}
 

@@ -1,0 +1,31 @@
+name: Correction
+description: A fact on a Frontier page is wrong or out of date
+title: "Correction: "
+labels: ["correction"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: The address of the page, for example https://frontier.solas33.com/atom/
+    validations:
+      required: true
+  - type: textarea
+    id: sentence
+    attributes:
+      label: The sentence or number that is wrong
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: What it should say
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Link to the source that supports the change
+      description: A filing, regulator page, agency page or paper is best.
+    validations:
+      required: true

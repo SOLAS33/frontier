@@ -14,7 +14,7 @@ TITLE = "Frontier Quantum"
 LIVE = {"cik": {"IONQ": 1824920, "RGTI": 1838359, "QBTS": 1907982, "QUBT": 1758009},
         "aliases": {"IONQ": ["ionq"], "RGTI": ["rigetti"], "QBTS": ["d-wave", "dwave", "qbts"], "QUBT": ["quantum computing inc", "qubt"]},
         "arxiv_terms": ["IonQ", "Rigetti", "D-Wave", "Quantinuum", "Google Quantum AI", "IBM Quantum"], "arxiv_cat": "quant-ph"}
-AS_OF = "15 October 2026"
+AS_OF = "16 October 2026"
 
 REFS = [
     (1, "Feynman, R. (1982). Simulating physics with computers. Int. J. Theor. Phys.", "https://doi.org/10.1007/BF02650179"),
@@ -38,6 +38,13 @@ REFS = [
     (19, "IBM Quantum. Roadmap and technology (Starling, Blue Jay).", "https://www.ibm.com/quantum/technology"),
     (20, "Quantinuum (2024). Accelerated roadmap to universal fault-tolerant quantum computing by 2030.", "https://www.quantinuum.com/press-releases/quantinuum-unveils-accelerated-roadmap-to-achieve-universal-fault-tolerant-quantum-computing-by-2030"),
     (21, "Qiskit, IBM's free open-source toolkit for learning and running quantum programs.", "https://www.ibm.com/quantum/qiskit"),
+    (22, "Quantum Zeitgeist (2026). Quantinuum lists on Nasdaq at $60, 20x oversubscribed.", "https://quantumzeitgeist.com/quantinuum-lists-on-nasdaq-at-60-20x-oversubscribed/"),
+    (23, "Quantinuum Inc. Registration statement on Form S-1/A (Helios: 98 physical qubits, 48 logical qubits; roadmap to Sol and Apollo).", "https://www.sec.gov/Archives/edgar/data/0002110105/000162828026037917/quantinuum-sx1a.htm"),
+    (24, "D-Wave (2022). Completed transaction with DPCM Capital and began trading on the NYSE on 8 August 2022.", "https://ir.dwavesys.com/news/news-details/2022/D-Wave-Reports-Second-Quarter-and-First-Half-2022-Results-and-Provides-Business-Update/default.aspx"),
+    (25, "Data Center Dynamics (2022). Rigetti SPAC deal closes, company debuts on Nasdaq.", "https://datacenterdynamics.com/en/news/rigetti-spac-deal-closes-quantum-computing-company-debuts-on-nasdaq"),
+    (26, "Physics World (2025). Clarke, Devoret and Martinis win the 2025 Nobel Prize for Physics.", "https://physicsworld.com/a/john-clarke-michel-devoret-and-john-martinis-win-the-2025-nobel-prize-for-physics/"),
+    (27, "HPCwire (2025). DARPA selects 11 participants for Quantum Benchmarking Initiative Stage B.", "https://www.hpcwire.com/2025/11/07/darpa-selects-11-participants-for-quantum-benchmarking-initiative-stage-b/"),
+    (28, "Quantum Zeitgeist. A capital markets timeline of quantum computing (IonQ listing, October 2021).", "https://quantumzeitgeist.com/capital-markets-timeline-of-quantum-computing/"),
 ]
 RTITLE = {n: t for n, t, _ in REFS}
 
@@ -68,7 +75,7 @@ SCEN = {
 
 COMPANIES = [
     {"t": "IONQ", "name": "IonQ", "kind": "Trapped ions",
-     "rivals": "Quantinuum (private, mostly owned by Honeywell), QuEra and Atom Computing (neutral atoms), IBM and Google (circuits)",
+     "rivals": "Quantinuum (listed on Nasdaq in June 2026), QuEra and Atom Computing (neutral atoms), IBM and Google (circuits)",
      "profit": "Show hundreds of error-corrected qubits on its own hardware. Turn government and cloud contracts into repeat revenue. Stop selling new shares to pay the bills.",
      "watch": "Gate accuracy, logical-qubit results, quarterly revenue against cash burn, the share count, whether the acquisitions fit together.",
      "rank": "A strong second tier. Its ions are among the most accurate qubits built. Scaling them up is still unproven.",
@@ -188,10 +195,10 @@ def build():
     hero = f'''<header class="fx-hero" id="top">
 <div class="fx-hero-img"><img src="img/strontium-clock.jpg" alt="" decoding="async"></div>{art.hero_interference()}
 <div class="fx-hero-in"><div class="fx-kicker">Frontier / Quantum</div>
-<h1>The machine that <em>computes</em> with atoms</h1>
+<h1>Quantum computing: what <em>works</em>, and what is a press release</h1>
 <p class="lead">Some of quantum computing works. Some of it is a press release. Here is which is which, who is paid for each, and how much of it is already in the share price.</p>
 <div class="fx-stats">
-{stat_cell(50, "error-corrected qubits shown so far, in small experiments", "about ")}
+{stat_cell(48, "logical qubits Quantinuum reports on its Helios machine, a company figure")}
 {stat_cell(1, "noisy qubits to break RSA-2048, on the 2025 estimate", "about ", " million")}
 {stat_cell(runs["RGTI"]["multiple"], "times Rigetti rose from low to high in one year", "", "x")}
 {stat_cell(26, "kilowatts for a whole machine, the draw of 50 to 100 homes", "", " kW")}
@@ -234,6 +241,7 @@ def build():
 <tr><td>Beats a supercomputer on a test task</td><td>Google 2019{cite(6)}</td><td><span class="tag dis">Disputed</span></td><td>The task had no use. Classical methods later closed most of the gap.</td></tr>
 <tr><td>Useful-scale results before error correction</td><td>IBM 2023{cite(7)}</td><td><span class="tag dis">Contested</span></td><td>Classical simulations later reproduced the result.</td></tr>
 <tr><td>48 logical qubits on an atom array</td><td>Harvard and QuEra 2023{cite(8)}</td><td><span class="tag ok">Shown</span></td><td>Small codes and short programs.</td></tr>
+<tr><td>48 logical qubits on a trapped-ion machine</td><td>Quantinuum Helios, 2025{cite(23)}</td><td><span class="tag dis">Company figure</span></td><td>From the company's own filing. Small codes and short programs.</td></tr>
 <tr><td>Errors fall as the code gets bigger</td><td>Google Dec 2024{cite(9)}</td><td><span class="tag ok">Shown</span></td><td>One logical qubit, held briefly.</td></tr>
 <tr><td>Verifiable speed-up on a physics measurement</td><td>Google Oct 2025{cite(14)}</td><td><span class="tag ok">Shown</span></td><td>Another machine can check the output. Not yet commercial.</td></tr>
 <tr><td>Low-overhead error-correcting code</td><td>IBM 2024{cite(10)}</td><td><span class="tag ok">Designed</span></td><td>Needs hardware that does not exist yet.</td></tr>
@@ -249,9 +257,10 @@ def build():
 <div class="ev"><div class="yr">2011</div><p>D-Wave sells the first commercial quantum annealer, to Lockheed Martin.</p></div>
 <div class="ev big"><div class="yr">2016</div><p>IBM puts a 5-qubit processor online for anyone to use.</p></div>
 <div class="ev big"><div class="yr">2019</div><p>Google claims quantum supremacy with 53 qubits.{cite(6)} IBM disputes the 10,000-year figure.</p></div>
-<div class="ev"><div class="yr">2021</div><p>IonQ, Rigetti and D-Wave reach the stock market by merging with blank-cheque companies.</p></div>
+<div class="ev"><div class="yr">2021 and 2022</div><p>IonQ lists in October 2021.{cite(28)} Rigetti follows in March 2022 and D-Wave on 8 August 2022, each by merging with a blank-cheque company.{cite(25)}{cite(24)}</p></div>
 <div class="ev big"><div class="yr">Dec 2024</div><p>Google's Willow chip shows errors shrinking as the code grows.{cite(9)}</p></div>
-<div class="ev"><div class="yr">2025</div><p>Microsoft's Majorana 1{cite(15)}, Amazon's Ocelot, Google's Quantum Echoes{cite(14)}, IBM's Nighthawk and Loon, Quantinuum's Helios. The Nobel Prize in Physics goes to Clarke, Devoret and Martinis for the circuit physics behind superconducting qubits.</p></div>
+<div class="ev"><div class="yr">2025</div><p>Microsoft's Majorana 1{cite(15)}, Amazon's Ocelot, Google's Quantum Echoes{cite(14)}, IBM's Nighthawk and Loon, Quantinuum's Helios. The Nobel Prize in Physics goes to Clarke, Devoret and Martinis for the circuit physics behind superconducting qubits.{cite(26)}</p></div>
+<div class="ev big"><div class="yr">June 2026</div><p>Quantinuum lists on Nasdaq at $60 a share and raises about $1.68 billion, the largest quantum listing so far.{cite(22)}</p></div>
 <div class="ev fut"><div class="yr">2026 on</div><p>The race to error-corrected machines. See chapter 6.</p></div>
 </div>''', KEY["learn"], short="Basics")
 
@@ -329,13 +338,17 @@ def build():
     ch4 = chapter("companies", 4, "The companies, the money, the odds",
                   "Where each started, who it competes with, what has to happen before it makes money, and what past booms did to share prices.", f'''
 <div class="cols wide">{"".join(cos)}
+<article class="card co rv"><h3>Quantinuum<span>QNT &middot; Trapped ions, listed June 2026</span></h3>
+<dl><dt>What happened</dt><dd>It priced its IPO at $60 a share on 3 to 4 June 2026 and raised about $1.68 billion. Full-year 2025 revenue was $30.9 million with a net loss of $192.6 million.{cite(22)}</dd>
+<dt>Technology</dt><dd>Its Helios machine has 98 physical qubits and, the company says, 48 logical qubits. It targets Sol in 2027 and Apollo, a fault-tolerant machine, in 2029.{cite(23)}</dd>
+<dt>Why it is not modelled here</dt><dd>It has only a few months of price history, so it has no scenario range yet. Its IPO is the largest in this sector.</dd></dl><span class="verdict">The leader on ions, newly public</span></article>
 <article class="card co rv"><h3>The big groups<span>IBM, Alphabet, Microsoft, Honeywell, Nvidia</span></h3>
-<dl><dt>Position</dt><dd>IBM and Google lead on superconducting hardware and error correction. Honeywell owns most of Quantinuum, the leader in trapped ions. Microsoft is betting on a different kind of qubit. Nvidia sells the classical chips that decode errors.</dd>
+<dl><dt>Position</dt><dd>IBM and Google lead on superconducting hardware and error correction. Quantinuum, the leader in trapped ions, listed on Nasdaq in June 2026, with Honeywell keeping about half the voting power. Microsoft is betting on a different kind of qubit. Nvidia sells the classical chips that decode errors.</dd>
 <dt>Why they matter</dt><dd>Quantum is a small slice of their value. Milestones move their shares by a few per cent, not several-fold.</dd>
 <dt>Use</dt><dd>A lower-risk way to hold the theme, with a much smaller upside if it works.</dd></dl>
 <span class="verdict">Most advanced: Google and Quantinuum on error correction, IBM on the engineering roadmap</span></article></div>
 <h3 class="wide" id="s-prices" data-nav="Prices" style="margin-top:44px">Share prices since listing</h3>
-<p class="wide">Weekly closes to <span id="lastdate"></span>, adjusted for splits. IonQ, Rigetti and D-Wave histories begin with the blank-cheque company each one merged with.</p>
+<p class="wide">Weekly closes to <span id="lastdate"></span>, adjusted for splits. IonQ, Rigetti and D-Wave histories begin with the blank-cheque company each one merged with: IonQ in October 2021, Rigetti in March 2022 and D-Wave in August 2022.</p>
 <div class="ctrl wide" id="tickers" role="group" aria-label="Companies"></div>
 <div class="ctrl wide" role="group" aria-label="Chart options">
 <button data-mode="growth" aria-pressed="true">Growth, 100 = start</button><button data-mode="price" aria-pressed="false">Price (US$)</button>
@@ -400,7 +413,7 @@ def build():
 {note("Careful", "<p>Low power is not the same as efficient. The machine is cheap to run per hour and the wrong tool for nearly every job.</p>")}
 {fig(charts.bars_h(power_items, lambda v: (f"{v / 1e6:g} MW" if v >= 1e6 else f"{v / 1e3:g} kW" if v >= 1e3 else f"{v:g} W"), highlight="Quantum computer, whole system", label="Power use in watts, log scale"), "Log scale, approximate. Sources: Google 2019 supplement, Nvidia DGX H100 rating (10.2 kW), Top500 lists.", 8)}
 <div class="fx-photos wide">{photo("supercomputer.jpg", caption="NASA's Columbia supercomputer. A machine of this class is the yardstick a quantum computer has to beat for a chosen problem.")}
-<div class="card" style="align-self:start"><h3>Fleets change the sum</h3><p>A million-qubit system multiplies the cooling and control load, and published estimates of its draw vary widely because none exists to measure. D-Wave argues one fridge can cool ever larger chips without raising power much. Superconducting groups mostly expect megawatt-class sites. For the right problem, a result that takes a supercomputer weeks could take a quantum machine minutes, and that would be a large saving. Studies suggest the speed-up has to exceed about 100 times to repay the cooling overhead.</p></div></div>''', KEY["hurdles"], short="Gap")
+<div class="card" style="align-self:start"><h3>Fleets change the sum</h3><p>A million-qubit system multiplies the cooling and control load, and published estimates of its draw vary widely because none exists to measure. D-Wave argues one fridge can cool ever larger chips without raising power much. Superconducting groups mostly expect megawatt-class sites. For the right problem, a result that takes a supercomputer weeks could take a quantum machine minutes, and that would be a large saving.</p></div></div>''', KEY["hurdles"], short="Gap")
 
     # ---------------------------------------------------------------- 6 outlook
     rows = "".join(f'<tr><td>{c["name"]} ({c["t"]})</td><td class="n">{fmt_p(sims[c["t"]]["end_p10"])}</td><td class="n">{fmt_p(sims[c["t"]]["end_p50"])}</td>'
@@ -465,7 +478,7 @@ def build():
 
     flow = (f'<div class="fx-flow">{notice}{ch1}</div>{bands["ch2"]}<div class="fx-flow">{ch2}</div>{bands["ch3"]}<div class="fx-flow">{ch3}</div>'
             f'{bands["ch4"]}<div class="fx-flow">{ch4}</div>{bands["ch5"]}<div class="fx-flow">{ch5}</div>{bands["ch6"]}<div class="fx-flow">{ch6}</div>')
-    facts = [("Logical qubits shown", "about 50"), ("Needed for RSA-2048", "about 1m physical"), ("Whole machine", "about 26 kW"),
+    facts = [("Logical qubits reported", "48 (Quantinuum)"), ("Needed for RSA-2048", "about 1m physical"), ("Whole machine", "about 26 kW"),
              ("Fault-tolerant target", "2029")]
     rows = "".join(f'<div class="row"><span>{a}</span><b>{b}</b></div>' for a, b in facts)
     rail = ('<aside class="fx-rail" id="fx-rail" aria-label="Live and series panels"><div id="fx-live" aria-live="polite"></div>'

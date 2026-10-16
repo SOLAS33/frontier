@@ -93,7 +93,7 @@ def mind_html(cite):
         ["Memory to run a model", "Parameters times bytes per number", "70 billion at 16 bits: about 140 GB. At 4 bits: about 35 GB"],
         ["Speed of answering", "Limited by memory bandwidth, not arithmetic", "An accelerator moving 3 to 8 terabytes a second reads a 140 GB model 20 to 60 times a second"],
         ["Attention cost", "Grows with the square of the text length" + cite(1), "Doubling the context quadruples that part, which is why long inputs cost more"],
-        ["Compute trend", "Training compute of leading models has grown about 4x a year" + cite(4), "Roughly a ten-million-fold rise in 15 years"],
+        ["Compute trend", "Training compute of notable models grew about 4.1x a year from 2010 to 2024 (Epoch AI)" + cite(4), "Compounded, roughly eight to nine orders of magnitude over 14 years. That is our arithmetic from Epoch's rate"],
     ])
     ev = _table(["Milestone", "Who and when", "Status", "What to know"], [
         ["A deep network wins an image contest by a wide margin", "Krizhevsky et al., 2012" + cite(12), _tag("ok"), "Trained on two graphics cards. Started the current era"],
@@ -206,16 +206,16 @@ def cell_html(cite):
         ["Energy of a cell", "Volts times amp-hours: a 3.7 V, 5 Ah cell holds 18.5 Wh", "A car pack of 60 kWh is about 3,000 such cells' worth of energy"],
         ["Round-trip efficiency", "85 to 95% at the cell, about 85% for a grid system", "Between 5% and 15% of the energy is lost as heat in each cycle"],
         ["Charge rate", "Quoted in C. 1C empties or fills a cell in an hour. 2C in half an hour", "Faster charging costs life and creates heat"],
-        ["Pack price", "About $115 per kWh in 2024, against about $1,400 in 2010" + cite(3), "A 60 kWh pack costs roughly $7,000 today, against $84,000 in 2010"],
+        ["Pack price", "About $108 per kWh in 2025 (BloombergNEF), against about $1,400 in 2010. Stationary storage packs averaged $70 per kWh in 2025" + cite(3), "A 60 kWh pack at $108 costs roughly $6,500, against $84,000 in 2010"],
         ["Heat risk", "Thermal runaway can begin around 150 to 200 C in NMC and later in LFP", "Why chemistry, spacing and cooling matter, and why LFP is favoured for stationary storage"],
-        ["Cost of storing a kWh", "Pack price divided by lifetime cycles: $115 over 4,000 cycles is under 3 cents", "That is why long-life chemistries win on the grid"],
+        ["Cost of storing a kWh", "Pack price divided by lifetime cycles: $108 over 4,000 cycles is under 3 cents", "That is why long-life chemistries win on the grid"],
     ])
     ev = _table(["Milestone", "Who and when", "Status", "What to know"], [
         ["Layered oxide cathode for lithium cells", "Goodenough, 1980" + cite(11), _tag("ok"), "The base of the lithium-ion battery"],
         ["First commercial lithium-ion cell", "Sony, 1991" + cite(4), _tag("ok"), "Camcorders first, then phones and laptops"],
         ["Iron phosphate cathode", "Padhi, Goodenough et al., 1997" + cite(10), _tag("ok"), "Cheap and safe. The workhorse of storage today"],
         ["Pack prices below $150 per kWh", "Industry survey, 2020 on" + cite(3), _tag("ok"), "The point where electric cars matched petrol on price in some markets"],
-        ["Grid battery capacity doubling in a year", "IEA, 2023 to 2024" + cite(2), _tag("ok"), "Led by California, Texas, China and Australia"],
+        ["Grid battery installations growing very fast", "IEA, 2023 to 2025" + cite(2), _tag("ok"), "Led by China, the United States and Europe"],
         ["Sodium-ion cells in production", "Chinese makers, 2023 to 2025", _tag("ok"), "Lower energy density, no lithium"],
         ["Solid-state cells that pass automotive tests at volume", "Several developers", _tag("tgt"), "Samples shown. Third-party data is limited"],
         ["Long-duration storage cheaper than gas peakers", "Several start-ups", _tag("tgt"), "Pilots, not a market yet"],

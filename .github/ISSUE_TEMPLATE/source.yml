@@ -1,0 +1,25 @@
+name: Source or new information
+description: A link or document Claude should use on a Frontier site
+title: "Source: "
+labels: ["source"]
+body:
+  - type: dropdown
+    id: site
+    attributes:
+      label: Site
+      options: [Quantum, Coin, Chain, Cell, Mind, Bot, Atom, Fusion, Carbon, Tide, Gene, Orbit, Mine, Chip, Hub, Other]
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      description: Or describe where the file is, for example inbox/fusion-update.pdf
+    validations:
+      required: true
+  - type: textarea
+    id: claim
+    attributes:
+      label: What it shows, and which claim on the page it supports or changes
+    validations:
+      required: true

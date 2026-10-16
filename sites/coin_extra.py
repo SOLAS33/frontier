@@ -17,7 +17,7 @@ COUNTRY = {
            "ctl": "Capital gains tax", "note": "Early to regulated funds. Cheap hydro power helped mining."},
     "SV": {"co": "State holdings of Bitcoin", "gov": "Made Bitcoin legal tender in 2021 and made acceptance voluntary in 2025 under an IMF programme",
            "ctl": "IMF conditions on public-sector use", "note": "The first country to try it as money. Few people use it."},
-    "IE": {"co": "Several large exchanges keep staff or an EU base in Dublin; Kraken's European arm is authorised here", "gov": "The Central Bank of Ireland authorises firms under the EU MiCA rules",
+    "IE": {"co": "Kraken's MiCA licence is from the Central Bank of Ireland (June 2025). Coinbase has an EU hub in Dublin but its MiCA licence is from Luxembourg", "gov": "The Central Bank of Ireland authorises firms under the EU MiCA rules",
            "ctl": "CGT on gains; MiCA consumer rules", "note": "A regulatory and employment hub for the sector. Check current authorisations before relying on this."},
     "GB": {"co": "Exchanges and funds, a large London trading desk base", "gov": "FCA registers firms for money-laundering checks and applies strict promotion rules since October 2023",
            "ctl": "Capital gains tax", "note": "A full regime is still being legislated."},

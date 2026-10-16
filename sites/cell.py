@@ -9,7 +9,7 @@ from sites.quantum_extra import tile_map
 from sites import tech_blocks as TB
 
 TITLE = "Frontier Cell"
-AS_OF = "15 October 2026"
+AS_OF = "16 October 2026"
 
 LIVE = {"cik": {"QS": 1811414, "ENVX": 1828318, "EOSE": 1805077, "FLNC": 1868941, "ALB": 915913},
         "aliases": {"QS": ["quantumscape"], "ENVX": ["enovix"], "EOSE": ["eos energy"], "FLNC": ["fluence"], "ALB": ["albemarle"]},
@@ -20,13 +20,18 @@ REFS = [
     (2, "International Energy Agency (2025). Batteries and secure energy transitions.", "https://www.iea.org/reports/batteries-and-secure-energy-transitions"),
     (3, "BloombergNEF. Electric vehicle outlook and battery price survey.", "https://about.bnef.com/electric-vehicle-outlook/"),
     (4, "The Nobel Prize in Chemistry 2019: Goodenough, Whittingham, Yoshino, for the development of lithium-ion batteries.", "https://www.nobelprize.org/prizes/chemistry/2019/summary/"),
-    (5, "US Department of Energy. Battery storage in the United States: an update on market trends.", "https://www.eia.gov/analysis/studies/electricity/batterystorage/"),
+    (5, "US Energy Information Administration. Battery storage in the United States: an update on market trends.", "https://www.eia.gov/analysis/studies/electricity/batterystorage/"),
     (6, "EirGrid. Industry information: system services and the grid.", "https://www.eirgrid.ie/industry"),
     (7, "Central Statistics Office (2024). Data centres metered electricity consumption 2023.", "https://www.cso.ie/en/releasesandpublications/ep/p-dcmec/datacentresmeteredelectricityconsumption2023/"),
     (8, "International Energy Agency (2025). Energy and AI.", "https://www.iea.org/reports/energy-and-ai"),
     (9, "European Union. Regulation (EU) 2023/1542 concerning batteries and waste batteries.", "https://eur-lex.europa.eu/eli/reg/2023/1542/oj"),
 ]
-REFS = REFS + TB.CELL_REFS
+REFS = REFS + TB.CELL_REFS + [(12, "Central Statistics Office (2026). Data centres metered electricity consumption 2025 (data centres used 23% of metered electricity, 7,663 GWh).", "https://www.irishtimes.com/business/2026/07/07/data-centres-account-for-almost-one-quarter-of-irish-electricity-usage-in-2025/"),
+    (13, "QuantumScape (2026). Second quarter 2026 results (Form 8-K).", "https://www.sec.gov/Archives/edgar/data/0001811414/000119312526312423/qs-ex99_1.htm"),
+    (14, "Eos Energy Enterprises (2026). Second quarter 2026 financial results.", "https://investors.eose.com/news-releases/news-release-details/eos-energy-enterprises-reports-second-quarter-2026-financial/"),
+    (15, "Fluence Energy (2026). Third fiscal quarter 2026 results.", "https://ir.fluenceenergy.com/news-releases/news-release-details/fluence-energy-inc-reports-third-fiscal-quarter-2026-results"),
+    (16, "Benchmark Mineral Intelligence (2026). Lithium price watch.", "https://source.benchmarkminerals.com/article/lithium-price-watch-what-the-forward-curve-is-telling-buyers-right-now"),
+    (17, "BloombergNEF (2025). Lithium-ion battery pack prices fall to $108 per kilowatt-hour.", "https://about.bnef.com/insights/commodities/lithium-ion-battery-pack-prices-fall-to-108-per-kilowatt-hour-despite-rising-metal-prices/")]
 cite = K.cite_factory(REFS)
 
 SCEN = {
@@ -41,7 +46,7 @@ SCEN = {
              Scenario("bull", "Long-duration storage becomes a market", 0.20, 0.55, 0.75)],
     "FLNC": [Scenario("bear", "Margins stay thin and orders slip", 0.35, -0.35, 0.75),
              Scenario("base", "Revenue grows with the market", 0.40, 0.05, 0.75),
-             Scenario("bull", "Grid storage keeps doubling", 0.25, 0.45, 0.75)],
+             Scenario("bull", "Grid storage keeps growing very fast", 0.25, 0.45, 0.75)],
     "ALB": [Scenario("bear", "Lithium stays oversupplied", 0.35, -0.30, 0.75),
             Scenario("base", "Prices recover slowly", 0.40, 0.05, 0.75),
             Scenario("bull", "Demand from storage and cars tightens supply", 0.25, 0.45, 0.75)],
@@ -50,7 +55,7 @@ SCEN = {
 COMPANIES = [
     {"t": "QS", "name": "QuantumScape", "kind": "Solid-state battery developer",
      "rivals": "Toyota, Samsung SDI, Solid Power, CATL and every large cell maker",
-     "profit": "Make a solid-state cell that passes automotive tests, then make it at volume and at a price. It has no commercial revenue.",
+     "profit": "Make a solid-state cell that passes automotive tests, then make it at volume and at a price. In 2026 it amended its PowerCo agreement, cutting maximum development payments from about $131 million to $75.4 million, kept a 2029 production target, and announced a Honda partnership. Quarterly net loss was about $98 million.{cite(13)}",
      "watch": "Third-party test data, carmaker commitments, factory partners, share sales.",
      "rank": "The best known solid-state developer, with a carmaker partner. Not yet in a production vehicle.",
      "verdict": "A real technical problem and a long runway"},
@@ -58,23 +63,23 @@ COMPANIES = [
      "rivals": "Sila, Amprius, large cell makers adding silicon to graphite",
      "profit": "Win phone and wearable makers who pay for energy density, then scale its factory yield.",
      "watch": "Factory yield, named customers, quarterly revenue against cash burn.",
-     "rank": "Early revenue from small cells. The test is manufacturing yield.",
+     "rank": "Second-quarter 2026 revenue was about $9.0 million. The test is manufacturing yield.",
      "verdict": "Small cells, small revenue, high hopes"},
     {"t": "EOSE", "name": "Eos Energy", "kind": "Zinc long-duration storage",
      "rivals": "Form Energy (iron-air), flow batteries, lithium with more hours",
      "profit": "Make batteries that last 8 to 12 hours at a price that beats lithium on long storage, and fix its manufacturing costs.",
      "watch": "Gross margin, orders, factory output, funding.",
-     "rank": "A real product in the field, still losing money on each one sold.",
+     "rank": "Second-quarter 2026 revenue was $68.8 million with a backlog of $807 million, and it still lost money on each unit sold.{cite(14)}",
      "verdict": "A useful idea that has not yet shown a margin"},
     {"t": "FLNC", "name": "Fluence", "kind": "Grid storage systems",
      "rivals": "Tesla Megapack, Sungrow, CATL, BYD",
      "profit": "Sell and run grid storage with a better margin than the Chinese cell makers, using software and services.",
      "watch": "Order backlog, gross margin, tariffs and cell supply, service revenue.",
-     "rank": "A leading integrator with real revenue, in a market growing very fast and squeezed on price.",
+     "rank": "In the quarter to June 2026 it had revenue of about $650 million, a 5.1% gross margin and a record backlog of about $6.4 billion.{cite(15)}",
      "verdict": "The picks-and-shovels role, with thin margins"},
     {"t": "ALB", "name": "Albemarle", "kind": "Lithium producer",
      "rivals": "SQM, Ganfeng, Tianqi, new mines in Australia and Africa",
-     "profit": "Earns when lithium is expensive and loses when it is cheap. Lithium fell by about four-fifths from its 2022 peak.",
+     "profit": "Earns when lithium is expensive and loses when it is cheap. Lithium carbonate was about $19,750 a tonne in September 2026 on Benchmark's assessment, more than double the 2025 US average of about $9,000. Its 2026 outlook is given for $10, $20 and $30 a kilogram.",
      "watch": "Lithium price, mine costs, expansion plans, demand from storage and cars.",
      "rank": "One of the largest producers outside China, in a market with large swings.",
      "verdict": "A commodity cycle"},
@@ -91,7 +96,7 @@ NAMES = {"CA": "Canada", "US": "United States", "CL": "Chile", "IE": "Ireland", 
          "FR": "France", "KR": "South Korea", "CN": "China", "JP": "Japan", "IN": "India", "AU": "Australia", "CD": "DR Congo"}
 COUNTRY = {
     "CN": {"co": "CATL, BYD, EVE, Gotion", "gov": "Industrial policy since the 2010s; heavy state support from mine to cell",
-           "ctl": "Controls on some graphite and battery technology exports", "note": "Makes roughly three-quarters of the world's cells and refines most of the material."},
+           "ctl": "Controls on some graphite and battery technology exports", "note": "Made more than 80% of the world's battery cells in 2025, according to the IEA's 2026 outlook."},
     "KR": {"co": "LG Energy Solution, Samsung SDI, SK On", "gov": "Large support for cells and materials", "ctl": "Follows allied rules", "note": "The main non-Chinese cell makers."},
     "JP": {"co": "Panasonic, Toyota, AESC", "gov": "Subsidies and a solid-state push", "ctl": "Follows allied rules", "note": "Pioneered lithium-ion. Strong in solid-state patents."},
     "US": {"co": "Tesla, QuantumScape, Fluence, Albemarle, GM, Ford", "gov": "Inflation Reduction Act credits and a tariff wall on Chinese cells",
@@ -154,8 +159,8 @@ def build():
     hero = K.hero("Frontier / Cell", "The part of the grid you can <em>carry</em>",
                   "A battery is a way to move electricity through time. Prices fell by about nine-tenths in fifteen years, and that is why cars, grids and phones are changing. Here is who makes money from it and who only promises to.",
                   "edison-factory.jpg", art_more.hero_cells(),
-                  [(90, "per cent fall in battery pack prices since 2010, roughly", "about ", "%"), (75, "per cent of cells made in China, roughly", "about ", "%"),
-                   (80, "per cent fall in lithium prices from the 2022 peak, roughly", "about ", "%"),
+                  [(90, "per cent fall in battery pack prices since 2010, roughly", "about ", "%"), (80, "per cent of the world's battery cells were made in China in 2025", "over ", "%"),
+                   (19750, "dollars a tonne: battery-grade lithium carbonate in September 2026, more than double the 2025 US average", "about $", ""),
                    (round(runs["EOSE"]["multiple"]), "times Eos Energy rose from low to high in one run", "", "x")])
 
     ch1 = chapter("learn", 1, "How it works, and where it breaks", "Two electrodes, a salt bath and a century of chemistry.", f'''
@@ -191,8 +196,8 @@ def build():
 <div class="ev big"><div class="yr">1991</div><p>Sony sells the first commercial lithium-ion cell.</p></div>
 <div class="ev"><div class="yr">2008 to 2012</div><p>Tesla Roadster and the first mass-market electric cars. Packs still cost over $600 per kilowatt-hour.</p></div>
 <div class="ev big"><div class="yr">2015 to 2020</div><p>China builds out cell factories and pack prices fall below $150.</p></div>
-<div class="ev"><div class="yr">2022</div><p>Lithium prices spike, then fall by about four-fifths over two years.</p></div>
-<div class="ev big"><div class="yr">2023 to 2025</div><p>Grid batteries double in a year. Sodium-ion cells enter production. Several western cell start-ups fail.</p></div>
+<div class="ev"><div class="yr">2022</div><p>Lithium prices spike, then fall far over two years. In 2026 they roughly double from the 2025 average.</p></div>
+<div class="ev big"><div class="yr">2023 to 2025</div><p>Grid battery installations grow very fast. Sodium-ion cells enter production. Northvolt files for bankruptcy in March 2025, and Lyten agrees to buy its assets.</p></div>
 <div class="ev fut"><div class="yr">2026 on</div><p>The test of whether solid-state and long-duration designs reach volume. See chapter 6.</p></div>
 </div>''', K.key_idea("Cheap cells changed two industries",
         "A battery pack cost more than a thousand dollars per kilowatt-hour in 2010 and a tenth of that today. That one change made electric cars "
@@ -219,7 +224,7 @@ def build():
 <div class="cols wide">
 <div class="card rv"><h3>The wind problem</h3><p>On windy nights Irish wind farms are often asked to turn down because the grid cannot take their output. Batteries are the cheapest fix.</p></div>
 <div class="card rv"><h3>How they are paid</h3><p>Grid-scale batteries earn from system-services contracts and capacity auctions run by EirGrid.{cite(6)} Hundreds of megawatts are connected and more are contracted.</p></div>
-<div class="card rv"><h3>The data-centre link</h3><p>Data centres drew 21% of Irish electricity in 2023.{cite(7)} Batteries on site are one of the ways to ease the pressure on the grid.{cite(8)}</p></div>
+<div class="card rv"><h3>The data-centre link</h3><p>Data centres drew 23% of Irish metered electricity in 2025, up from 21% in 2023.{cite(12)}{cite(7)} Batteries on site are one of the ways to ease the pressure on the grid.{cite(8)}</p></div>
 </div>
 <h3 class="wide" id="s-prepare" data-nav="Prepare" style="margin-top:44px">Be ready</h3>
 <div class="cols wide">
@@ -307,6 +312,6 @@ def build():
                   "Ranges come from stated assumptions and probabilities chosen by the editors, with volatility from each stock's last 104 weekly returns scaled to 75%.",
                   "Prices come from Yahoo Finance and are delayed. News is headlines and links only, with the publisher named. Photographs are public domain and credited under each picture. Market figures are rounded and from public sources.")
     nf = K.notice("We explain how batteries work and show how the companies and their shares have behaved. We do not recommend any company or trade. Projections are scenarios, not forecasts.")
-    facts = [("Pack price since 2010", "about -90%"), ("Cells made in China", "about 75%"), ("Lithium from peak", "about -80%"), ("Irish data-centre share", "21%")]
+    facts = [("Pack price since 2010", "about -90%"), ("Cells made in China, 2025", "over 80%"), ("Lithium carbonate, Sept 2026", "$19,750/t"), ("Irish data-centre share, 2025", "23%")]
     body = K.assemble("cell", hero, nf, [ch1, ch2, ch3, ch4, ch5, ch6], bands, foot, facts)
     return {"title": TITLE, "body": body, "data_js": data_js, "sims": sims, "stat": stat, "runs": runs}

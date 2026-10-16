@@ -12,48 +12,56 @@ cf_worker_name = "frontier"
 # Sites. status: live | soon. Order here is the order on the hub and in the rail.
 [[sites]]
 slug = "quantum"
+topic = "quantum computing"
 name = "Quantum"
 line = "Quantum computing: what works, who is building it, what is in the share price."
 status = "live"
 
 [[sites]]
 slug = "coin"
+topic = "crypto and tokenised assets"
 name = "Coin"
 line = "Crypto and tokenised assets, including the quantum risk to Bitcoin."
 status = "live"
 
 [[sites]]
 slug = "chain"
+topic = "blockchain beyond money"
 name = "Chain"
 line = "Blockchain technology beyond money: tokenisation, smart contracts and proofs."
 status = "live"
 
 [[sites]]
 slug = "cell"
+topic = "batteries and storage"
 name = "Cell"
 line = "Batteries and storage."
 status = "live"
 
 [[sites]]
 slug = "mind"
+topic = "artificial intelligence, chips and power"
 name = "Mind"
 line = "Artificial intelligence, chips and the power they eat."
 status = "live"
 
 [[sites]]
 slug = "bot"
+topic = "robots and physical AI"
 name = "Bot"
 line = "Robots and physical AI."
 status = "live"
 
 [[sites]]
 slug = "atom"
+topic = "fission and small reactors"
 name = "Atom"
 line = "Fission and small modular reactors."
 status = "live"
 
 [[sites]]
 slug = "fusion"
+topic = "fusion power"
 name = "Fusion"
 line = "Fusion power and the milestones that matter."
 status = "live"
@@ -72,36 +80,42 @@ status = "soon"
 
 [[sites]]
 slug = "carbon"
+topic = "graphene and battery graphite"
 name = "Carbon"
 line = "Graphene and carbon nanotubes."
 status = "live"
 
 [[sites]]
 slug = "tide"
+topic = "wave, tidal and geothermal energy"
 name = "Tide"
 line = "Wave, tidal and other new ways to harvest energy."
 status = "live"
 
 [[sites]]
 slug = "gene"
+topic = "gene editing and obesity medicines"
 name = "Gene"
 line = "Gene editing, GLP-1 drugs and longevity."
 status = "live"
 
 [[sites]]
 slug = "orbit"
+topic = "launch, satellites and space"
 name = "Orbit"
 line = "Launch, satellites and space industry."
 status = "live"
 
 [[sites]]
 slug = "mine"
+topic = "critical minerals"
 name = "Mine"
 line = "Critical minerals: rare earths, lithium and copper."
 status = "live"
 
 [[sites]]
 slug = "chip"
+topic = "semiconductors and photonics"
 name = "Chip"
 line = "Semiconductors and photonics."
 status = "live"

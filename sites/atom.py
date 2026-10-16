@@ -9,7 +9,7 @@ from sites.quantum_extra import tile_map
 from sites import tech_blocks as TB
 
 TITLE = "Frontier Atom"
-AS_OF = "15 October 2026"
+AS_OF = "16 October 2026"
 
 LIVE = {"cik": {"OKLO": 1849056, "SMR": 1822966, "LEU": 1065059, "NNE": 1923891, "BWXT": 1486957},
         "aliases": {"OKLO": ["oklo"], "SMR": ["nuscale"], "LEU": ["centrus"], "NNE": ["nano nuclear"], "BWXT": ["bwx technologies", "bwxt"]},
@@ -26,7 +26,11 @@ REFS = [
     (8, "International Energy Agency (2025). Energy and AI.", "https://www.iea.org/reports/energy-and-ai"),
     (9, "Posiva. Final disposal facility at Onkalo, Finland.", "https://www.posiva.fi/en/index.html"),
 ]
-REFS = REFS + TB.ATOM_REFS
+REFS = REFS + TB.ATOM_REFS + [(13, "World Nuclear News / IAEA (2026). Operating reactors and nuclear share of global electricity, 2025.", "https://pris.iaea.org/PRIS/WorldStatistics/OperationalReactorsByCountry.aspx"),
+    (14, "Central Statistics Office (2026). Data centres metered electricity consumption 2025 (data centres used 23% of metered electricity, 7,663 GWh).", "https://www.irishtimes.com/business/2026/07/07/data-centres-account-for-almost-one-quarter-of-irish-electricity-usage-in-2025/"),
+    (15, "US Nuclear Regulatory Commission (2026). NRC approves construction permit for TVA Clinch River small modular reactor.", "https://www.nrc.gov/about-nrc/news-releases/2026/26-079"),
+    (16, "Slugger O'Toole (2026). Dail to consider ending Ireland's ban on nuclear power.", "https://sluggerotoole.com/2026/05/25/dail-to-consider-ending-irelands-ban-on-nuclear-power/"),
+    (17, "Electricity Regulation Act 1999, section 18 (Irish statute book).", "https://revisedacts.lawreform.ie/eli/1999/act/23/section/18/revised/en/html")]
 cite = K.cite_factory(REFS)
 fmt_p = K.fmt_p
 
@@ -59,7 +63,7 @@ COMPANIES = [
      "rivals": "GE Vernova Hitachi, Westinghouse, Rolls-Royce SMR, X-energy",
      "profit": "Convert its approved design into a first firm order and build it for a price customers accept. Its largest planned project was cancelled in 2023 when costs rose.",
      "watch": "Firm orders, cost estimates, cash runway, partners such as Fluor funding the work.",
-     "rank": "The only small reactor design approved by the US regulator, but no plant ordered and built yet.",
+     "rank": "Its 77 MWe design has US regulator approval. No plant has been ordered and built yet.",
      "verdict": "Approved, not yet ordered"},
     {"t": "LEU", "name": "Centrus Energy", "kind": "Uranium enrichment and fuel",
      "rivals": "Urenco, Orano, Rosatom (Russian state firm), and a few new entrants",
@@ -98,14 +102,14 @@ COUNTRY = {
     "FR": {"co": "EDF, Orano, Framatome", "gov": "Plans to build six new large reactors; 70% of its power is nuclear", "ctl": "Enrichment and recycling at home", "note": "The model for a nuclear-led grid."},
     "FI": {"co": "Fortum, TVO, Posiva", "gov": "Olkiluoto 3 online in 2023; deep repository for waste under test", "ctl": "EU rules", "note": "The first country close to a working waste repository."},
     "DE": {"co": "Large utilities, now out of nuclear", "gov": "Closed its last reactors in April 2023", "ctl": "EU rules", "note": "Decided against, at a cost to its power prices. The debate continues."},
-    "IE": {"co": "None", "gov": "Irish law currently prohibits nuclear generation; the question has returned as power demand rises", "ctl": "Interconnected to the UK and France", "note": "Buys nuclear power indirectly through its interconnectors."},
+    "IE": {"co": "None", "gov": "Irish law prohibits nuclear generation, and a bill to repeal the prohibition was introduced in May 2026", "ctl": "Interconnected to the UK and France", "note": "Buys nuclear power indirectly through its interconnectors."},
     "RU": {"co": "Rosatom", "gov": "The largest exporter of reactors and the largest supplier of enrichment", "ctl": "Western sanctions and import bans", "note": "The supplier the West is trying to replace."},
     "CN": {"co": "CNNC, CGN", "gov": "The largest build programme in the world, many new reactors a year", "ctl": "Closed market", "note": "Builds on schedule, at lower cost."},
     "KR": {"co": "KEPCO, Doosan Enerbility, KHNP", "gov": "Reversed a phase-out and exports reactors", "ctl": "Follows allied rules", "note": "A strong builder and supplier of heavy components."},
     "JP": {"co": "Utilities restarting reactors, Mitsubishi, Hitachi", "gov": "Restarting reactors after the 2011 shutdowns", "ctl": "Follows allied rules", "note": "Slow, steady restart after Fukushima."},
     "IN": {"co": "NPCIL, Tata", "gov": "Target of a large expansion and new private participation", "ctl": "Special trade rules for fuel", "note": "A big future market."},
     "AE": {"co": "ENEC, Barakah plant", "gov": "Four large reactors running at Barakah", "ctl": "Strict non-proliferation terms", "note": "Proved a newcomer can build quickly."},
-    "CH": {"co": "Utilities with ageing reactors", "gov": "Lifted its ban on new plants in 2024 proposals", "ctl": "EU-aligned", "note": "Rethinking."},
+    "CH": {"co": "Utilities with ageing reactors", "gov": "The Federal Council proposed lifting the ban on new plants in August 2025", "ctl": "EU-aligned", "note": "Rethinking."},
 }
 HYPE = [
     ("5", "Operating record", "A plant that has run and produced power for years", "Fleet capacity factors, IAEA statistics", "ok"),
@@ -151,14 +155,14 @@ def build():
     hero = K.hero("Frontier / Atom", "The oldest <em>new</em> power source",
                   "Fission has run reliably for seventy years and has been late and over budget for fifty. Here is what small reactors change, who is paid if they work, and why artificial intelligence put nuclear back on the table.",
                   "atr-core.jpg", art_more.hero_reactor(),
-                  [(440, "reactors operating in the world, roughly", "about ", ""), (9, "per cent of the world's electricity comes from fission, roughly", "about ", "%"),
+                  [(413, "power reactors in operation at the end of 2025, according to the IAEA", "", ""), (8, "per cent of the world's electricity came from fission in 2025 (8.4%)", "about ", "%"),
                    (round(runs["OKLO"]["multiple"]), "times Oklo rose from low to high in a year", "", "x"),
                    (0, "reactors in Ireland, where nuclear power is prohibited by law", "", "")])
 
     ch1 = chapter("learn", 1, "How it works, and where it breaks", "Splitting atoms, boiling water, and the reasons it costs so much to build.", f'''
 <p>A fission reactor splits the nuclei of uranium atoms. Each split releases heat and neutrons, and the neutrons split more atoms, which keeps the reaction going. The heat boils water, the steam turns a turbine, and the turbine drives a generator. Fuel for an ordinary reactor is uranium enriched to a few per cent of the fissile isotope. A pellet the size of a fingertip holds about as much energy as a tonne of coal.</p>
 {note("Why it is attractive", "<p>It runs day and night, in any weather, from a very small amount of fuel, and emits almost no carbon while running.</p>")}
-<p>About 440 power reactors operate worldwide, with roughly 60 more under construction.{cite(1)} They supply about a tenth of the world's electricity and about a quarter of its low-carbon electricity.{cite(2)}</p>
+<p>The IAEA counted 413 power reactors in operation at the end of 2025. Fission supplied 8.4% of the world's electricity in 2025, down from 8.7% in 2024 even though generation rose slightly.{cite(13)}</p>
 {note("The catch", "<p>The plants are expensive, slow and bespoke. The cost of the money tied up during construction is often the largest cost.</p>")}
 <div class="fx-photos wide">
 {photo("x10-reactor.jpg", caption="Workers loading uranium slugs into the face of the X-10 Graphite Reactor at Oak Ridge in 1943. It was the second reactor ever built.")}
@@ -189,7 +193,7 @@ def build():
 <div class="ev"><div class="yr">2011</div><p>Fukushima. Germany begins a phase-out. Japan shuts its fleet.</p></div>
 <div class="ev big"><div class="yr">2023</div><p>Vogtle 3 enters service, the first new US reactor in years. NuScale's largest planned project is cancelled as costs climb.</p></div>
 <div class="ev big"><div class="yr">2024 to 2025</div><p>Technology companies sign deals for nuclear power for their data centres, including a restart of a Three Mile Island unit. The US sets a goal to quadruple nuclear capacity by 2050.</p></div>
-<div class="ev fut"><div class="yr">2026 on</div><p>The first small reactors under construction in the West. See chapter 6.</p></div>
+<div class="ev fut"><div class="yr">2026 on</div><p>The first small reactors get construction approval in the West: TerraPower's Natrium in March 2026, and TVA's BWRX-300 at Clinch River on 29 September 2026, with commercial operation targeted for 2033.{cite(15)} See chapter 6.</p></div>
 </div>''', K.key_idea("Reliable power, built slowly",
         "A reactor splits uranium to make heat. It runs around the clock in any weather and gives off almost no carbon. It is also the most expensive and "
         "slowest kind of power station to build, which is why new ones have been rare. Small factory-built reactors are an attempt to fix the cost "
@@ -215,8 +219,8 @@ def build():
 </div>
 <h3 class="wide" id="s-ireland" data-nav="Ireland" style="margin-top:36px">Ireland</h3>
 <div class="cols wide">
-<div class="card rv"><h3>The law</h3><p>Irish law prohibits nuclear generation. The statute has not been changed, though the question has returned as electricity demand grows.</p></div>
-<div class="card rv"><h3>The demand</h3><p>Data centres used 21% of metered electricity in 2023.{cite(7)} The IEA expects data-centre demand worldwide to roughly double by 2030.{cite(8)}</p></div>
+<div class="card rv"><h3>The law</h3><p>Section 18(6) of the Electricity Regulation Act 1999 says an order under that section shall not provide for the use of nuclear fission to generate electricity.{cite(17)} In May 2026 a Fianna Fail TD, James O'Connor, brought a bill to remove the prohibition, and the Taoiseach said Ireland is open to nuclear. The government has said it has no plans to authorise a plant.{cite(16)}</p></div>
+<div class="card rv"><h3>The demand</h3><p>Data centres used 23% of metered electricity in 2025, up from 21% in 2023.{cite(14)}{cite(7)} The IEA expects data-centre demand worldwide to roughly double by 2030.{cite(8)}</p></div>
 <div class="card rv"><h3>The indirect link</h3><p>Ireland already imports power through links to Britain and France, which both have nuclear fleets. See GridWatch for the live picture of the Irish grid.</p></div>
 </div>
 <h3 class="wide" id="s-prepare" data-nav="Prepare" style="margin-top:44px">Be ready</h3>
@@ -240,7 +244,7 @@ def build():
 <p>The biggest rise from a low to a later high inside two years.</p>
 {fig(charts.multiples(mult), "Log scale, from weekly closes, adjusted for splits. All of the developer names have fallen steeply since their peaks.", 1)}
 <h3 class="wide" id="s-ladder" data-nav="Ladder" style="margin-top:44px">The ladder to profit</h3>
-{fig(charts.ladder(LADDER, 2), "Several designs have a licence. None has yet built a first plant in the West on time and on budget.", 2)}
+{fig(charts.ladder(LADDER, 2), "Several designs have approvals. None has yet built a first plant in the West on time and on budget.", 2)}
 <div class="cols wide">
 <div class="card rv"><h3>Signs a boom is starting</h3><ul><li>A firm order with a price and a delivery date.</li><li>Banks lend against it without a government guarantee.</li><li>A first plant is built to its original budget.</li><li>Fuel supply contracts are signed for ten years.</li></ul></div>
 <div class="card rv"><h3>Signs it is running ahead of itself</h3><ul><li>Agreements in principle that name no price.</li><li>Developers with no revenue sell shares into each rally.</li><li>Completion dates move back a year at a time.</li><li>A licence is described as an order.</li></ul></div>
@@ -276,7 +280,7 @@ def build():
     ch6 = chapter("outlook", 6, "Three years out", "Our best estimate to October 2029. Judgements with stated assumptions. Not predictions, and not advice.", f'''
 <h3 class="wide">What we expect from the technology</h3>
 <div class="cols wide">
-<div class="card rv"><h3>Likely, about 75%</h3><p>More restarts and life extensions. More power contracts between technology firms and existing plants. At least one small reactor reaches construction in the West.</p></div>
+<div class="card rv"><h3>Likely, about 75%</h3><p>More restarts and life extensions. More power contracts between technology firms and existing plants. More small reactors get US construction permits, after Natrium and Clinch River.</p></div>
 <div class="card rv"><h3>Even odds, about 50%</h3><p>The first fuel for advanced reactors from a Western enricher reaches commercial volumes by 2028.</p></div>
 <div class="card rv"><h3>Unlikely, under 20%</h3><p>A small modular reactor in the West delivers power to a grid before 2029.</p></div>
 </div>
@@ -303,6 +307,6 @@ def build():
                   "Ranges come from stated assumptions and probabilities chosen by the editors, with volatility from each stock's last 104 weekly returns scaled to 75%.",
                   "Prices come from Yahoo Finance and are delayed. News is headlines and links only, with the publisher named. Photographs are public domain, mostly US government work, and credited under each picture. Reactor and project facts are from public sources and are rounded.")
     nf = K.notice("We explain how fission and small reactors work and show how the companies and their shares have behaved. We do not recommend any company or trade. Projections are scenarios, not forecasts.")
-    facts = [("Reactors operating", "about 440"), ("Share of world power", "about 9%"), ("Irish law", "prohibits"), ("HALEU supply", "mostly Russia")]
+    facts = [("Reactors operating, end 2025", "413"), ("Share of world power, 2025", "8.4%"), ("Irish law", "prohibits"), ("HALEU supply", "mostly Russia")]
     body = K.assemble("atom", hero, nf, [ch1, ch2, ch3, ch4, ch5, ch6], bands, foot, facts)
     return {"title": TITLE, "body": body, "data_js": data_js, "sims": sims, "stat": stat, "runs": runs}

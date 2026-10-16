@@ -25,7 +25,7 @@ REFS = [
     (6, "Commonwealth Fusion Systems (2025). Google and Commonwealth Fusion Systems sign strategic partnership.", "https://cfs.energy/news-and-media/google-and-commonwealth-fusion-systems-sign-strategic-partnership/"),
     (7, "Commonwealth Fusion Systems (2025). Eni and Commonwealth Fusion Systems sign a $1 billion+ power purchase agreement.", "https://cfs.energy/news-and-media/eni-and-commonwealth-fusion-systems-sign-1-billion/"),
     (8, "Helion (2025). Helion secures land and begins building on the site of the world's first fusion power plant.", "https://www.businesswire.com/news/home/20250730326704/en/Helion-Secures-Land-and-Begins-Building-on-the-Site-of-Worlds-First-Fusion-Power-Plant"),
-    (9, "Central Statistics Office (2024). Data centres metered electricity consumption 2023.", "https://www.cso.ie/en/releasesandpublications/ep/p-dcmec/datacentresmeteredelectricityconsumption2023/"),
+    (9, "Central Statistics Office (2026). Data centres metered electricity consumption 2025 (data centres used 23% of metered electricity, 7,663 GWh).", "https://www.irishtimes.com/business/2026/07/07/data-centres-account-for-almost-one-quarter-of-irish-electricity-usage-in-2025/"),
 ]
 REFS = REFS + TB.FUSION_REFS + [
     (26, "ANS Nuclear Newswire (2025). China launches fusion-focused company.", "https://www.ans.org/news/2025-07-30/article-7244/china-launches-fusionfocused-company/"),
@@ -101,7 +101,7 @@ COUNTRY = {
            "note": "A fusion start-up that has struggled to fund itself, and a tritium source."},
     "RU": {"co": "Russian research institutes", "gov": "A member of ITER", "ctl": "See the references", "note": "ITER member."},
     "IN": {"co": "Indian research institutes", "gov": "A member of ITER since 2005", "ctl": "See the references", "note": "ITER member."},
-    "IE": {"co": "None found building a fusion plant", "gov": "Data centres used 21% of metered electricity in 2023", "ctl": "See the references",
+    "IE": {"co": "None found building a fusion plant", "gov": "Data centres used 23% of metered electricity in 2025", "ctl": "See the references",
            "note": "The interest is in future power supply."},
 }
 HYPE = [
@@ -204,7 +204,7 @@ def build():
 </div>
 <h3 class="wide" id="s-ireland" data-nav="Ireland" style="margin-top:36px">Ireland</h3>
 <div class="cols wide">
-<div class="card rv"><h3>The demand</h3><p>Data centres used 21% of Ireland's metered electricity in 2023, up from 5% in 2015.{cite(9)}</p></div>
+<div class="card rv"><h3>The demand</h3><p>Data centres used 23% of Ireland's metered electricity in 2025, up from 5% in 2015.{cite(9)}</p></div>
 <div class="card rv"><h3>The timing</h3><p>On the builders' own dates the first fusion plants send power out in 2028 at the earliest, in the United States. Irish supply decisions this decade cannot rely on them.</p></div>
 <div class="card rv"><h3>The live picture</h3><p>See GridWatch for the live state of the Irish grid.</p></div>
 </div>
