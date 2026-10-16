@@ -199,7 +199,7 @@ def build():
 <p class="lead">Some of quantum computing works. Some of it is a press release. Here is which is which, who is paid for each, and how much of it is already in the share price.</p>
 <div class="fx-stats">
 {stat_cell(48, "logical qubits Quantinuum reports on its Helios machine, a company figure")}
-{stat_cell(1, "noisy qubits to break RSA-2048, on the 2025 estimate", "about ", " million")}
+{stat_cell(1, "million noisy qubits to break RSA-2048, on the 2025 estimate", "about ", "m")}
 {stat_cell(runs["RGTI"]["multiple"], "times Rigetti rose from low to high in one year", "", "x")}
 {stat_cell(26, "kilowatts for a whole machine, the draw of 50 to 100 homes", "", " kW")}
 </div></div></header>
