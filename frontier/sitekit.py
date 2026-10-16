@@ -12,11 +12,19 @@ from frontier.components import band, chapter, fig, key_idea, note, photo, serie
 from frontier.scenarios import simulate
 
 
+def display_refs(refs):
+    """References in number order, renumbered 1..n so a page never shows gaps. Returns (list, old->new map)."""
+    ordered = sorted(refs, key=lambda r: r[0])
+    mp = {n: i + 1 for i, (n, _, _) in enumerate(ordered)}
+    return [(mp[n], t, u) for n, t, u in ordered], mp
+
+
 def cite_factory(refs):
     titles = {n: t for n, t, _ in refs}
+    _, mp = display_refs(refs)
 
     def cite(*ids):
-        return "".join(f'<sup><a href="#r{i}" title="{titles[i]}">[{i}]</a></sup>' for i in ids)
+        return "".join(f'<sup><a href="#r{mp[i]}" title="{titles[i]}">[{mp[i]}]</a></sup>' for i in ids)
     return cite
 
 
@@ -171,7 +179,7 @@ def scenario_rows(companies, sims):
 
 
 def foot(refs, as_of, title, slug_label, scenario_note, data_note, extra_cards=""):
-    items = "".join(f'<li id="r{n}">[{n}] <a href="{u}" target="_blank" rel="noopener">{t}</a></li>' for n, t, u in refs)
+    items = "".join(f'<li id="r{n}">[{n}] <a href="{u}" target="_blank" rel="noopener">{t}</a></li>' for n, t, u in display_refs(refs)[0])
     return f'''<footer class="fx-foot" id="disclosures"><div class="fx-foot-in">
 <h2 style="font-size:1.6rem">Sources, method and disclosures</h2><ol>{items}</ol>
 <div class="cols">
