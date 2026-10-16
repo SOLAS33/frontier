@@ -74,31 +74,37 @@ status = "soon"
 slug = "carbon"
 name = "Carbon"
 line = "Graphene and carbon nanotubes."
-status = "soon"
+status = "live"
 
 [[sites]]
 slug = "tide"
 name = "Tide"
 line = "Wave, tidal and other new ways to harvest energy."
-status = "soon"
+status = "live"
 
 [[sites]]
 slug = "gene"
 name = "Gene"
 line = "Gene editing, GLP-1 drugs and longevity."
-status = "soon"
+status = "live"
 
 [[sites]]
 slug = "orbit"
 name = "Orbit"
 line = "Launch, satellites and space industry."
-status = "soon"
+status = "live"
+
+[[sites]]
+slug = "mine"
+name = "Mine"
+line = "Critical minerals: rare earths, lithium and copper."
+status = "live"
 
 [[sites]]
 slug = "chip"
 name = "Chip"
 line = "Semiconductors and photonics."
-status = "soon"
+status = "live"
 
 # Cross-links to the Irish Watch series (public-data sites). Shown in the rail, on the hub and at the foot of each site.
 [watch]

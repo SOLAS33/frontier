@@ -46,7 +46,7 @@
  },
  {
   "file": "cold-atom-lab.jpg",
-  "title": "File:Astronaut Jessica Meir Assists With Hardware Updates for NASA\u2019s Cold Atom Lab (PIA26725).jpg",
+  "title": "File:Astronaut Jessica Meir Assists With Hardware Updates for NASA’s Cold Atom Lab (PIA26725).jpg",
   "licence": "Public domain",
   "artist": "NASA",
   "credit": "This image or video was catalogued by Jet Propulsion Laboratory of the United States Natio",
@@ -193,7 +193,7 @@
   "title": "File:Cray 2 Supercomputer - AC87-0093-3.jpg",
   "licence": "Public domain",
   "artist": "NASA / Wade Sisler",
-  "credit": "Ames Imaging Library System:  Home page \u2013 Source \u2013 Image",
+  "credit": "Ames Imaging Library System:  Home page, Source, Image",
   "page": "https://commons.wikimedia.org/wiki/File:Cray_2_Supercomputer_-_AC87-0093-3.jpg",
   "alt": "A Cray-2 supercomputer at NASA Ames in 1987, cooled by immersing its circuit boards in liquid"
  },
@@ -318,8 +318,8 @@
   "file": "nif-hohlraum.jpg",
   "title": "File:Nif hohlraum.jpg",
   "licence": "Public domain",
-  "artist": "National Laboratory\u2019s National Ignition Facility, Lawrence Livermore National Laboratory",
-  "credit": "Gallery - National Laboratory\u2019s National Ignition Facility",
+  "artist": "National Laboratory’s National Ignition Facility, Lawrence Livermore National Laboratory",
+  "credit": "Gallery - National Laboratory’s National Ignition Facility",
   "page": "https://commons.wikimedia.org/wiki/File:Nif_hohlraum.jpg",
   "alt": "A hohlraum, the gold cylinder that holds the fusion fuel capsule at the National Ignition Facility"
  },
@@ -364,7 +364,7 @@
   "title": "File:Factory Automation Robotics Palettizing Bread.jpg",
   "licence": "Public domain",
   "artist": "KUKA Roboter GmbH, Bachmann",
-  "credit": "KUKA Roboter GmbH, Zugspitzstra\u00dfe 140, D-86165 Augsburg, Germany, Dep. Marketing, Mr. Andr",
+  "credit": "KUKA Roboter GmbH, Zugspitzstraße 140, D-86165 Augsburg, Germany, Dep. Marketing, Mr. Andr",
   "page": "https://commons.wikimedia.org/wiki/File:Factory_Automation_Robotics_Palettizing_Bread.jpg",
   "alt": "Industrial robots palletising bread in a factory"
  },
@@ -421,5 +421,356 @@
   "credit": "This image was released by the United States Space Force with the ID 240913-X-IN231-1001 (",
   "page": "https://commons.wikimedia.org/wiki/File:Vandenberg_is_a_No_Drone_Zone_(8640678).jpg",
   "alt": "A sign at a US military base reading no drone zone"
+ },
+ {
+  "file": "sandia-chip.jpg",
+  "title": "File:U.S. Department of Energy - Science - 463 020 001 (9954958475).jpg",
+  "licence": "Public domain",
+  "artist": "U.S. Department of Energy from United States",
+  "credit": "463 020 001",
+  "page": "https://commons.wikimedia.org/wiki/File:U.S._Department_of_Energy_-_Science_-_463_020_001_(9954958475).jpg",
+  "alt": "A Sandia scientist in protective gear examining a microelectronics chip"
+ },
+ {
+  "file": "sandia-mems.jpg",
+  "title": "File:U.S. Department of Energy - Science - 463 017 001 (10190969504).jpg",
+  "licence": "Public domain",
+  "artist": "U.S. Department of Energy from United States",
+  "credit": "463 017 001",
+  "page": "https://commons.wikimedia.org/wiki/File:U.S._Department_of_Energy_-_Science_-_463_017_001_(10190969504).jpg",
+  "alt": "The world's smallest micro-chain drive, fabricated at Sandia National Laboratories"
+ },
+ {
+  "file": "clean-room-fab.jpg",
+  "title": "File:Clean room.jpg",
+  "licence": "Public domain",
+  "artist": "Uploaded by Duk 08:45, 16 Feb 2005 (UTC)",
+  "credit": "http://www.grc.nasa.gov/WWW/ictd/content/labmicrofab.html (original) and https://images.nasa.gov/details/GRC-1998-C-0126",
+  "page": "https://commons.wikimedia.org/wiki/File:Clean_room.jpg",
+  "alt": "The clean room of a semiconductor manufacturing plant"
+ },
+ {
+  "file": "laser-diode-chip.jpg",
+  "title": "File:Laser diode chip.jpg",
+  "licence": "Public domain",
+  "artist": "",
+  "credit": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Laser_diode_chip.jpg",
+  "alt": "A laser diode chip"
+ },
+ {
+  "file": "sierra-supercomputer.jpg",
+  "title": "File:Sierra Supercomputer (48002385338).jpg",
+  "licence": "Public domain",
+  "artist": "U.S. Department of Energy from United States",
+  "credit": "477 031 010",
+  "page": "https://commons.wikimedia.org/wiki/File:Sierra_Supercomputer_(48002385338).jpg",
+  "alt": "The Sierra supercomputer at Lawrence Livermore National Laboratory"
+ },
+ {
+  "file": "falcon9-starlink.jpg",
+  "title": "File:Falcon 9 Starlink 8-10 Launch (8623018).jpg",
+  "licence": "Public domain",
+  "artist": "U.S. Space Force photo by Joshua Conti",
+  "credit": "This image was released by the United States Space Force with the ID 240831-X-KD758-1002 (next).\nThis tag does not indic",
+  "page": "https://commons.wikimedia.org/wiki/File:Falcon_9_Starlink_8-10_Launch_(8623018).jpg",
+  "alt": "A Falcon 9 rocket carrying Starlink satellites launching from Cape Canaveral"
+ },
+ {
+  "file": "falcon9-oneweb.jpg",
+  "title": "File:Falcon 9 ONEWEB Launch (7805965).jpg",
+  "licence": "Public domain",
+  "artist": "U.S. Space Force photo by Joshua Conti",
+  "credit": "This image was released by the United States Space Force with the ID 230109-X-KD758-1002 (next).\nThis tag does not indic",
+  "page": "https://commons.wikimedia.org/wiki/File:Falcon_9_ONEWEB_Launch_(7805965).jpg",
+  "alt": "A Falcon 9 rocket launching OneWeb satellites from Cape Canaveral"
+ },
+ {
+  "file": "electron-prefire.jpg",
+  "title": "File:Rocket Lab PREFIRE Integration (KSC-20240515-PH-RKL01 0003).jpg",
+  "licence": "Public domain",
+  "artist": "NASA Kennedy Space Center / Rocket Lab",
+  "credit": "This image or video was catalogued by John F. Kennedy Space Center of the United States National Aeronautics and Space A",
+  "page": "https://commons.wikimedia.org/wiki/File:Rocket_Lab_PREFIRE_Integration_(KSC-20240515-PH-RKL01_0003).jpg",
+  "alt": "Technicians integrating NASA's PREFIRE spacecraft with a Rocket Lab Electron"
+ },
+ {
+  "file": "artemis1-launch.jpg",
+  "title": "File:Artemis I Launch (NHQ202211160017).jpg",
+  "licence": "Public domain",
+  "artist": "Joel Kowsky",
+  "credit": "https://www.flickr.com/photos/nasahqphoto/52504616014/in/photostream/",
+  "page": "https://commons.wikimedia.org/wiki/File:Artemis_I_Launch_(NHQ202211160017).jpg",
+  "alt": "NASA's Space Launch System rocket carrying Orion launching on Artemis I"
+ },
+ {
+  "file": "cubesats-iss.jpg",
+  "title": "File:A trio of CubeSats is ejected into Earth orbit from a small satellite orbital deployer (iss072e352045).jpg",
+  "licence": "Public domain",
+  "artist": "NASA Johnson Space Center",
+  "credit": "This image or video was catalogued by Lyndon B. Johnson Space Center of the United States National Aeronautics and Space",
+  "page": "https://commons.wikimedia.org/wiki/File:A_trio_of_CubeSats_is_ejected_into_Earth_orbit_from_a_small_satellite_orbital_deployer_(iss072e352045).jpg",
+  "alt": "A trio of CubeSats ejected into Earth orbit from the International Space Station"
+ },
+ {
+  "file": "iss-array.jpg",
+  "title": "File:Earth horizon and International Space Station solar panel array (Expedition 17 crew, August 2008).jpg",
+  "licence": "Public domain",
+  "artist": "NASA",
+  "credit": "http://spaceflight.nasa.gov/gallery/images/station/crew-17/html/iss017e012652.html (direct link)",
+  "page": "https://commons.wikimedia.org/wiki/File:Earth_horizon_and_International_Space_Station_solar_panel_array_(Expedition_17_crew,_August_2008).jpg",
+  "alt": "Earth's horizon and the International Space Station's solar panel array"
+ },
+ {
+  "file": "dna-helix.jpg",
+  "title": "File:DNA Helix CPK.jpg",
+  "licence": "Public domain",
+  "artist": "Ude",
+  "credit": "Ray tracing model. Pov file created with ArgusLab 4.0.1. based on 2EDZy.pdb. Rendered with POV-Ray v3.62.",
+  "page": "https://commons.wikimedia.org/wiki/File:DNA_Helix_CPK.jpg",
+  "alt": "A space-filling model of part of a DNA double helix"
+ },
+ {
+  "file": "molbio-lab.jpg",
+  "title": "File:Laboratory (2).jpg",
+  "licence": "Public domain",
+  "artist": "Linda Bartlett (Photographer)",
+  "credit": "This image was released by the National Cancer Institute, an agency part of the National Institutes of Health, with the ",
+  "page": "https://commons.wikimedia.org/wiki/File:Laboratory_(2).jpg",
+  "alt": "A molecular biology laboratory at the Massachusetts Institute of Technology"
+ },
+ {
+  "file": "chromosomes.jpg",
+  "title": "File:Scientist counting chromosomes (14336299246).jpg",
+  "licence": "Public domain",
+  "artist": "NIH History Office from Bethesda",
+  "credit": "Scientist counting chromosomes",
+  "page": "https://commons.wikimedia.org/wiki/File:Scientist_counting_chromosomes_(14336299246).jpg",
+  "alt": "A scientist counting chromosomes in laboratory research at the NIH"
+ },
+ {
+  "file": "dna-seq-iss.jpg",
+  "title": "File:First-ever sequencing of DNA in space, performed by Kate Rubins on the ISS. 128f0462 sequencer 1.jpg",
+  "licence": "Public domain",
+  "artist": "NASA",
+  "credit": "ImageSite/page",
+  "page": "https://commons.wikimedia.org/wiki/File:First-ever_sequencing_of_DNA_in_space,_performed_by_Kate_Rubins_on_the_ISS._128f0462_sequencer_1.jpg",
+  "alt": "Astronaut Kate Rubins sequencing DNA on the International Space Station"
+ },
+ {
+  "file": "cell-plates.jpg",
+  "title": "File:Well cell culture plates.jpg",
+  "licence": "Public domain",
+  "artist": "Diane A. Reid (Photographer)",
+  "credit": "This image was released by the National Cancer Institute, an agency part of the National Institutes of Health, with the ",
+  "page": "https://commons.wikimedia.org/wiki/File:Well_cell_culture_plates.jpg",
+  "alt": "Gloved hands holding well cell culture plates"
+ },
+ {
+  "file": "carbon-fibre-facility.jpg",
+  "title": "File:Carbon Fiber Technology Facility Open House Oak Ridge Tennessee (8595317010).jpg",
+  "licence": "Public domain",
+  "artist": "doe-oakridge",
+  "credit": "Carbon Fiber Technology Facilty Open House Oak Ridge Tennessee",
+  "page": "https://commons.wikimedia.org/wiki/File:Carbon_Fiber_Technology_Facility_Open_House_Oak_Ridge_Tennessee_(8595317010).jpg",
+  "alt": "The Carbon Fiber Technology Facility at Oak Ridge, Tennessee"
+ },
+ {
+  "file": "carbon-fibre-facility2.jpg",
+  "title": "File:Carbon Fiber Technology Facility Open House Oak Ridge Tennessee (8594217383).jpg",
+  "licence": "Public domain",
+  "artist": "doe-oakridge",
+  "credit": "Carbon Fiber Technology Facilty Open House Oak Ridge Tennessee",
+  "page": "https://commons.wikimedia.org/wiki/File:Carbon_Fiber_Technology_Facility_Open_House_Oak_Ridge_Tennessee_(8594217383).jpg",
+  "alt": "The Carbon Fiber Technology Facility open house at Oak Ridge, Tennessee"
+ },
+ {
+  "file": "graphene-stm.jpg",
+  "title": "File:Speed Bumps Less Important Than Potholes for Graphene (5940523983).jpg",
+  "licence": "Public domain",
+  "artist": "National Institute of Standards and Technology",
+  "credit": "Speed Bumps Less Important Than Potholes for Graphene",
+  "page": "https://commons.wikimedia.org/wiki/File:Speed_Bumps_Less_Important_Than_Potholes_for_Graphene_(5940523983).jpg",
+  "alt": "A scanning tunnelling microscope image of a section of graphene sheet"
+ },
+ {
+  "file": "graphite-pebble.jpg",
+  "title": "File:Graphitkugel fuer Hochtemperaturreaktor cropped.JPG",
+  "licence": "Public domain",
+  "artist": "Stefan Kühn",
+  "credit": "Graphitkugel_fuer_Hochtemperaturreaktor.JPG",
+  "page": "https://commons.wikimedia.org/wiki/File:Graphitkugel_fuer_Hochtemperaturreaktor_cropped.JPG",
+  "alt": "A graphite pebble fuel assembly for a pebble-bed reactor"
+ },
+ {
+  "file": "powerbuoy.jpg",
+  "title": "File:USMC-101002-M-4787A-003.jpg",
+  "licence": "Public domain",
+  "artist": "Lance Cpl. Vanessa M. American Horse",
+  "credit": "This image was released by the United States Marine Corps with the ID 101002-M-4787A-003 (next).\nThis tag does not indic",
+  "page": "https://commons.wikimedia.org/wiki/File:USMC-101002-M-4787A-003.jpg",
+  "alt": "A PB40 PowerBuoy, built by Ocean Power Technologies, floating off the coast"
+ },
+ {
+  "file": "rance-barrage.jpg",
+  "title": "File:Barrage de la Rance.jpg",
+  "licence": "Public domain",
+  "artist": "Tswgb",
+  "credit": "Own work",
+  "page": "https://commons.wikimedia.org/wiki/File:Barrage_de_la_Rance.jpg",
+  "alt": "Aerial view of the tidal barrage on the Rance and of Saint-Malo"
+ },
+ {
+  "file": "pelamis-emec.jpg",
+  "title": "File:Pelamis at EMEC.jpg",
+  "licence": "Public domain",
+  "artist": "P123",
+  "credit": "Own work",
+  "page": "https://commons.wikimedia.org/wiki/File:Pelamis_at_EMEC.jpg",
+  "alt": "A Pelamis wave energy converter at the European Marine Energy Centre"
+ },
+ {
+  "file": "francis-runner.jpg",
+  "title": "File:Imatrankoski Francis-turbine runner.JPG",
+  "licence": "Public domain",
+  "artist": "SeppVei",
+  "credit": "Own work",
+  "page": "https://commons.wikimedia.org/wiki/File:Imatrankoski_Francis-turbine_runner.JPG",
+  "alt": "The runner of the Francis turbine at the Imatrankoski power plant"
+ },
+ {
+  "file": "geothermal-us.jpg",
+  "title": "File:Geothermal power plant in the United States.JPEG",
+  "licence": "Public domain",
+  "artist": "Unknown authorUnknown author",
+  "credit": "http://www.defenseimagery.mil; VIRIN: DF-SC-82-09445",
+  "page": "https://commons.wikimedia.org/wiki/File:Geothermal_power_plant_in_the_United_States.JPEG",
+  "alt": "A geothermal power plant at Geyserville in the United States"
+ },
+ {
+  "file": "nesjavellir.jpg",
+  "title": "File:NesjavellirPowerPlant edit2.jpg",
+  "licence": "Public domain",
+  "artist": "Gretar Ívarsson, Edited by Fir0002",
+  "credit": "Gretar Ívarsson, geologist at Nesjavellir",
+  "page": "https://commons.wikimedia.org/wiki/File:NesjavellirPowerPlant_edit2.jpg",
+  "alt": "The Nesjavellir geothermal power plant in Iceland"
+ },
+ {
+  "file": "bingham-1942.jpg",
+  "title": "File:Bingham Canyon Mine 1942.jpg",
+  "licence": "Public domain",
+  "artist": "Andreas Feininger",
+  "credit": "This image  is available from the United States Library of Congress's Prints and Photographs division under the digital ",
+  "page": "https://commons.wikimedia.org/wiki/File:Bingham_Canyon_Mine_1942.jpg",
+  "alt": "The Utah Copper Company open-pit mine at Bingham Canyon in 1942"
+ },
+ {
+  "file": "mountain-pass.jpg",
+  "title": "File:Mountain Pass Mine, California (ASTER).jpg",
+  "licence": "Public domain",
+  "artist": "NASA/METI/AIST/Japan Space Systems, and U.S./Japan ASTER Science Team",
+  "credit": "This image or video was catalogued by Jet Propulsion Laboratory of the United States National Aeronautics and Space Admi",
+  "page": "https://commons.wikimedia.org/wiki/File:Mountain_Pass_Mine,_California_(ASTER).jpg",
+  "alt": "The Mountain Pass rare earth mine in California seen from space by ASTER"
+ },
+ {
+  "file": "salar-atacama.jpg",
+  "title": "File:Salar de Atacama, Chile (ASTER).jpg",
+  "licence": "Public domain",
+  "artist": "NASA/METI/AIST/Japan Space Systems, and U.S./Japan ASTER Science Team",
+  "credit": "This image or video was catalogued by Jet Propulsion Laboratory of the United States National Aeronautics and Space Admi",
+  "page": "https://commons.wikimedia.org/wiki/File:Salar_de_Atacama,_Chile_(ASTER).jpg",
+  "alt": "The Salar de Atacama in Chile, seen from space by ASTER"
+ },
+ {
+  "file": "chuqui.jpg",
+  "title": "File:Chuquicamata-Chile-2009.JPG",
+  "licence": "Public domain",
+  "artist": "Pierre cb",
+  "credit": "Own work",
+  "page": "https://commons.wikimedia.org/wiki/File:Chuquicamata-Chile-2009.JPG",
+  "alt": "Loading rock from the Chuquicamata copper mine in Chile"
+ },
+ {
+  "file": "uranium-mill.jpg",
+  "title": "File:URANIUM MILL JUST OUTSIDE OF MOAB. THE ORE COMES FROM A MINE ABOUT 25 MILES AWAY. THE REGION IS RICH IN URANIUM AND... - NARA - 545611.jpg",
+  "licence": "Public domain",
+  "artist": "David Hiser",
+  "credit": "U.S. National Archives and Records Administration",
+  "page": "https://commons.wikimedia.org/wiki/File:URANIUM_MILL_JUST_OUTSIDE_OF_MOAB._THE_ORE_COMES_FROM_A_MINE_ABOUT_25_MILES_AWAY._THE_REGION_IS_RICH_IN_URANIUM_AND..._-_NARA_-_545611.jpg",
+  "alt": "A uranium mill outside Moab, Utah"
+ },
+ {
+  "file": "clayton-valley.jpg",
+  "title": "File:Clayton Valley, NV (ASTER).jpg",
+  "licence": "Public domain",
+  "artist": "NASA/METI/AIST/Japan Space Systems, and U.S./Japan ASTER Science Team",
+  "credit": "This image or video was catalogued by Jet Propulsion Laboratory of the United States National Aeronautics and Space Admi",
+  "page": "https://commons.wikimedia.org/wiki/File:Clayton_Valley,_NV_(ASTER).jpg",
+  "alt": "Clayton Valley, Nevada, where lithium has been produced"
+ },
+ {
+  "file": "nist-nanotube-chips.jpg",
+  "title": "File:Custom Chips Coated with Carbon Nanotubes (10747732094).jpg",
+  "licence": "Public domain",
+  "artist": "National Institute of Standards and Technology",
+  "credit": "Custom Chips Coated with Carbon Nanotubes",
+  "page": "https://commons.wikimedia.org/wiki/File:Custom_Chips_Coated_with_Carbon_Nanotubes_(10747732094).jpg",
+  "alt": "Custom chips coated with carbon nanotubes made at NIST"
+ },
+ {
+  "file": "acs3-sail.jpg",
+  "title": "File:ACS3 Test and Final Preparation for Launch (ACD24-0020-021).jpg",
+  "licence": "Public domain",
+  "artist": "NASA Ames Research Center / BRANDON TORRES",
+  "credit": "This image or video was catalogued by Ames Research Center of the United States National Aeronautics and Space Administr",
+  "page": "https://commons.wikimedia.org/wiki/File:ACS3_Test_and_Final_Preparation_for_Launch_(ACD24-0020-021).jpg",
+  "alt": "The Advanced Composite Solar Sail System spacecraft during test and launch preparation"
+ },
+ {
+  "file": "sandia-electrode.jpg",
+  "title": "File:U.S. Department of Energy - Science - 419 001 010 (9951392125).jpg",
+  "licence": "Public domain",
+  "artist": "U.S. Department of Energy from United States",
+  "credit": "419 001 010",
+  "page": "https://commons.wikimedia.org/wiki/File:U.S._Department_of_Energy_-_Science_-_419_001_010_(9951392125).jpg",
+  "alt": "A Sandia researcher holding an electrode made by coating copper foil"
+ },
+ {
+  "file": "cftf-line.jpg",
+  "title": "File:Carbon Fiber Technology Facility Open House Oak Ridge Tennessee (8594217455).jpg",
+  "licence": "Public domain",
+  "artist": "doe-oakridge",
+  "credit": "Carbon Fiber Technology Facilty Open House Oak Ridge Tennessee",
+  "page": "https://commons.wikimedia.org/wiki/File:Carbon_Fiber_Technology_Facility_Open_House_Oak_Ridge_Tennessee_(8594217455).jpg",
+  "alt": "The Carbon Fiber Technology Facility at Oak Ridge, Tennessee"
+ },
+ {
+  "file": "fullerene-gears.jpg",
+  "title": "File:Fullerene Nanogears - GPN-2000-001535.jpg",
+  "licence": "Public domain",
+  "artist": "NASA",
+  "credit": "Great Images in NASA:  Home page, Source, Image",
+  "page": "https://commons.wikimedia.org/wiki/File:Fullerene_Nanogears_-_GPN-2000-001535.jpg",
+  "alt": "A NASA computer model of fullerene nanogears"
+ },
+ {
+  "file": "artemis2-moon.jpg",
+  "title": "File:A New View of the Moon.jpg",
+  "licence": "Public domain",
+  "artist": "NASA",
+  "credit": "https://images.nasa.gov/details/art002e009287",
+  "page": "https://commons.wikimedia.org/wiki/File:A_New_View_of_the_Moon.jpg",
+  "alt": "Earth setting over the Moon's limb, photographed by the Artemis II crew on 6 April 2026"
+ },
+ {
+  "file": "artemis2-eclipse.jpg",
+  "title": "File:Solar eclipse taken from Artemis II - April 2026.jpg",
+  "licence": "Public domain",
+  "artist": "NASA",
+  "credit": "https://images.nasa.gov/details/art002e009301",
+  "page": "https://commons.wikimedia.org/wiki/File:Solar_eclipse_taken_from_Artemis_II_-_April_2026.jpg",
+  "alt": "A solar eclipse photographed by the Artemis II crew on 6 April 2026"
  }
 ]

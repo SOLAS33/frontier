@@ -172,7 +172,15 @@ def chain():
     return _wrap("".join(g), "Blocks linked in a chain with proofs above and below")
 
 
-ART = {"chain": chain, "quantum": quantum, "coin": coin, "cell": cell, "mind": mind, "bot": bot, "atom": atom, "fusion": fusion, "drone": drone,
+def mine():
+    g = [f'<path d="M0 190 L70 140 L120 160 L190 80 L250 130 L310 100 L400 170 V240 H0 Z" fill="none" stroke="{LINE}" stroke-width="3"/>',
+         f'<path d="M110 240 L150 175 L200 205 L250 150 L300 240" fill="none" stroke="{TEAL}" stroke-width="3"/>']
+    for k, x in enumerate((140, 190, 240, 290)):
+        g.append(f'<circle cx="{x}" cy="{200 - k % 2 * 20}" r="{6 + k}" fill="{AMB if k % 2 else VIO}" opacity=".9"/>')
+    return _wrap("".join(g), "A mountain with ore seams and mineral nuggets")
+
+
+ART = {"mine": mine, "chain": chain, "quantum": quantum, "coin": coin, "cell": cell, "mind": mind, "bot": bot, "atom": atom, "fusion": fusion, "drone": drone,
        "shield": shield, "carbon": carbon, "tide": tide, "gene": gene, "orbit": orbit, "chip": chip}
 
 

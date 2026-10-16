@@ -31,6 +31,13 @@ UNIVERSE = {
     "AVAV": "AeroVironment", "KTOS": "Kratos", "RCAT": "Red Cat", "ONDS": "Ondas", "UMAC": "Unusual Machines", "LMT": "Lockheed Martin",
     "NOC": "Northrop Grumman", "RTX": "RTX", "AMSC": "American Superconductor", "BRKR": "Bruker", "LASR": "nLight", "GEV": "GE Vernova",
     "QS": "QuantumScape", "ENVX": "Enovix", "EOSE": "Eos Energy", "FLNC": "Fluence", "ALB": "Albemarle", "TSLA": "Tesla", "GM": "General Motors", "F": "Ford",
+    # Frontier Chip, Orbit, Gene, Carbon, Tide, Mine
+    "TSM": "TSMC", "ASML": "ASML", "INTC": "Intel", "AMAT": "Applied Materials", "LITE": "Lumentum",
+    "RKLB": "Rocket Lab", "ASTS": "AST SpaceMobile", "PL": "Planet Labs", "LUNR": "Intuitive Machines", "RDW": "Redwire",
+    "CRSP": "CRISPR Therapeutics", "NTLA": "Intellia", "BEAM": "Beam Therapeutics", "LLY": "Eli Lilly", "NVO": "Novo Nordisk",
+    "NVX": "Novonix", "WWR": "Westwater Resources", "NMG": "Nouveau Monde Graphite",
+    "OPTT": "Ocean Power Technologies", "WAVE": "Eco Wave Power", "ORA": "Ormat Technologies", "FRVO": "Fervo Energy",
+    "MP": "MP Materials", "UUUU": "Energy Fuels", "LAC": "Lithium Americas", "FCX": "Freeport-McMoRan",
 }
 # Histories begin at the date each series is meaningful for this site.
 START = {"QUBT": "2018-07-30", "IBM": "2010-01-04", "GOOGL": "2010-01-04", "MSFT": "2010-01-04",
@@ -43,7 +50,7 @@ START = {"QUBT": "2018-07-30", "IBM": "2010-01-04", "GOOGL": "2010-01-04", "MSFT
          "EOSE": "2020-11-01", "FLNC": "2021-10-28", "ALB": "2010-01-04", "TSLA": "2010-06-29", "GM": "2010-11-18", "F": "2010-01-04",
          "SYM": "2022-06-27", "SERV": "2021-01-01", "TER": "2010-01-04", "ISRG": "2010-01-04", "ROK": "2010-01-04", "AVAV": "2010-01-04",
          "KTOS": "2010-01-04", "RCAT": "2019-01-01", "ONDS": "2020-01-01", "UMAC": "2024-02-09", "LMT": "2010-01-04", "NOC": "2010-01-04",
-         "RTX": "2010-01-04", "AMSC": "2018-01-01", "BRKR": "2010-01-04", "LASR": "2018-01-01", "GEV": "2024-04-02"}
+         "RTX": "2010-01-04", "TSM": "2016-01-04", "ASML": "2016-01-04", "INTC": "2016-01-04", "AMAT": "2016-01-04", "LITE": "2016-01-04", "LLY": "2016-01-04", "NVO": "2016-01-04", "WWR": "2016-01-04", "OPTT": "2016-01-04", "ORA": "2016-01-04", "UUUU": "2016-01-04", "FCX": "2016-01-04", "AMSC": "2018-01-01", "BRKR": "2010-01-04", "LASR": "2018-01-01", "GEV": "2024-04-02"}
 
 
 def refresh(tickers=None) -> dict:

@@ -55,6 +55,12 @@ jobs:
           python -m frontier.live.run --site fusion
           python -m frontier.live.run --site bot
           python -m frontier.live.run --site chain
+          python -m frontier.live.run --site chip
+          python -m frontier.live.run --site orbit
+          python -m frontier.live.run --site gene
+          python -m frontier.live.run --site carbon
+          python -m frontier.live.run --site tide
+          python -m frontier.live.run --site mine
 
       - name: Build sites (sites not yet live are built but kept out of the deploy by dist/.assetsignore)
         run: |
@@ -66,6 +72,12 @@ jobs:
           python build.py fusion
           python build.py bot
           python build.py chain
+          python build.py chip
+          python build.py orbit
+          python build.py gene
+          python build.py carbon
+          python build.py tide
+          python build.py mine
 
       - name: Is a real Cloudflare token set?
         env:
