@@ -250,7 +250,7 @@ def build():
     ch3 = chapter("change", 3, "What changes, and in what order", "Rules first, funds second, payments third, and a quantum question underneath.", f'''
 <div class="tl wide">
 <div class="ev fut"><div class="yr">Now to 2027: rules</div><p>MiCA licences in the EU, a US stablecoin law, and licensing in Singapore, Dubai and the UK. Exchanges that cannot get a licence leave the market.{cite(8)}</p></div>
-<div class="ev fut"><div class="yr">2026 to 2028: wrappers</div><p>Spot funds, then funds for other coins, then tokenised funds that settle on a blockchain. The route most big investors take is through a fund, not a wallet.</p></div>
+<div class="ev fut"><div class="yr">2026 to 2028: wrappers</div><p>Spot funds, then funds for other coins, then tokenised funds that settle on a blockchain. The route most big investors take is through a fund, not a wallet. <a href="../chain/">Frontier Chain</a> follows the tokenisation side.</p></div>
 <div class="ev fut"><div class="yr">2027 to 2030: payments</div><p>Stablecoins used by firms to move money across borders and by apps as a default dollar. Banks that issue their own tokens.</p></div>
 <div class="ev fut"><div class="yr">Whenever it comes: quantum</div><p>A large enough quantum computer could forge the signatures that protect most coins. Everything below depends on whether the networks change first.</p></div>
 </div>

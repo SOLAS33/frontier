@@ -43,6 +43,18 @@ def hero_reactor(w=900, h=520):
     return f'<svg class="hero-art reactor" viewBox="0 0 {w} {h}" role="img" aria-label="Glowing rings around a reactor core">{"".join(g)}</svg>'
 
 
+def hero_tokamak(w=900, h=520):
+    """Nested ellipses with a bright core: magnetic surfaces around a fusion plasma."""
+    cx, cy = w * 0.64, h * 0.5
+    g = [f'<ellipse cx="{cx:.0f}" cy="{cy:.0f}" rx="{34 * k}" ry="{48 * k}" class="rr r{k % 3}"/>' for k in range(10, 0, -1)]
+    rng = np.random.default_rng(4)
+    for _ in range(30):
+        a, k = rng.random() * math.tau, 1 + rng.random() * 9
+        g.append(f'<circle cx="{cx + 34 * k * math.cos(a):.0f}" cy="{cy + 48 * k * math.sin(a):.0f}" r="{2 + rng.random() * 3:.1f}" class="rd"/>')
+    g.append(f'<ellipse cx="{cx:.0f}" cy="{cy:.0f}" rx="20" ry="28" class="rc"/>')
+    return f'<svg class="hero-art reactor" viewBox="0 0 {w} {h}" role="img" aria-label="Nested magnetic surfaces around a hot plasma core">{"".join(g)}</svg>'
+
+
 def hero_cells(w=900, h=520, seed=9):
     """A grid of battery cells at different charge levels."""
     rng = np.random.default_rng(seed)

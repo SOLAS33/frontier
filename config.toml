@@ -26,7 +26,7 @@ status = "live"
 slug = "chain"
 name = "Chain"
 line = "Blockchain technology beyond money: tokenisation, smart contracts and proofs."
-status = "soon"
+status = "live"
 
 [[sites]]
 slug = "cell"
@@ -44,7 +44,7 @@ status = "live"
 slug = "bot"
 name = "Bot"
 line = "Robots and physical AI."
-status = "soon"
+status = "live"
 
 [[sites]]
 slug = "atom"
@@ -56,7 +56,7 @@ status = "live"
 slug = "fusion"
 name = "Fusion"
 line = "Fusion power and the milestones that matter."
-status = "soon"
+status = "live"
 
 [[sites]]
 slug = "drone"

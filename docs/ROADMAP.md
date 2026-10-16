@@ -1,6 +1,6 @@
 # Frontier: roadmap and open items
 
-Updated 15 October 2026 (end of session).
+Updated 16 October 2026. Fusion, Bot and Chain were built, linted and set to live in config.toml on 16 Oct (committed, not yet deployed). Their notes under "Registered, not built" below are now history.
 
 ## Live at frontier.solas33.com (indexable, sitemap published)
 
