@@ -195,7 +195,7 @@ def build():
     hero = f'''<header class="fx-hero" id="top">
 <div class="fx-hero-img"><img src="img/strontium-clock.jpg" alt="" decoding="async"></div>{art.hero_interference()}
 <div class="fx-hero-in"><div class="fx-kicker">Frontier / Quantum</div>
-<h1>Quantum computing: what <em>works</em>, and what is a press release</h1>
+<h1>What quantum computers <em>can</em> do now</h1>
 <p class="lead">Some of quantum computing works. Some of it is a press release. Here is which is which, who is paid for each, and how much of it is already in the share price.</p>
 <div class="fx-stats">
 {stat_cell(48, "logical qubits Quantinuum reports on its Helios machine, a company figure")}
